@@ -1,0 +1,390 @@
+{
+  "contractName": "ILendingPoolAddressesProvider",
+  "abi": [
+    {
+      "inputs": [],
+      "name": "getLendingPoolCore",
+      "outputs": [
+        {
+          "internalType": "address payable",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getLendingPool",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.6.11+commit.5ef660b1\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"getLendingPool\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getLendingPoolCore\",\"outputs\":[{\"internalType\":\"address payable\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"title\":\"ILendingPoolAddressesProvider interface\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"notice\":\"provides the interface to fetch the LendingPoolCore address\",\"version\":1}},\"settings\":{\"compilationTarget\":{\"/mnt/e/Repositories/uproot-trustless-contracts/contracts/interface/Aave/ILendingPoolAddressesProvider.sol\":\"ILendingPoolAddressesProvider\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":100},\"remappings\":[]},\"sources\":{\"/mnt/e/Repositories/uproot-trustless-contracts/contracts/interface/Aave/ILendingPoolAddressesProvider.sol\":{\"keccak256\":\"0x6d213df89994f63851b52220f6b36c9a7880731c86469d7c47a56fd14a05f108\",\"license\":\"GPL-3.0-or-later\",\"urls\":[\"bzz-raw://a65707e614a580f8a7518c136054a9740d2a4bc4b9f04cac8f070575dfcc5000\",\"dweb:/ipfs/QmNwHFoyPUjUAee6g6SbTBcx1gKSGF998dqLDSVCuJnQ97\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "\r\n// SPDX-License-Identifier: GPL-3.0-or-later\r\npragma solidity ^0.6.11;\r\n\r\n/**\r\n    @title ILendingPoolAddressesProvider interface\r\n    @notice provides the interface to fetch the LendingPoolCore address\r\n */\r\n\r\ninterface ILendingPoolAddressesProvider {\r\n    function getLendingPoolCore() external view returns (address payable);\r\n    function getLendingPool() external view returns (address);\r\n}",
+  "sourcePath": "/mnt/e/Repositories/uproot-trustless-contracts/contracts/interface/Aave/ILendingPoolAddressesProvider.sol",
+  "ast": {
+    "absolutePath": "/mnt/e/Repositories/uproot-trustless-contracts/contracts/interface/Aave/ILendingPoolAddressesProvider.sol",
+    "exportedSymbols": {
+      "ILendingPoolAddressesProvider": [
+        7178
+      ]
+    },
+    "id": 7179,
+    "license": "GPL-3.0-or-later",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 7166,
+        "literals": [
+          "solidity",
+          "^",
+          "0.6",
+          ".11"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "48:24:16"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": {
+          "id": 7167,
+          "nodeType": "StructuredDocumentation",
+          "src": "76:133:16",
+          "text": "@title ILendingPoolAddressesProvider interface\n@notice provides the interface to fetch the LendingPoolCore address"
+        },
+        "fullyImplemented": false,
+        "id": 7178,
+        "linearizedBaseContracts": [
+          7178
+        ],
+        "name": "ILendingPoolAddressesProvider",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "ed6ff760",
+            "id": 7172,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getLendingPoolCore",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 7168,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "287:2:16"
+            },
+            "returnParameters": {
+              "id": 7171,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7170,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 7172,
+                  "src": "313:15:16",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address_payable",
+                    "typeString": "address payable"
+                  },
+                  "typeName": {
+                    "id": 7169,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "313:15:16",
+                    "stateMutability": "payable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address_payable",
+                      "typeString": "address payable"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "312:17:16"
+            },
+            "scope": 7178,
+            "src": "260:70:16",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "0261bf8b",
+            "id": 7177,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getLendingPool",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 7173,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "359:2:16"
+            },
+            "returnParameters": {
+              "id": 7176,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7175,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 7177,
+                  "src": "385:7:16",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 7174,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "385:7:16",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "384:9:16"
+            },
+            "scope": 7178,
+            "src": "336:58:16",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 7179,
+        "src": "213:184:16"
+      }
+    ],
+    "src": "48:349:16"
+  },
+  "legacyAST": {
+    "absolutePath": "/mnt/e/Repositories/uproot-trustless-contracts/contracts/interface/Aave/ILendingPoolAddressesProvider.sol",
+    "exportedSymbols": {
+      "ILendingPoolAddressesProvider": [
+        7178
+      ]
+    },
+    "id": 7179,
+    "license": "GPL-3.0-or-later",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 7166,
+        "literals": [
+          "solidity",
+          "^",
+          "0.6",
+          ".11"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "48:24:16"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": {
+          "id": 7167,
+          "nodeType": "StructuredDocumentation",
+          "src": "76:133:16",
+          "text": "@title ILendingPoolAddressesProvider interface\n@notice provides the interface to fetch the LendingPoolCore address"
+        },
+        "fullyImplemented": false,
+        "id": 7178,
+        "linearizedBaseContracts": [
+          7178
+        ],
+        "name": "ILendingPoolAddressesProvider",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "ed6ff760",
+            "id": 7172,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getLendingPoolCore",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 7168,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "287:2:16"
+            },
+            "returnParameters": {
+              "id": 7171,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7170,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 7172,
+                  "src": "313:15:16",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address_payable",
+                    "typeString": "address payable"
+                  },
+                  "typeName": {
+                    "id": 7169,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "313:15:16",
+                    "stateMutability": "payable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address_payable",
+                      "typeString": "address payable"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "312:17:16"
+            },
+            "scope": 7178,
+            "src": "260:70:16",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "0261bf8b",
+            "id": 7177,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getLendingPool",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 7173,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "359:2:16"
+            },
+            "returnParameters": {
+              "id": 7176,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7175,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 7177,
+                  "src": "385:7:16",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 7174,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "385:7:16",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "384:9:16"
+            },
+            "scope": 7178,
+            "src": "336:58:16",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 7179,
+        "src": "213:184:16"
+      }
+    ],
+    "src": "48:349:16"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.6.11+commit.5ef660b1.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.1.0",
+  "updatedAt": "2020-07-09T20:27:12.354Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "title": "ILendingPoolAddressesProvider interface",
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "notice": "provides the interface to fetch the LendingPoolCore address",
+    "version": 1
+  }
+}

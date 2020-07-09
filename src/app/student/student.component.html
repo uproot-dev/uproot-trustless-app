@@ -44,10 +44,6 @@
                                 <span class="btn-inner--icon"><i class="fa fa-arrow-left"></i></span>
                                 <span class="btn-inner--text">Back</span>
                             </a>
-                            <a (click)="openModal('custom-modal-dai'); txOn();" class="btn btn-info text-white btn-icon mb-3 mb-sm-0">
-                                <span class="btn-inner--icon"><i class="fa fa-star"></i></span>
-                                <span class="btn-inner--text">Trade DAI</span>
-                            </a>
                             <a *ngIf=!globals.selectedStudent.studentENSNameRecord (click)="openModal('custom-modal-setup'); txOn();" class="btn btn-success text-white btn-icon mb-3 mb-sm-0">
                                 <span class="btn-inner--icon"><i class="fa fa-star"></i></span>
                                 <span class="btn-inner--text">Register ENS</span>
@@ -188,67 +184,6 @@
                                 <span class="btn-inner--text">Register Subdomain</span>
                             </a>
                             <a (click)="closeModal('custom-modal-setup'); txOff(); refreshAccountInfo();" class="btn btn-neutral btn-icon mb-3 mb-sm-0">
-                                <span class="btn-inner--icon"><i class="fa fa-arrow-left"></i></span>
-                                <span class="btn-inner--text">Back</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </form>
-    </jw-modal>
-    <jw-modal *ngIf=globals.selectedStudent id="custom-modal-dai">
-        <form role="form">
-            <div class="row justify-content-center">
-                <div class="col-md-6">
-                    <div class="card shadow bg-gradient-default border-0">
-                        <div class="card-body py-5">
-                            <h3 class="text-center text-white">Buy or Sell DAI</h3>
-                            <div class="row mt-3">
-                                <div class="col-md-12">
-                                    <h2 class="description text-center text-white">Here you can buy or sell DAI with ETH at Uniswap.</h2>
-                                </div>
-                            </div>
-                            <div class="row mt-3">
-                                <div class="col-md-12">
-                                    <div class="form-group" [ngClass]="{'focused':focus===true}">
-                                        <div class="input-group input-group-alternative mb-3">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
-                                            </div>
-                                            <input id="inputObjAmount" #inputObjAmount class="form-control" placeholder="Amount" type="number" (focus)="focus=true" (blur)="focus=false">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row mt-3">
-                                <div class="col-md-12">
-                                    <div *ngIf="txMode=='preTX'" class="alert alert-neutral" role="alert">
-                                        <strong class="text-default">You need confirm this transaction on your portis wallet!</strong>
-                                    </div>
-                                    <div *ngIf="txMode=='processingTX'" class="alert alert-warning" role="alert">
-                                        <strong>Wait!</strong> Loading your transaction ...
-                                    </div>
-                                    <div *ngIf="txMode=='successTX'" class="alert alert-success" role="alert">
-                                        <strong>Success!</strong> Transaction Hash {{hashTx}}
-                                        <a href="https://ropsten.etherscan.io/tx/{{hashTx}}" target="_blank">See On Etherscan</a>
-                                    </div>
-                                    <div *ngIf="txMode=='failedTX'" class="alert alert-danger" role="alert">
-                                        <strong>Failed!</strong> Transaction didn't complete. Try again!
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-footer bg-gradient-default">
-                            <a *ngIf="txMode=='preTX'" type="submit" (click)="buyDAI(inputObjAmount.value)" class="btn btn-success btn-icon text-white mb-3 mb-sm-0">
-                                <span class="btn-inner--icon"><i class="fa fa-send"></i></span>
-                                <span class="btn-inner--text">Buy</span>
-                            </a>
-                            <a *ngIf="txMode=='preTX'" type="submit" (click)="sellDAI(inputObjAmount.value)" class="btn btn-success btn-icon text-white mb-3 mb-sm-0">
-                                <span class="btn-inner--icon"><i class="fa fa-send"></i></span>
-                                <span class="btn-inner--text">Sell</span>
-                            </a>
-                            <a (click)="closeModal('custom-modal-dai'); txOff(); refreshAccountInfo();" class="btn btn-neutral btn-icon mb-3 mb-sm-0">
                                 <span class="btn-inner--icon"><i class="fa fa-arrow-left"></i></span>
                                 <span class="btn-inner--text">Back</span>
                             </a>

@@ -424,38 +424,6 @@ export class ClassroomComponent implements OnInit {
 		);
 	}
 
-	warned = false;
-
-	async uploadSkylink(files) {
-		if (!this.warned){
-			console.warn("Please upload the file to siasky and paste the record to register. We are working to fix this issue");
-			this.warned = true;
-			return;
-		}
-		// this.ngxLoader.start();
-		// const file = files[0];
-		// console.log(file);
-		// const skylink = await skynet.UploadFile(
-		// 	file,
-		// 	skynet.DefaultUploadOptions
-		// );
-		// console.log(`Upload successful, skylink: ${skylink}`);
-		// this.ngxLoader.stop();
-	}
-
-	downloadSkylink(skylink, filename) {
-		if (!this.warned){
-			console.warn("Please copy the link and download the file from siasky. We are working to fix this issue");
-			this.warned = true;
-			return;
-		}
-		// skynet.DownloadFile(
-		// 	filename,
-		// 	skylink,
-		// 	skynet.DefaultDownloadOptions
-		//);
-	}
-
 	refreshClassroomFunds(
 		classroom: Classroom = this.globals.selectedClassroom
 	) {
@@ -464,14 +432,6 @@ export class ClassroomComponent implements OnInit {
 			.then(
 				(val) =>
 					(this.globals.selectedClassroom.funds.DAI = Number(
-						ethers.utils.formatEther(val)
-					))
-			);
-		this.globals.service
-			.getLINKBalance(this.globals.selectedClassroom.smartcontract)
-			.then(
-				(val) =>
-					(this.globals.selectedClassroom.funds.LINK = Number(
 						ethers.utils.formatEther(val)
 					))
 			);
@@ -520,30 +480,6 @@ export class ClassroomComponent implements OnInit {
 			.then(
 				(val) =>
 					(this.globals.selectedClassroom.configs.oraclePaymentTimestamp = val)
-			);
-		this.globals.service.classroomContractInstance
-			.linkToken()
-			.then(
-				(val) =>
-					(this.globals.selectedClassroom.configs.linkToken = val)
-			);
-		this.globals.service.classroomContractInstance
-			.uniswapDAI()
-			.then(
-				(val) =>
-					(this.globals.selectedClassroom.configs.uniswapDAI = val)
-			);
-		this.globals.service.classroomContractInstance
-			.uniswapLINK()
-			.then(
-				(val) =>
-					(this.globals.selectedClassroom.configs.uniswapLINK = val)
-			);
-		this.globals.service.classroomContractInstance
-			.uniswapRouter()
-			.then(
-				(val) =>
-					(this.globals.selectedClassroom.configs.uniswapRouter = val)
 			);
 		this.globals.service.classroomContractInstance
 			.aaveProvider()

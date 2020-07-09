@@ -1,0 +1,398 @@
+{
+  "contractName": "IStudentAnswer",
+  "abi": [
+    {
+      "inputs": [],
+      "name": "getOwner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getSeed",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.6.11+commit.5ef660b1\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"getOwner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getSeed\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/mnt/e/Repositories/uproot-trustless-contracts/contracts/interface/IStudentAnswer.sol\":\"IStudentAnswer\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":100},\"remappings\":[]},\"sources\":{\"/mnt/e/Repositories/uproot-trustless-contracts/contracts/interface/IStudentAnswer.sol\":{\"keccak256\":\"0xfcfc60fbc0b0a711aded4dfa1dfc440b64e829852500947ddb5cc7b86f99568a\",\"license\":\"GPL-3.0-or-later\",\"urls\":[\"bzz-raw://5989729feae32e6a9a20d6c9d1e02f26f7b6b049bba3a7ebeeb7602c71a00908\",\"dweb:/ipfs/QmV7tH6xs6RD98FWZMuoUMaHSGiejpPs5mjLEn2p3iCEL8\"]},\"@openzeppelin/contracts/GSN/Context.sol\":{\"keccak256\":\"0xdb26cbf4d028490f49831a7865c2fe1b28db44b535ca8d343785a3b768aae183\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://840b14ce0315c47d49ba328f1f9fa7654ded1c9e1559e6c5e777a7b2dc28bf0a\",\"dweb:/ipfs/QmTLLabn4wcfGro9LEmUXUN2nwKqZSotXMvjDCLXEnLtZP\"]},\"@openzeppelin/contracts/access/Ownable.sol\":{\"keccak256\":\"0x4bd6402ca6b3419008c2b482aff54e66836e8cb4eba2680e42ac5884ae6424fc\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://8f9f711fb8d0d92aeea1c327e3845d13ca1fa8f142e47f8723cd5b3106fb29a3\",\"dweb:/ipfs/QmVQUReDW9f4zGqhizwHnyU8EntMs95tbASdqkGncnikba\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "\r\n// SPDX-License-Identifier: GPL-3.0-or-later\r\npragma solidity ^0.6.11;\r\n\r\nimport \"@openzeppelin/contracts/access/Ownable.sol\";\r\n\r\n\r\ninterface IStudentAnswer {\r\n    function getOwner() external view returns (address);\r\n\r\n    function getSeed() external view returns (bytes32);\r\n}\r\n",
+  "sourcePath": "/mnt/e/Repositories/uproot-trustless-contracts/contracts/interface/IStudentAnswer.sol",
+  "ast": {
+    "absolutePath": "/mnt/e/Repositories/uproot-trustless-contracts/contracts/interface/IStudentAnswer.sol",
+    "exportedSymbols": {
+      "IStudentAnswer": [
+        7913
+      ]
+    },
+    "id": 7914,
+    "license": "GPL-3.0-or-later",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 7901,
+        "literals": [
+          "solidity",
+          "^",
+          "0.6",
+          ".11"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "48:24:25"
+      },
+      {
+        "absolutePath": "@openzeppelin/contracts/access/Ownable.sol",
+        "file": "@openzeppelin/contracts/access/Ownable.sol",
+        "id": 7902,
+        "nodeType": "ImportDirective",
+        "scope": 7914,
+        "sourceUnit": 18704,
+        "src": "76:52:25",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 7913,
+        "linearizedBaseContracts": [
+          7913
+        ],
+        "name": "IStudentAnswer",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "893d20e8",
+            "id": 7907,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getOwner",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 7903,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "183:2:25"
+            },
+            "returnParameters": {
+              "id": 7906,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7905,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 7907,
+                  "src": "209:7:25",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 7904,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "209:7:25",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "208:9:25"
+            },
+            "scope": 7913,
+            "src": "166:52:25",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "39e7357c",
+            "id": 7912,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getSeed",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 7908,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "242:2:25"
+            },
+            "returnParameters": {
+              "id": 7911,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7910,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 7912,
+                  "src": "268:7:25",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 7909,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "268:7:25",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "267:9:25"
+            },
+            "scope": 7913,
+            "src": "226:51:25",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 7914,
+        "src": "134:146:25"
+      }
+    ],
+    "src": "48:234:25"
+  },
+  "legacyAST": {
+    "absolutePath": "/mnt/e/Repositories/uproot-trustless-contracts/contracts/interface/IStudentAnswer.sol",
+    "exportedSymbols": {
+      "IStudentAnswer": [
+        7913
+      ]
+    },
+    "id": 7914,
+    "license": "GPL-3.0-or-later",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 7901,
+        "literals": [
+          "solidity",
+          "^",
+          "0.6",
+          ".11"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "48:24:25"
+      },
+      {
+        "absolutePath": "@openzeppelin/contracts/access/Ownable.sol",
+        "file": "@openzeppelin/contracts/access/Ownable.sol",
+        "id": 7902,
+        "nodeType": "ImportDirective",
+        "scope": 7914,
+        "sourceUnit": 18704,
+        "src": "76:52:25",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 7913,
+        "linearizedBaseContracts": [
+          7913
+        ],
+        "name": "IStudentAnswer",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "893d20e8",
+            "id": 7907,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getOwner",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 7903,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "183:2:25"
+            },
+            "returnParameters": {
+              "id": 7906,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7905,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 7907,
+                  "src": "209:7:25",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 7904,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "209:7:25",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "208:9:25"
+            },
+            "scope": 7913,
+            "src": "166:52:25",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "39e7357c",
+            "id": 7912,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getSeed",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 7908,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "242:2:25"
+            },
+            "returnParameters": {
+              "id": 7911,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7910,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 7912,
+                  "src": "268:7:25",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 7909,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "268:7:25",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "267:9:25"
+            },
+            "scope": 7913,
+            "src": "226:51:25",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 7914,
+        "src": "134:146:25"
+      }
+    ],
+    "src": "48:234:25"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.6.11+commit.5ef660b1.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.1.0",
+  "updatedAt": "2020-07-09T20:27:12.387Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

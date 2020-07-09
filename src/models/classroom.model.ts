@@ -16,7 +16,7 @@ export class Classroom {
 		keywords: new Array<string>(),
 		skylink: '',
 	};
-	public funds = { DAI: 0, LINK: 0 };
+	public funds = { DAI: 0 };
 	public classdata = {
 		students: 0,
 		validStudents: 0,
@@ -32,10 +32,6 @@ export class Classroom {
 		oracleTimestamp: '',
 		requestIdTimestamp: '',
 		oraclePaymentTimestamp: 0,
-		linkToken: '',
-		uniswapDAI: '',
-		uniswapLINK: '',
-		uniswapRouter: '',
 		aaveProvider: '',
 		aaveLendingPool: '',
 		aaveLendingPoolCore: '',

@@ -13,7 +13,6 @@ export class Globals {
 	public defaultClassroomImg = "https://qph.fs.quoracdn.net/main-qimg-b1a1a5b86638cac39fa9e8389d4c3b46";
 
 	public overlayLoader = false;
-	public useGSN = false;
 
 	public service: PortisService | InfuraService | MetamaskService;
 	public ensService = new ENSService();

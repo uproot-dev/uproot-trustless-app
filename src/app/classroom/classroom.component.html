@@ -329,7 +329,6 @@
 							  <option>avatar</option>
 							  <option>description</option>
 							  <option>notice</option>
-							  <option>skylink</option>
 							</select>
                         </div>
                         <div class="form-group">
@@ -337,14 +336,6 @@
                             <input #classroomMetadataValueInput type="text" class="form-control" id="classroomMetadataValueInput" placeholder="new value">
                         </div>
                         <button type="button" class="btn btn-info" (click)="setMetadataRecord(classroomMetadataSelectType.value, classroomMetadataValueInput.value)">Change</button>
-                        <div class="mt-2 py-5 border-top text-center">
-                            <h4 class="UniversityAdmins mt-3">Upload to Siasky</h4>
-                        </div>
-                        <h2 class="description text-center text-warning">Please upload the file to siasky and paste the record to register. We are working to fix this issue</h2>
-                        <div class="form-group">
-                            <label for="file">Choose File</label>
-                            <input type="file" id="file" (change)="uploadSkylink($event.target.files)">
-                        </div>
                         <button type="button" class="btn btn-info" (click)="openModal('custom-modal-4')">View Material</button>
                     </div>
                 </div>
@@ -358,13 +349,6 @@
                     <div class="card-body py-5">
                         <h4>Funds in Classroom:</h4>
                         <h5>{{globals.selectedClassroom.funds.DAI}} DAI</h5>
-                        <h5>{{globals.selectedClassroom.funds.LINK}} LINK</h5>
-                        <h4>Trade DAI for LINK:</h4>
-                        <input #exchangeDAI_LINKInput type="number" class="form-control" placeholder="0">
-                        <button type="button" class="btn btn-info" (click)="exchangeDAI_LINK(exchangeDAI_LINKInput.value)">Change {{exchangeDAI_LINKInput.value}} DAI</button>
-                        <h4>Trade LINK for DAI:</h4>
-                        <input #exchangeLINK_DAIInput type="number" class="form-control" placeholder="0">
-                        <button type="button" class="btn btn-info" (click)="exchangeLINK_DAI(exchangeLINK_DAIInput.value)">Change {{exchangeLINK_DAIInput.value}} LINK</button>
                     </div>
                 </div>
             </div>
@@ -388,24 +372,6 @@
                                 <td>{{ item.value }}</td>
                             </tr>
                         </tbody>
-                        <h4>Configure Uniswap:</h4>
-                        <div class="form-group">
-                            <input class="form-control" #uniswapDAI placeholder="uniswap DAI Address" type="text">
-                            <input class="form-control" #uniswapLINK placeholder="uniswap LINK Address" type="text">
-                            <input class="form-control" #uniswapRouter placeholder="uniswap Router Address" type="text">
-                            <button type="button" class="btn btn-info" (click)="configureUniswap(uniswapDAI.value, uniswapLINK.value, uniswapRouter.value)">Submit</button>
-                        </div>
-                        <h4>Configure Chainlink:</h4>
-                        <div class="form-group">
-                            <input class="form-control" #oracleRandom placeholder="Chainlink oracle Random address" type="text">
-                            <input class="form-control" #requestIdRandom placeholder="Chainlink requestId Random" type="text">
-                            <input class="form-control" #oraclePaymentRandom placeholder="Chainlink oracle Payment Random value" type="number">
-                            <input class="form-control" #oracleTimestamp placeholder="Chainlink oracle Timestamp address" type="text">
-                            <input class="form-control" #requestIdTimestamp placeholder="Chainlink requestId Timestamp" type="text">
-                            <input class="form-control" #oraclePaymentTimestamp placeholder="Chainlink oraclePaymentTimestamp value" type="number">
-                            <input class="form-control" #linkToken placeholder="Chainlink LINK Token address" type="text">
-                            <button type="button" class="btn btn-info" (click)="configureOracles(oracleRandom.value,requestIdRandom.value,oraclePaymentRandom.value,oracleTimestamp.value,requestIdTimestamp.value,oraclePaymentTimestamp.value,linkToken.value)">Submit</button>
-                        </div>
                         <h4>Configure Aave:</h4>
                         <div class="form-group">
                             <input class="form-control" #aaveInput placeholder="Aave Lending Pool Addresses Provider" type="text">
@@ -691,18 +657,11 @@
                                     <textarea class="form-control" rows="10" wrap="hard">{{myStudentApplication.material}}</textarea>
                                 </div>
                             </div>
-                            <h3 class="text-center text-white">Sia Skylink</h3>
-                            <h2 class="description text-center text-white">{{globals.selectedClassroom.metadata.skylink}}</h2>
-                            <h2 class="description text-center text-warning">Please copy the link and download the file from siasky. We are working to fix this issue</h2>
                         </div>
                         <div class="card-footer bg-gradient-default">
                             <a (click)="closeModal('custom-modal-4'); txOff(); refreshClassroomInfo();" class="btn btn-neutral btn-icon mb-3 mb-sm-0">
                                 <span class="btn-inner--icon"><i class="fa fa-arrow-left"></i></span>
                                 <span class="btn-inner--text">Back</span>
-                            </a>
-                            <a (click)="downloadSkylink(globals.selectedClassroom.metadata.skylink, 'material.txt')" type="submit" class="btn btn-success btn-icon text-white mb-3 mb-sm-0">
-                                <span class="btn-inner--icon"><i class="fa fa-download"></i></span>
-                                <span class="btn-inner--text">Download Skylink</span>
                             </a>
                         </div>
                     </div>

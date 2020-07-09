@@ -70,28 +70,6 @@ export class LandingComponent implements OnInit {
 		this.initSigner();
 	}
 
-	connectGSN() {
-		// const relayHubAddress = environment.DefaultGasRelayHub;
-		// const paymasterAddress = environment.DefaultTestPaymaster;
-		// const stakeManagerAddress = environment.DefaultStakeManager;
-		// const gsnConfig = {
-		// 	relayHubAddress,
-		// 	paymasterAddress,
-		// 	stakeManagerAddress,
-		// 	methodSuffix: '_v4',
-		// 	jsonStringifyRequest: true,
-		// 	chainId: 3,
-		// };
-		// const gsnProvider = new RelayProvider(
-		// 	this.globals.service.portis,
-		// 	gsnConfig
-		// );
-		// const provider = new ethers.providers.Web3Provider(gsnProvider);
-		// this.globals.service.provider = provider;
-		// console.log("GSN Registered as provider");
-		// this.globals.useGSN = true;
-	}
-
 	openModal(id: string) {
 		this.modalService.open(id);
 	}
@@ -317,7 +295,6 @@ export class LandingComponent implements OnInit {
 			this.txMode = 'processingTX';
 			const selfRegister = await this.globals.service.studentSelfRegister(
 				_name,
-				this.globals.useGSN
 			);
 			if (!selfRegister) {
 				this.txMode = 'failedTX';

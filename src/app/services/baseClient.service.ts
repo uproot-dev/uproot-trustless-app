@@ -11,8 +11,6 @@ import * as StudentApplication from '../../../build/contracts/StudentApplication
 import * as ERC20 from '../../../build/contracts/ERC20.json';
 import * as CDAI from '../../../build/contracts/CERC20.json';
 import * as ADAI from '../../../build/contracts/aToken.json';
-import * as LINK from '../../../build/contracts/LinkTokenInterface.json';
-import * as IUniswapV2Router01 from '../../../build/contracts/IUniswapV2Router01.json';
 import { GenericUser } from '../../models/genericUser.model';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 
@@ -65,16 +63,6 @@ export class baseClientService {
 		this.ADAIContract = new ethers.Contract(
 			environment.AaveDAIAddress,
 			ADAI.abi,
-			providerOrSigner
-		);
-		this.LINKContract = new ethers.Contract(
-			environment.LINKAddress,
-			LINK.abi,
-			providerOrSigner
-		);
-		this.UniswapRouter = new ethers.Contract(
-			environment.UniswapRouter,
-			IUniswapV2Router01.abi,
 			providerOrSigner
 		);
 	}
@@ -465,11 +453,9 @@ export class baseClientService {
 		return transaction;
 	}
 
-	public async studentSelfRegister(_name: string, gsn: boolean = false) {
+	public async studentSelfRegister(_name: string) {
 		const name = ethers.utils.formatBytes32String(_name);
-		const register = gsn
-			? await this.universityContractInstance.studentSelfRegisterGSN(name)
-			: await this.universityContractInstance.studentSelfRegister(name);
+		const register = await this.universityContractInstance.studentSelfRegister(name);
 		return register;
 	}
 
