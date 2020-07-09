@@ -1,0 +1,922 @@
+<main>
+    <div class="position-relative">
+        <!-- shape Hero -->
+        <section class="section section-lg section-shaped pb-250">
+            <div class="shape shape-style-1 shape-primary">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="container py-lg-md d-flex">
+                <div class="col px-0">
+                    <div class="row">
+                        <div class="col-lg-8 mb-4">
+                            <h1 class="display-3  text-white">decentralized
+                                <span>university</span>
+                                <span *ngIf=globals.universityENSName class="text-muted" style="font-size:smaller;">@{{globals.universityENSName}}</span>
+                            </h1>
+                            <h3 class="lead  text-white">{{globals.universityENSDescription}}</h3>
+                            <div *ngIf=globals.universityENSHasNotice&&globals.universityDisplayNotice #universityNotice class="alert alert-info alert-dismissible fade show" role="alert">
+                                <button type="button" class="close" aria-label="Close" (click)="closeUniversityNotice()">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <strong>University Notice: </strong> {{globals.universityENSNotice}}
+                            </div>
+                            <div class="btn-wrapper">
+                                <a href="#classrooms" class="btn btn-neutral btn-icon mb-3 mb-sm-0">
+                                    <span class="btn-inner--icon"><i class="fa fa-university"></i></span>
+                                    <span class="btn-inner--text">Classrooms</span>
+                                </a>
+                                <a href="#Informations" class="btn btn-neutral btn-icon mb-3 mb-sm-0">
+                                    <span class="btn-inner--icon"><i class="fa fa-info-circle"></i></span>
+                                    <span class="btn-inner--text">Informations</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-lg-4" *ngIf="globals.mode=='loadingPage'">
+                            <div class="card card-lift--hover shadow border-0 text-center">
+                                <div class="card-body py-5">
+                                    <div class="icon icon-shape icon-shape-warning rounded-circle fa-3x mb-4">
+                                        <i class="fa fa-wifi"></i>
+                                    </div>
+                                    <h6 class="text-warning text-uppercase">Connecting</h6>
+                                    <p class="description mt-3">Connecting to your Wallet Provider and DeEd University.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4" *ngIf="globals.mode=='unconnected'">
+                            <div class="card card-lift--hover shadow border-0 text-center">
+                                <div class="card-body py-5">
+                                    <div class="icon icon-shape icon-shape-info rounded-circle mb-4">
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <h6 class="text-info text-uppercase">Welcome to DeEd</h6>
+                                    <p class="description mt-3">To connect to DeEd you need to install a Portis Wallet.
+                                    </p>
+                                    <button class="btn btn-info mt-4" (click)="conectPortis()">Conect Portis</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4" *ngIf="globals.mode=='connected'">
+                            <div class="card card-lift--hover shadow border-0 text-center">
+                                <div class="card-body py-5">
+                                    <div class="icon icon-shape icon-shape-primary rounded-circle mb-4">
+                                        <i class="fa fa-user"></i>
+                                    </div>
+                                    <h6 class="text-primary text-uppercase">Register Your Account</h6>
+                                    <p class="description mt-3">To use to DeEd you need to register at University.</p>
+                                    <div #onLoginPlaceholder1></div>
+                                    <button class="btn btn-primary mt-4" (click)="openModal('custom-modal-register'); txOn();">Register DeEd</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4" *ngIf="globals.mode=='registered'">
+                            <div class="card card-lift--hover shadow border-0 text-center">
+                                <div class="card-body py-5">
+                                    <div class="icon icon-shape icon-shape-success rounded-circle mb-4">
+                                        <i class="fa fa-user"></i>
+                                    </div>
+                                    <h6 class="text-success text-uppercase">Connected</h6>
+                                    <p class="description">Address: {{globals.address}} </p>
+                                    <button [routerLink]="['/student']" class="btn btn-success mt-4">Go to
+                                        Account</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- SVG separator -->
+            <div class="separator separator-bottom separator-skew">
+                <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <polygon class="fill-secondary" points="2560 0 2560 100 0 100"></polygon>
+                </svg>
+            </div>
+        </section>
+        <!-- 1st Hero Variation -->
+    </div>
+    <section class="section bg-secondary">
+        <div class="container">
+            <div class="row row-grid align-items-center">
+                <div class="col-lg-6">
+                    <div class="card bg-default shadow border-0"><img class="card-img-top" src="./assets/img/stock/trade.jpg">
+                        <blockquote class="card-blockquote"><svg class="svg-bg" preserveAspectRatio="none" viewBox="0 0 583 95" xmlns="http://www.w3.org/2000/svg">
+                                <polygon class="fill-default" points="0,52 583,95 0,95"></polygon>
+                                <polygon class="fill-default" opacity=".2" points="0,42 583,95 683,0 0,95"></polygon>
+                            </svg>
+                            <h3 class="display-3 font-weight-bold text-white">Decentralized Economy</h3>
+                            <p class="lead text-italic text-white">The Decentralized Finance (DeFi) reaches goods and services. You can already trade assets for risks and returns using decentralized platforms. How about doing it with goods and services now?</p>
+                            <p class="lead text-bold text-white"><strong>The Decentralized Education (DeEd) is one of
+                                    the many steps in that direction</strong></p>
+                        </blockquote>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="pl-md-5">
+                        <h3>Our vision</h3>
+                        <p class="lead">We belive in a future of free voluntary trades between individuals. DeFi has already removed many unwanted intermediaries from your investment ventures. Now it can remove even more.</p>
+                        <p>The financial market operate with units that exchange between themselves risks for time and/or returns. Value is created every time someone with a short-term need finds a long-term risk taker willing to earn some returns. The value
+                            that can be generated by these exchanges is limited by the difference in perceptions of value, and some times even for pure speculation. But the real power of finance comes when applied to more primitive value exchanges: trading
+                            goods and services</p>
+                        <p>Whenever a person or machine explore a natural resource, or process a base material, or even provide a custom scarce service, there is an increase of value within the parts of those transactions. What if this value can remain within
+                            the value generators? What if this value is shared with people in need, acording to the opinion of those who produced the value in the first place?</p>
+                        <a class="font-weight-bold text-info mt-5">Lets build this decentralized future together</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="classroom">
+        <section id="classrooms_section" class="section section-lg">
+            <div class="container">
+                <div class="row justify-content-left mb-4">
+                    <div class="col-lg-8">
+                        <h2 class="display-3">classrooms</h2>
+                        <p class="lead text-default">Here you can see and access the classrooms of the university.</p>
+                    </div>
+                </div>
+                <div *ngIf=!globals.classlistLoaded class="container">
+                    <div class="card shadow-lg border-0">
+                        <div class="p-5">
+                            <div class="row align-items-center">
+                                <div class="col-lg-12">
+                                    <h2 class="display-3">Loading...</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf=globals.classlistLoaded class="row justify-content-center">
+                    <div class="col-lg-12">
+                        <div class="row row-grid">
+                            <div *ngFor="let classroom of globals.classrooms | slice:0:3" class="col-lg-4">
+                                <div class="card card-lift--hover shadow border-0">
+                                    <img class="card-img-top" src={{classroom.metadata.avatar}} alt="Card image cap">
+                                    <div class="card-body py-5">
+                                        <h4 class="text-default text-uppercase">{{classroom.title}}</h4>
+                                        <div>
+                                            <span *ngIf=classroom.state.isClassroomNotOpen class="badge badge-pill badge-info">Not Open</span>
+                                            <span *ngIf=classroom.state.isClassroomOpen class="badge badge-pill badge-success">Open</span>
+                                            <span *ngIf=classroom.state.isClassroomClosed class="badge badge-pill badge-warning">Closed</span>
+                                            <span *ngIf=classroom.state.isClassroomActive class="badge badge-pill badge-primary">Ongoing</span>
+                                            <span *ngIf=classroom.state.isCourseFinished class="badge badge-pill badge-dark">Finished</span>
+                                        </div>
+                                        <p class="description mt-3" style="height: 32px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
+                                            {{classroom.metadata.description}}</p>
+                                        <a [class.selected]="classroom === globals.selectedClassroom" (click)="onSelect(classroom);openModal('custom-modal-classroomInfo')" class="btn btn-default mt-4 text-white">Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section *ngIf=globals.classlistLoaded class="section section-lg pt-0">
+            <div class="container">
+                <div class="card shadow-lg border-0">
+                    <div class="p-2">
+                        <div class="row align-items-center">
+                            <div class="col-md-12">
+                                <h3 style="text-align: center">View All Classrooms</h3><br>
+                                <table class="table table-hover" responsive>
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Classroom</th>
+                                            <th scope="col">Status</th>
+                                            <th scope="col">Price</th>
+                                            <th scope="col"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody *ngFor="let classroom of globals.classrooms">
+                                        <tr>
+                                            <th scope="row">{{ classroom.title }}</th>
+                                            <td>
+                                                <p><span *ngIf=classroom.state.isClassroomNotOpen class="badge badge-pill badge-info">Not Open</span>
+                                                    <span *ngIf=classroom.state.isClassroomOpen class="badge badge-pill badge-success">Open</span>
+                                                    <span *ngIf=classroom.state.isClassroomClosed class="badge badge-pill badge-warning">Closed</span>
+                                                    <span *ngIf=classroom.state.isClassroomActive class="badge badge-pill badge-primary">Ongoing</span>
+                                                    <span *ngIf=classroom.state.isCourseFinished class="badge badge-pill badge-dark">Finished</span></p>
+                                            </td>
+                                            <td>{{ classroom.price }}</td>
+                                            <td><a [class.selected]="classroom === globals.selectedClassroom" (click)="onSelect(classroom);openModal('custom-modal-classroomInfo')" class="btn btn-sm btn-default text-white">Details</a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <button *ngIf=globals.userIsUniversityAdmin (click)="openModal('custom-modal-create-classroom')" class="btn btn-neutral btn-icon mb-3 mb-sm-0"><span class="btn-inner--icon"></span><i
+                            class="fa fa-plus"></i></button>
+                </div>
+            </div>
+        </section>
+    </section>
+    <section id="Informations" class="section pb-0 bg-gradient-default">
+        <div class="container">
+            <h1 class="display-3 text-white">Informations</h1>
+            <p class="lead text-white">Here you can see the informations of the University and how DeEd works.</p>
+            <div class="btn-wrapper">
+                <button href="#classrooms" class="btn btn-neutral btn-icon mb-3 mb-sm-0">
+                    <span class="btn-inner--icon"><i class="fa fa-university"></i></span>
+                    <span class="btn-inner--text">Classrooms</span>
+                </button>
+                <button *ngIf=globals.userIsUniversityAdmin (click)="loadUniversityAdmin();openModal('custom-modal-university-admin')" class="btn btn-neutral btn-icon mb-3 mb-sm-0">
+                    <span class="btn-inner--icon"><i class="fa fa-cogs"></i></span>
+                    <span class="btn-inner--text">Admin</span>
+                </button>
+                <button *ngIf=globals.userIsStudent [routerLink]="['/student']" class="btn btn-neutral btn-icon mb-3 mb-sm-0">
+                    <span class="btn-inner--icon"><i class="fa fa-user"></i></span>
+                    <span class="btn-inner--text">Account</span>
+                </button>
+                <button [routerLink]="['/fund']" class="btn btn-neutral btn-icon mb-3 mb-sm-0">
+                    <span class="btn-inner--icon"><i class="fa fa-signal"></i></span>
+                    <span class="btn-inner--text">Funds</span>
+                </button>
+                <button (click)="openModal('transfer-dai')" class="btn btn-success btn-icon mb-3 mb-sm-0">
+                    <span class="btn-inner--icon"><i class="fa fa-gratipay"></i></span>
+                    <span class="btn-inner--text">Donate</span>
+                </button>
+            </div>
+            <div class="row row-grid align-items-center">
+                <div class="col-md-4 order-lg-2 ml-lg-auto">
+                    <div class="position-relative pl-md-5">
+                        <img src="./assets/img/ill/ill-2.svg" class="img-center img-fluid">
+                    </div>
+                </div>
+                <div class="col-lg-8 order-lg-1">
+                    <div class="card shadow shadow-lg--hover mt-5">
+                        <div class="card-body">
+                            <div class="d-flex px-3">
+                                <div>
+                                    <div class="icon icon-shape bg-gradient-primary rounded-circle text-white">
+                                        <i class="fa fa-link"></i>
+                                    </div>
+                                </div>
+                                <div class="pl-4">
+                                    <h5 class="title text-primary">University Status</h5>
+                                    <ul class="list-unstyled">
+                                        <li id="university.name">Name: <strong>{{globals.universityName}}</strong></li>
+                                        <li id="university.name">ENS Name:
+                                            <strong>{{globals.universityENSName}}</strong></li>
+                                        <li id="university.cut">Cut: <strong>{{globals.universityCut}}</strong>%</li>
+                                        <li id="university._studentGSNDeposit">Funds:
+                                            <strong>{{globals.universityFunds}}</strong> DAI</li>
+                                        <li id="university.operationalBudget">Budget:
+                                            <strong>{{globals.universityBudget}}</strong> DAI</li>
+                                        <li id="university.donationsReceived">Donations:
+                                            <strong>{{globals.universityDonations}}</strong> DAI</li>
+                                        <li id="university.revenueReceived">Revenue:
+                                            <strong>{{globals.universityRevenue}}</strong> DAI</li>
+                                        <li id="university.returnsReceived">Returns:
+                                            <strong>{{globals.universityReturns}}</strong> DAI</li>
+                                        <li id="university.returnsReceived">Fund address:
+                                            <strong>{{globals.universityFundAddress}}</strong></li>
+                                    </ul>
+                                    <a href="{{universityEtherscan}}" target="_blank" class="text-primary">See on
+                                        Etherscan</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card shadow shadow-lg--hover mt-5">
+                        <div class="card-body">
+                            <div class="d-flex px-3">
+                                <div>
+                                    <div class="icon icon-shape bg-gradient-success rounded-circle text-white">
+                                        <i class="fa fa-gratipay"></i>
+                                    </div>
+                                </div>
+                                <div class="pl-4">
+                                    <h5 class="title text-success">Make a Donation</h5>
+                                    <p>Deed is completely free, anyone can build on top of it with no additional expenses. We do, however, appreciate any donations to help us keep pushing forward with this ambitious concept.</p>
+                                    <a (click)="openModal('transfer-dai')" class="text-success">Support Now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card shadow shadow-lg--hover mt-5">
+                        <div class="card-body">
+                            <div class="d-flex px-3">
+                                <div>
+                                    <div class="icon icon-shape bg-gradient-danger rounded-circle text-white">
+                                        <i class="fa fa-code"></i>
+                                    </div>
+                                </div>
+                                <div class="pl-4">
+                                    <h5 class="title text-danger">Smart Contract</h5>
+                                    <p>Deed is built on top of the Ethereum blockchain, using several different smart contracts created from scratch to perform all sorts of different functions. Everything is open source, so feel free to check our code!</p>
+                                    <a href="https://github.com/freitasgouvea/deed-angular" class="text-danger">See the Code</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card shadow shadow-lg--hover mt-5">
+                        <div class="card-body">
+                            <div class="d-flex px-3">
+                                <div>
+                                    <div class="icon icon-shape bg-gradient-info rounded-circle text-white">
+                                        <i class="ni ni-active-40"></i>
+                                    </div>
+                                </div>
+                                <div class="pl-4">
+                                    <h5 class="title text-info">White Papper</h5>
+                                    <p>Deed is committed to change the way education is spread around the world. Our application, future milestones and more can be checked in our whitepaper. (Work in progress).</p>
+                                    <a href="https://docs.google.com/document/d/1LUMea82IMDLRsfzsISk7xsmUPT2BV1Xw1fFURJ9Fd_w" class="text-info">Read White Papper</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- SVG separator -->
+        <div class="separator separator-bottom separator-skew zindex-100">
+            <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                <polygon class="fill-white" points="2560 0 2560 100 0 100"></polygon>
+            </svg>
+        </div>
+    </section>
+    <section class="section section-lg">
+        <div class="container">
+            <div class="row row-grid justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <h2 class="display-3">Want your own
+                        <span class="text-success">DeFi University DAPP?</span>
+                    </h2>
+                    <p class="lead">You can create your own education institution, with any parameters for FREE. Click the link below to see our github page</p>
+                    <div class="btn-wrapper">
+                        <a href="https://github.com/MatheusDaros/Uproot" class="btn btn-default mb-3 mb-sm-0">See Repo
+                            on Github</a>
+                    </div>
+                </div>
+                <div class="col-lg-16 text-center">
+                    <div class="text-center">
+                        <h4 class="display-4 mb-5 mt-5">Provided by these technologies</h4>
+                        <div class="row justify-content-center">
+                            <div class="col-2">
+                                <a href="https://aave.com/" target="_blank" placement="bottom" ngbTooltip="AAVE - DeFi Protocol">
+                                    <img src="https://aave.com/static/media/mainLogo.8eb84c21.svg" class="img-fluid ">
+                                </a>
+                            </div>
+                            <div class="col-2">
+                                <a href="https://compound.finance/" target="_blank" placement="bottom" ngbTooltip="Compound - DeFi Protocol">
+                                    <img src="https://lever-client-logos.s3-us-west-2.amazonaws.com/0c731c59-c243-4fba-96fe-35cac794f158-1583450111151.png" class="img-fluid">
+                                </a>
+                            </div>
+                            <div class="col-2">
+                                <a href="https://uniswap.exchange/swap" target="_blank" placement="bottom" ngbTooltip="Uniswap - Exchange">
+                                    <img src="https://uniswap.exchange/static/media/logo.5827780d.svg" class="img-fluid"><img src="https://uniswap.exchange/static/media/wordmark.b75565ae.svg" class="img-fluid">
+                                </a>
+                            </div>
+                            <div class="col-2">
+                                <a href="https://chain.link/" target="_blank" placement="bottom" ngbTooltip="Chainlink - Oracle Provider">
+                                    <img src="https://0xzx.com/wp-content/uploads/2020/01/chainlink-link-token-1.jpg" class="img-fluid">
+                                </a>
+                            </div>
+                            <div class="col-2">
+                                <a href="https://www.portis.io/" target="_blank" placement="bottom" ngbTooltip="Portis - Ethereum Wallet Provider">
+                                    <img src="https://www.portis.io/static/logo.png" class="img-fluid">
+                                </a>
+                            </div>
+                            <div class="col-2">
+                                <a href="https://ens.domains/" target="_blank" placement="bottom" ngbTooltip="ENS - Ethereum Name Service">
+                                    <img src="http://searchvectorlogo.com/wp-content/uploads/2019/11/ethereum-name-service-ens-logo-vector.png" class="img-fluid">
+                                </a>
+                            </div>
+                            <div class="col-2">
+                                <a href="https://www.opengsn.org/" target="_blank" placement="bottom" ngbTooltip="OpenGSN">
+                                    <img src="https://avatars3.githubusercontent.com/u/59866496?s=400&v=4" class="img-fluid">
+                                </a>
+                            </div>
+                            <div class="col-2">
+                                <a href="https://siasky.net/" target="_blank" placement="bottom" ngbTooltip="Sia">
+                                    <img src="https://files.helpdocs.io/obkhjggi1d/other/1582224368375/skynet-logo-gree.png?t=1582224368375" class="img-fluid">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <jw-modal id="custom-modal-register">
+        <form role="form">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card shadow bg-gradient-default border-0">
+                        <div class="card-body py-5">
+                            <h3 class="text-center text-white">Register at University</h3>
+                            <div class="row mt-3">
+                                <div class="col-md-12">
+                                    <h2 class="description text-white">Create your student registry in this university and enjoy all its features.</h2>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-md-12">
+                                    <div class="form-group" [ngClass]="{'focused':focus===true}">
+                                        <div class="input-group input-group-alternative mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                                            </div>
+                                            <input id="studentInputName" #studentInputName class="form-control" placeholder="Name" type="text" (focus)="focus=true" (blur)="focus=false">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-md-12">
+                                    <div *ngIf="txMode=='preTX'" class="alert alert-neutral" role="alert">
+                                        <strong class="text-default">You need confirm this transaction on your portis
+                                            wallet!</strong>
+                                    </div>
+                                    <div *ngIf="txMode=='processingTX'" class="alert alert-warning" role="alert">
+                                        <strong>Wait!</strong> Registering your account ...
+                                    </div>
+                                    <div *ngIf="txMode=='successTX'" class="alert alert-success" role="alert">
+                                        <strong>Success!</strong> Transaction Hash {{hashTx}}
+                                        <a href="https://ropsten.etherscan.io/tx/{{hashTx}}" target="_blank">See On
+                                            Etherscan</a>
+                                    </div>
+                                    <div *ngIf="txMode=='failedTX'" class="alert alert-danger" role="alert">
+                                        <strong>Failed!</strong> Transaction didn't complete. Try again!
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-gradient-default">
+                            <a (click)="closeModal('custom-modal-register'); txOff()" class="btn btn-neutral btn-icon mb-3 mb-sm-0">
+                                <span class="btn-inner--icon"><i class="fa fa-university"></i></span>
+                                <span class="btn-inner--text">Back</span>
+                            </a>
+                            <a *ngIf="txMode=='preTX'" type="submit" (click)="studentSelfRegister(studentInputName.value)" class="btn btn-success btn-icon text-white mb-3 mb-sm-0">
+                                <span class="btn-inner--icon"><i class="fa fa-send"></i></span>
+                                <span class="btn-inner--text">Register</span>
+                            </a>
+                            <a type="submit" (click)="connectGSN()" class="btn btn-info btn-icon text-white mb-3 mb-sm-0">
+                                <span class="btn-inner--icon"><i class="fa fa-star"></i></span>
+                                <span class="btn-inner--text">Enable GSN</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </jw-modal>
+    <jw-modal id="custom-modal-classroomInfo">
+        <app-classroomInfo></app-classroomInfo>
+    </jw-modal>
+    <jw-modal id="custom-modal-university-admin">
+        <div *ngIf="modeUniversityAdmin=='unconnected'">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card shadow border-0">
+                        <div class="card-body py-5">
+                            <h3>University Admin<span class="badge badge-pill badge-warning">loading...</span></h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="UniversityInfo" *ngIf="modeUniversityAdmin=='loaded'" class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-md-12">
+                    <div class="card shadow border-0">
+                        <div class="card-body py-5">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h4>University parameters</h4>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="inputObjUpdateUniversity_Owner" class="UniversityAdmins mt-3">Owner:
+                                        <span class="text-default">{{globals.universityAdmin}}</span></label>
+                                    <input id="inputObjUpdateUniversity_Owner" #inputUniversity_Owner class="form-control" type="text" size=32>
+                                    <button type="button" (click)="setUniversityOwner(inputUniversity_Owner.value)" class="btn btn-sm btn-default text-white">Set</button>
+                                    <br>
+                                    <label for="inputObjUpdateUniversity_Name" class="UniversityAdmins mt-3">Name: <span
+                                            class="text-default">{{globals.universityName}}</span></label>
+                                    <input id="inputObjUpdateUniversity_Name" #inputUniversity_Name class="form-control" type="text" size=32>
+                                    <button type="button" (click)="setUniversityName(inputUniversity_Name.value)" class="btn btn-sm btn-default text-white">Set</button>
+                                    <br>
+                                    <label for="inputObjUpdateUniversity_Cut" class="UniversityAdmins mt-3">Cut: <span
+                                            class="text-default">{{globals.universityCut}}</span></label>
+                                    <input id="inputObjUpdateUniversity_Cut" #inputUniversity_Cut class="form-control" type="text" size=32>
+                                    <button type="button" (click)="setUniversityCut(inputUniversity_Cut.value)" class="btn btn-sm btn-default text-white">Set</button>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="inputObjUpdateUniversity_ConfigAddress" class="UniversityAdmins mt-3">Config address:</label>
+                                    <textarea class="form-control" rows="10" wrap="hard">{{globals.universityParams}}</textarea>
+                                    <input id="inputObjUpdateUniversity_ConfigAddress" #inputUniversity_Configaddress class="form-control" type="text" size=32 rows="10">
+                                    <button type="button" (click)="setUniversityParams(inputUniversity_Configaddress.value)" class="btn btn-sm btn-default text-white">Set</button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h4>University Admins</h4>
+                                </div>
+                                <div class="col-md-12">
+                                    <table id="UniversityAdminsTable" class="table table-borderless table-striped table-earning">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Address</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody *ngFor="let genericUser of roleMembersAdmin['DEFAULT_ADMIN_ROLE']">
+                                            <tr>
+                                                <th scope="row">{{ genericUser.id }}</th>
+                                                <td>{{ genericUser.address }}</td>
+                                                <td><a (click)="revokeRole('DEFAULT_ADMIN_ROLE',genericUser.address)" class="btn btn-sm btn-default text-white">Revoke</a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group" [ngClass]="{'focused':focus1===true}">
+                                        <div class="input-group input-group-alternative mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fa fa-link"></i></span>
+                                            </div>
+                                            <input #inputUniversityAdmins class="form-control" placeholder="Address" type="text" size=32> <button type="button" class="btn btn-primary" (click)="grantRole('DEFAULT_ADMIN_ROLE',inputUniversityAdmins.value)">Add</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h4>Student List Admins:</h4>
+                                </div>
+                                <div class="col-md-12">
+                                    <table id="StudentListTable" class="table table-borderless table-striped table-earning">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Address</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody *ngFor="let genericUser of roleMembersAdmin['READ_STUDENT_LIST_ROLE']">
+                                            <tr>
+                                                <th scope="row">{{ genericUser.id }}</th>
+                                                <td>{{ genericUser.address }}</td>
+                                                <td><a (click)="revokeRole('READ_STUDENT_LIST_ROLE',genericUser.address)" class="btn btn-sm btn-default text-white">Revoke</a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group" [ngClass]="{'focused':focus1===true}">
+                                        <div class="input-group input-group-alternative mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fa fa-link"></i></span>
+                                            </div>
+                                            <input #inputUniversityAdminStudentListAdmins class="form-control" placeholder="Address" type="text" size=32> <button type="button" class="btn btn-primary" (click)="grantRole('READ_STUDENT_LIST_ROLE',inputUniversityAdminStudentListAdmins.value)">Add</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h4>Funds Managers:</h4>
+                                </div>
+                                <div class="col-md-12">
+                                    <table id="FundsManagersTable" class="table table-borderless table-striped table-earning">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Address</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody *ngFor="let genericUser of roleMembersAdmin['FUNDS_MANAGER_ROLE']">
+                                            <tr>
+                                                <th scope="row">{{ genericUser.id }}</th>
+                                                <td>{{ genericUser.address }}</td>
+                                                <td><a (click)="revokeRole('FUNDS_MANAGER_ROLE',genericUser.address)" class="btn btn-sm btn-default text-white">Revoke</a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group" [ngClass]="{'focused':focus1===true}">
+                                        <div class="input-group input-group-alternative mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fa fa-link"></i></span>
+                                            </div>
+                                            <input #inputUniversityAdminFundsManagers class="form-control" placeholder="Address" type="text" size=32> <button type="button" class="btn btn-primary" (click)="grantRole('FUNDS_MANAGER_ROLE',inputUniversityAdminFundsManagers.value)">Add</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h4>Classlist Managers:</h4>
+                                </div>
+                                <div class="col-md-12">
+                                    <table id="ClasslistManagersTable" class="table table-borderless table-striped table-earning">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Address</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody *ngFor="let genericUser of roleMembersAdmin['CLASSLIST_ADMIN_ROLE']">
+                                            <tr>
+                                                <th scope="row">{{ genericUser.id }}</th>
+                                                <td>{{ genericUser.address }}</td>
+                                                <td><a (click)="revokeRole('CLASSLIST_ADMIN_ROLE',genericUser.address)" class="btn btn-sm btn-default text-white">Revoke</a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group" [ngClass]="{'focused':focus1===true}">
+                                        <div class="input-group input-group-alternative mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fa fa-link"></i></span>
+                                            </div>
+                                            <input #inputUniversityAdminClasslistManagers class="form-control" placeholder="Address" type="text" size=32> <button type="button" class="btn btn-primary" (click)="grantRole('CLASSLIST_ADMIN_ROLE',inputUniversityAdminClasslistManagers.value)">Add</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h4>Grants Managers:</h4>
+                                </div>
+                                <div class="col-md-12">
+                                    <table id="GrantsManagersTable" class="table table-borderless table-striped table-earning">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Address</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody *ngFor="let genericUser of roleMembersAdmin['GRANTS_MANAGER_ROLE']">
+                                            <tr>
+                                                <th scope="row">{{ genericUser.id }}</th>
+                                                <td>{{ genericUser.address }}</td>
+                                                <td><a (click)="revokeRole('GRANTS_MANAGER_ROLE',genericUser.address)" class="btn btn-sm btn-default text-white">Revoke</a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group" [ngClass]="{'focused':focus1===true}">
+                                        <div class="input-group input-group-alternative mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fa fa-link"></i></span>
+                                            </div>
+                                            <input #inputUniversityAdminGrantsManagers class="form-control" placeholder="Address" type="text" size=32> <button type="button" class="btn btn-primary" (click)="grantRole('GRANTS_MANAGER_ROLE',inputUniversityAdminGrantsManagers.value)">Add</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h4>University Overseers:</h4>
+                                </div>
+                                <div class="col-md-12">
+                                    <table id="UniversityOverseersTable" class="table table-borderless table-striped table-earning">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Address</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody *ngFor="let genericUser of roleMembersAdmin['UNIVERSITY_OVERSEER_ROLE']">
+                                            <tr>
+                                                <th scope="row">{{ genericUser.id }}</th>
+                                                <td>{{ genericUser.address }}</td>
+                                                <td><a (click)="revokeRole('UNIVERSITY_OVERSEER_ROLE',genericUser.address)" class="btn btn-sm btn-default text-white">Revoke</a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group" [ngClass]="{'focused':focus1===true}">
+                                        <div class="input-group input-group-alternative mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fa fa-link"></i></span>
+                                            </div>
+                                            <input #inputUniversityAdminUniversityOverseers class="form-control" placeholder="Address" type="text" size=32> <button type="button" class="btn btn-primary" (click)="grantRole('UNIVERSITY_OVERSEER_ROLE',inputUniversityAdminUniversityOverseers.value)">Add</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h4>University Registered Suplier:</h4>
+                                </div>
+                                <div class="col-md-12">
+                                    <table id="RegisteredSuplierTable" class="table table-borderless table-striped table-earning">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Address</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody *ngFor="let genericUser of roleMembersAdmin['REGISTERED_SUPPLIER_ROLE']">
+                                            <tr>
+                                                <th scope="row">{{ genericUser.id }}</th>
+                                                <td>{{ genericUser.address }}</td>
+                                                <td><a (click)="revokeRole('REGISTERED_SUPPLIER_ROLE',genericUser.address)" class="btn btn-sm btn-default text-white">Revoke</a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group" [ngClass]="{'focused':focus1===true}">
+                                        <div class="input-group input-group-alternative mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fa fa-link"></i></span>
+                                            </div>
+                                            <input #inputUniversityAdminRegisteredSuplier class="form-control" placeholder="Address" type="text" size=32> <button type="button" class="btn btn-primary" (click)="grantRole('REGISTERED_SUPPLIER_ROLE',inputUniversityAdminRegisteredSuplier.value)">Add</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h4>Students:</h4>
+                                    <table id="StudentList" class="table table-borderless table-striped table-earning">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Address</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody *ngFor="let genericUser of roleMembersAdmin['STUDENT_IDENTITY_ROLE']">
+                                            <tr>
+                                                <th scope="row">{{ genericUser.id }}</th>
+                                                <td>{{ genericUser.address }}</td>
+                                                <td><a (click)="revokeRole('STUDENT_IDENTITY_ROLE',genericUser.address)" class="btn btn-sm btn-default text-white">Remove</a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="col-md-6">
+                                    <h4>Classrooms:</h4>
+                                    <table id="ClassroomList" class="table table-borderless table-striped table-earning">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Address</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody *ngFor="let genericUser of roleMembersAdmin['CLASSROOM_PROFESSOR_ROLE']">
+                                            <tr>
+                                                <th scope="row">{{ genericUser.id }}</th>
+                                                <td>{{ genericUser.address }}</td>
+                                                <td><a (click)="revokeRole('CLASSROOM_PROFESSOR_ROLE',genericUser.address)" class="btn btn-sm btn-default text-white">Remove</a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h4>University ENS Admin</h4>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>ENS Name: <span class="text-default">{{globals.universityENSName}}</span> <span *ngIf=globals.universityENSNameRecord class="badge badge-pill badge-success">Recorded</span><span *ngIf=!globals.universityENSNameRecord
+                                            class="badge badge-pill badge-warning">Not Recorded</span></p>
+                                    <p>ENS TTL: <span class="text-default">{{globals.universityENSTTL}}</span> </p>
+                                    <button *ngIf=!globals.universityENSNameRecord type="button" class="btn btn-warning" (click)="setupUniversityENS()">Setup ENS</button>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>Description: <span class="text-default">{{globals.universityENSDescription}}</span> </p>
+                                    <input #inputUniversityAdminENSDescription class="form-control" placeholder="Address" type="text" size=32>
+                                    <button type="button" class="btn btn-primary" (click)="updateENSDescription(inputUniversityAdminENSDescription.value)">Update</button>
+                                    <p>Notice: <span class="text-default">{{globals.universityENSNotice}}</span> </p>
+                                    <input #inputUniversityAdminENSNotice class="form-control" placeholder="Address" type="text" size=32>
+                                    <button type="button" class="btn btn-primary" (click)="updateENSNotice(inputUniversityAdminENSNotice.value)">Update</button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h4>Fund Admin:</h4>
+                                </div>
+                                <div class="col-md-12">
+                                    <p>Attach University Fund</p>
+                                    <input #inputFundAddress class="form-control" placeholder="Address" type="text" size=32>
+                                    <button type="button" class="btn btn-primary" (click)="attachFund(inputFundAddress.value)">Attach fund</button>
+                                    <p>University Fund Admin</p>
+                                    <input #inputFundAdminAddress class="form-control" placeholder="Address" type="text" size=32>
+                                    <button type="button" class="btn btn-warning" (click)="grantFundAdmin(inputFundAdminAddress.value)">Give fund admin</button>
+                                    <p>Apply funds in University Fund</p>
+                                    <input #inputFundApply class="form-control" placeholder="DAI value" type="text" size=32>
+                                    <button type="button" class="btn btn-primary" (click)="applyFunds(inputFundApply.value)">Apply funds</button>
+                                    <p>Recover funds from University Fund</p>
+                                    <input #inputFundRecover class="form-control" placeholder="DAI value" type="text" size=32>
+                                    <button type="button" class="btn btn-primary" (click)="recoverFunds(inputFundRecover.value)">Recover funds</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#information" (click)="closeModal('custom-modal-university-admin')" class="btn btn-neutral btn-icon mb-3 mb-sm-0">
+                            <span class="btn-inner--icon"><i class="fa fa-arrow-left"></i></span>
+                            <span class="btn-inner--text">Back</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </jw-modal>
+    <jw-modal id="custom-modal-create-classroom">
+        <div id="UniversityInfo" class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="col-md-12">
+                    <div class="card shadow border-0">
+                        <div class="card-header">
+                            <h4>Admin Create Classroom</h4>
+                        </div>
+                        <div class="card-body">
+                            <p>Use this page to create classrooms manually. The setup of Oracles and Services will use this university's standards.</p>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="inputObjCreateClassroom_Owner" class="UniversityAdmins mt-3">Owner:</label>
+                                        <input id="inputObjCreateClassroom_Owner" #inputCreateClassroom_Owner class="form-control" placeholder="Owner Address" type="text" size=32>
+                                        <label for="inputObjCreateClassroom_Name" class="UniversityAdmins mt-3">Name:</label>
+                                        <input id="inputObjCreateClassroom_Name" #inputCreateClassroom_Name class="form-control" placeholder="Name" type="text" size=32>
+                                        <label for="inputObjCreateClassroom_Price" class="UniversityAdmins mt-3">Price:</label>
+                                        <input id="inputObjCreateClassroom_Price" #inputCreateClassroom_Price class="form-control" placeholder="Price (in DAI)" type="text" size=32>
+                                        <label for="inputObjCreateClassroom_Cutfromprincipal" class="UniversityAdmins mt-3">Cut
+                                            from principal:</label>
+                                        <input id="inputObjCreateClassroom_Cutfromprincipal" #inputCreateClassroom_Cutfromprincipal class="form-control" placeholder="Cut (%)" type="text" size=32>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="inputObjCreateClassroom_Cutfromsuccesspool" class="UniversityAdmins mt-3">Cut from success pool:</label>
+                                        <input id="inputObjCreateClassroom_Cutfromsuccesspool" #inputCreateClassroom_Cutfromsuccesspool class="form-control" placeholder="Cut (%)" type="text" size=32>
+                                        <label for="inputObjCreateClassroom_Minimumscore" class="UniversityAdmins mt-3">Minimum
+                                            score:</label>
+                                        <input id="inputObjCreateClassroom_Minimumscore" #inputCreateClassroom_Minimumscore class="form-control" placeholder="Int32" type="text" size=32>
+                                        <label for="inputObjCreateClassroom_Duration" class="UniversityAdmins mt-3">Duration:</label>
+                                        <input id="inputObjCreateClassroom_Duration" #inputCreateClassroom_Duration class="form-control" placeholder="Days" type="text" size=32>
+                                        <label for="inputObjCreateClassroom_Challengeaddress" class="UniversityAdmins mt-3">Challenge address:</label>
+                                        <input id="inputObjCreateClassroom_Challengeaddress" #inputCreateClassroom_Challengeaddress class="form-control" placeholder="Challenge Address" type="text" size=32>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" (click)="closeModal('custom-modal-create-classroom')" class="btn btn-neutral btn-icon mb-3 mb-sm-0">
+                                <span class="btn-inner--icon"><i class="fa fa-arrow-left"></i></span>
+                                <span class="btn-inner--text">Back</span>
+                            </a>
+                            <a href="#" (click)="createClassroom(
+                                inputCreateClassroom_Owner.value,
+                                inputCreateClassroom_Name.value,
+                                inputCreateClassroom_Price.value,
+                                inputCreateClassroom_Cutfromprincipal.value,
+                                inputCreateClassroom_Cutfromsuccesspool.value,
+                                inputCreateClassroom_Minimumscore.value,
+                                inputCreateClassroom_Duration.value,
+                                inputCreateClassroom_Challengeaddress.value);closeModal('custom-modal-create-classroom')" class="btn btn-success text-white btn-icon mb-3 mb-sm-0">
+                                <span class="btn-inner--icon"><i class="fa fa-check"></i></span>
+                                <span class="btn-inner--text">Create</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </jw-modal>
+    <jw-modal id="transfer-dai">
+        <div id="donationInfo" class="modal-dialog modal-sm modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body p-0">
+                    <div class="card shadow border-0 bg-gradient-success">
+                        <div class="card-header justify-content-center bg-gradient-success">
+                            <h4 class="text-center text-white">Make a Donation (DAI)</h4>
+                            <button type="button" (click)="closeModal('transfer-dai')" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="card-body justify-content-center bg-gradient-success">
+                            <h5 class="text-center text-white">All donations go directly to the university endowment, helping good students to get grants</h5>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-6 align-content-center mt-2">
+                                    <input #donationInputVal class="form-control" placeholder="DAI" type="number" (focus)="focus=true" (blur)="focus=false">
+                                </div>
+                                <div class="col-md-6 align-content-center mt-2">
+                                    <button type="submit" (click)="donateDAi(donationInputVal.value)" class="btn btn-neutral btn-block btn-icon mb-3 mb-sm-0">
+                                        <span class="btn-inner--icon"><i class="fa fa-send"></i></span>
+                                        <span class="btn-inner--text">Donate</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </jw-modal>
+    <ngx-ui-loader></ngx-ui-loader>
+</main>

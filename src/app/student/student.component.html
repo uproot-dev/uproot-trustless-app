@@ -1,0 +1,261 @@
+<main>
+    <section class="section section-shaped section-lg">
+        <div class="shape shape-style-1 bg-gradient-default">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div *ngIf=!globals.selectedStudent class="container py-lg-md d-flex">
+            <div class="row mb-4">
+                <div class="container">
+                    <div class="card bg-gradient-success shadow-lg border-0">
+                        <div class="p-5">
+                            <div class="row align-items-center">
+                                <div class="col-lg-8">
+                                    <h4 class="text-white">Connect to your account to begin.</h4>
+                                    <p class="lead text-white mt-3">You will need to connect to a wallet service in order to interact with this dApp.</p>
+                                </div>
+                                <div class="col-lg-3 ml-lg-auto"><a [routerLink]="['/']" class="btn btn-lg btn-block btn-white">CONNECT</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf=globals.selectedStudent class="container py-lg-md d-flex">
+            <div class="col">
+                <div class="row mb-4">
+                    <div class="col-lg-12 mb-4">
+                        <h1 class="display-3  text-white">account
+                            <span>{{globals.selectedStudent.name}}</span>
+                            <span *ngIf=globals.selectedStudent.metadata.ENSName class="text-muted" style="font-size:smaller;">@{{globals.selectedStudent.metadata.ENSName}}</span>
+                        </h1>
+                        <h3 class="lead  text-white">{{globals.selectedStudent.metadata.description}}</h3>
+                        <p class="lead text-white">Address: {{globals.selectedStudent.address}}</p>
+                        <p class="lead text-white">Student Smart Contract: {{globals.selectedStudent.smartContractAddress}}</p>
+                        <p class="lead text-white">Score: {{globals.selectedStudent.score}} </p>
+                        <div class="btn-wrapper">
+                            <a [routerLink]="['/']" class="btn btn-white btn-icon mb-3 mb-sm-0">
+                                <span class="btn-inner--icon"><i class="fa fa-arrow-left"></i></span>
+                                <span class="btn-inner--text">Back</span>
+                            </a>
+                            <a (click)="openModal('custom-modal-dai'); txOn();" class="btn btn-info text-white btn-icon mb-3 mb-sm-0">
+                                <span class="btn-inner--icon"><i class="fa fa-star"></i></span>
+                                <span class="btn-inner--text">Trade DAI</span>
+                            </a>
+                            <a *ngIf=!globals.selectedStudent.studentENSNameRecord (click)="openModal('custom-modal-setup'); txOn();" class="btn btn-success text-white btn-icon mb-3 mb-sm-0">
+                                <span class="btn-inner--icon"><i class="fa fa-star"></i></span>
+                                <span class="btn-inner--text">Register ENS</span>
+                            </a>
+                            <a (click)="openModal('custom-modal-edit'); txOn();" class="btn btn-primary text-white btn-icon mb-3 mb-sm-0">
+                                <span class="btn-inner--icon"><i class="fa fa-edit"></i></span>
+                                <span class="btn-inner--text">Edit Profile</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="globals.selectedStudent.hasApplications==true" class="row mb-4">
+                    <div class="col-lg-12 mt-4">
+                        <h1 class="display-3 text-white">applications</h1>
+                        <table class="table table-hover bg-white" responsive>
+                            <thead>
+                                <tr>
+                                    <th scope="col">Classroom</th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody *ngFor="let application of globals.selectedStudent.applications">
+                                <tr>
+                                    <th scope="row">{{ application }}</th>
+                                    <td><a class="btn btn-sm btn-default text-white">Go</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div *ngIf="globals.selectedStudent.hasApplications==false" class="row mb-4">
+                    <div class="container">
+                        <div class="card bg-gradient-success shadow-lg border-0">
+                            <div class="p-5">
+                                <div class="row align-items-center">
+                                    <div class="col-lg-8">
+                                        <h4 class="text-white">Start by choosing the perfect classroom for you.</h4>
+                                        <p class="lead text-white mt-3">You will need to connect to a wallet service in order to interact with this dApp.</p>
+                                    </div>
+                                    <div class="col-lg-3 ml-lg-auto"><a [routerLink]="['/']" fragment=classrooms class="btn btn-lg btn-block btn-white">SELECT CLASSROOM</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <jw-modal *ngIf=globals.selectedStudent id="custom-modal-edit">
+        <form role="form">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card shadow bg-gradient-default border-0">
+                        <div class="card-body py-5">
+                            <h3 class="text-center text-white">Edit Your Profile</h3>
+                            <div class="row mt-3">
+                                <div class="col-md-12">
+                                    <h2 class="description text-white">Here you can change your student name.</h2>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-md-12">
+                                    <div class="form-group" [ngClass]="{'focused':focus===true}">
+                                        <div class="input-group input-group-alternative mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                                            </div>
+                                            <input id="inputObjNewName" #inputObjNewName class="form-control" placeholder="New Student Name" type="text" (focus)="focus=true" (blur)="focus=false">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-md-12">
+                                    <div *ngIf="txMode=='preTX'" class="alert alert-neutral" role="alert">
+                                        <strong class="text-default">You need confirm this transaction on your portis wallet!</strong>
+                                    </div>
+                                    <div *ngIf="txMode=='processingTX'" class="alert alert-warning" role="alert">
+                                        <strong>Wait!</strong> Updating your account ...
+                                    </div>
+                                    <div *ngIf="txMode=='successTX'" class="alert alert-success" role="alert">
+                                        <strong>Success!</strong> Transaction Hash {{hashTx}}
+                                        <a href="https://ropsten.etherscan.io/tx/{{hashTx}}" target="_blank">See On Etherscan</a>
+                                    </div>
+                                    <div *ngIf="txMode=='failedTX'" class="alert alert-danger" role="alert">
+                                        <strong>Failed!</strong> Transaction didn't complete. Try again!
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-gradient-default">
+                            <a *ngIf="txMode=='preTX'" type="submit" (click)="updateName(inputObjNewName.value)" class="btn btn-success btn-icon text-white mb-3 mb-sm-0">
+                                <span class="btn-inner--icon"><i class="fa fa-send"></i></span>
+                                <span class="btn-inner--text">Update</span>
+                            </a>
+                            <a (click)="closeModal('custom-modal-edit'); txOff(); refreshAccountInfo();" class="btn btn-neutral btn-icon mb-3 mb-sm-0">
+                                <span class="btn-inner--icon"><i class="fa fa-arrow-left"></i></span>
+                                <span class="btn-inner--text">Back</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </jw-modal>
+    <jw-modal *ngIf=globals.selectedStudent id="custom-modal-setup">
+        <form role="form">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card shadow bg-gradient-default border-0">
+                        <div class="card-body py-5">
+                            <h3 class="text-center text-white">Active Your Student ENS</h3>
+                            <div class="row mt-3">
+                                <div class="col-md-12">
+                                    <h2 class="description text-white">Here you can active your student ENS subdomain.</h2>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-md-12">
+                                    <div *ngIf="txMode=='preTX'" class="alert alert-neutral" role="alert">
+                                        <strong class="text-default">You need confirm this transaction on your portis wallet!</strong>
+                                    </div>
+                                    <div *ngIf="txMode=='processingTX'" class="alert alert-warning" role="alert">
+                                        <strong>Wait!</strong> Registering your ENS subdomain...
+                                    </div>
+                                    <div *ngIf="txMode=='successTX'" class="alert alert-success" role="alert">
+                                        <strong>Success!</strong> This is a success alert—check it out!
+                                    </div>
+                                    <div *ngIf="txMode=='failedTX'" class="alert alert-danger" role="alert">
+                                        <strong>Failed!</strong> This is a danger alert—check it out!
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-gradient-default">
+                            <a *ngIf="txMode=='preTX'" type="submit" (click)="registerStudentENS()" class="btn btn-success btn-icon text-white mb-3 mb-sm-0">
+                                <span class="btn-inner--icon"><i class="fa fa-send"></i></span>
+                                <span class="btn-inner--text">Register Subdomain</span>
+                            </a>
+                            <a (click)="closeModal('custom-modal-setup'); txOff(); refreshAccountInfo();" class="btn btn-neutral btn-icon mb-3 mb-sm-0">
+                                <span class="btn-inner--icon"><i class="fa fa-arrow-left"></i></span>
+                                <span class="btn-inner--text">Back</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </jw-modal>
+    <jw-modal *ngIf=globals.selectedStudent id="custom-modal-dai">
+        <form role="form">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card shadow bg-gradient-default border-0">
+                        <div class="card-body py-5">
+                            <h3 class="text-center text-white">Buy or Sell DAI</h3>
+                            <div class="row mt-3">
+                                <div class="col-md-12">
+                                    <h2 class="description text-center text-white">Here you can buy or sell DAI with ETH at Uniswap.</h2>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-md-12">
+                                    <div class="form-group" [ngClass]="{'focused':focus===true}">
+                                        <div class="input-group input-group-alternative mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                                            </div>
+                                            <input id="inputObjAmount" #inputObjAmount class="form-control" placeholder="Amount" type="number" (focus)="focus=true" (blur)="focus=false">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-md-12">
+                                    <div *ngIf="txMode=='preTX'" class="alert alert-neutral" role="alert">
+                                        <strong class="text-default">You need confirm this transaction on your portis wallet!</strong>
+                                    </div>
+                                    <div *ngIf="txMode=='processingTX'" class="alert alert-warning" role="alert">
+                                        <strong>Wait!</strong> Loading your transaction ...
+                                    </div>
+                                    <div *ngIf="txMode=='successTX'" class="alert alert-success" role="alert">
+                                        <strong>Success!</strong> Transaction Hash {{hashTx}}
+                                        <a href="https://ropsten.etherscan.io/tx/{{hashTx}}" target="_blank">See On Etherscan</a>
+                                    </div>
+                                    <div *ngIf="txMode=='failedTX'" class="alert alert-danger" role="alert">
+                                        <strong>Failed!</strong> Transaction didn't complete. Try again!
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-gradient-default">
+                            <a *ngIf="txMode=='preTX'" type="submit" (click)="buyDAI(inputObjAmount.value)" class="btn btn-success btn-icon text-white mb-3 mb-sm-0">
+                                <span class="btn-inner--icon"><i class="fa fa-send"></i></span>
+                                <span class="btn-inner--text">Buy</span>
+                            </a>
+                            <a *ngIf="txMode=='preTX'" type="submit" (click)="sellDAI(inputObjAmount.value)" class="btn btn-success btn-icon text-white mb-3 mb-sm-0">
+                                <span class="btn-inner--icon"><i class="fa fa-send"></i></span>
+                                <span class="btn-inner--text">Sell</span>
+                            </a>
+                            <a (click)="closeModal('custom-modal-dai'); txOff(); refreshAccountInfo();" class="btn btn-neutral btn-icon mb-3 mb-sm-0">
+                                <span class="btn-inner--icon"><i class="fa fa-arrow-left"></i></span>
+                                <span class="btn-inner--text">Back</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </jw-modal>
+</main>

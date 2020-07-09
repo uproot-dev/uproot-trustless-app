@@ -1,0 +1,28 @@
+<footer class="footer">
+    <div class="container">
+      <div class="row align-items-center justify-content-md-between">
+        <div class="col-md-6">
+          <div class="copyright">
+            &copy; {{test | date: 'yyyy'}}
+            <a href="#" target="_blank">Tapioca</a>.
+          </div>
+        </div>
+        <div class="col-md-6">
+          <ul class="nav nav-footer justify-content-end">
+            <li class="nav-item">
+              <a [routerLink]="['/']" class="nav-link no-caret">university</a>
+          </li>
+          <li class="nav-item">
+              <a [routerLink]="['/classroom']" class="nav-link no-caret">classroom</a>
+          </li>
+          <li class="nav-item">
+              <a [routerLink]="['/student']" class="nav-link no-caret">account</a>
+          </li>
+          <li class="nav-item">
+              <a [routerLink]="['/fund']" class="nav-link no-caret">fund</a>
+          </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>

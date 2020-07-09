@@ -1,0 +1,55 @@
+<nav id="navbar-main" class="navbar navbar-main navbar-expand-lg navbar-transparent navbar-light headroom headroom--top headroom--pinned">
+    <div class="container">
+        <a class="navbar-brand mr-lg-5" [routerLink]="['/']">
+            <h3 class="text-white">DeEd</h3>
+        </a>
+        <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="navbar_global">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+        <div class="navbar-collapse collapse" id="navbar_global">
+            <div class="navbar-collapse-header">
+                <div class="row">
+                    <div class="col-6 collapse-brand">
+                        <a [routerLink]="['/']">
+                            <h3 class="text-default">DeEd</h3>
+                        </a>
+                    </div>
+                    <div class="col-6 collapse-close">
+                        <button type="button" class="navbar-toggler" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="navbar_global">
+                <span></span>
+                <span></span>
+              </button>
+                    </div>
+                </div>
+            </div>
+            <ul class="navbar-nav navbar-nav-hover align-items-lg-center">
+                <li class="nav-item">
+                    <a [routerLink]="['/']" class="nav-link no-caret">university</a>
+                </li>
+                <li class="nav-item">
+                    <a [routerLink]="['/classroom']" class="nav-link no-caret">classroom</a>
+                </li>
+                <li class="nav-item">
+                    <a [routerLink]="['/student']" class="nav-link no-caret">account</a>
+                </li>
+                <li class="nav-item">
+                    <a [routerLink]="['/fund']" class="nav-link no-caret">fund</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav align-items-lg-center ml-lg-auto">
+                <li class="nav-item">
+                    <a class="nav-link nav-link-icon" (click)="globals.service.showPortis()" target="_blank" data-toggle="tooltip" title="Open Portis">
+                        <i class="ni ni-credit-card"></i>
+                        <span class="nav-link-inner--text d-lg-none">Portis</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-link-icon" href="https://github.com/freitasgouvea/deed-angular" target="_blank" data-toggle="tooltip" title="Star us on Github">
+                        <i class="fa fa-lg fa-github"></i>
+                        <span class="nav-link-inner--text d-lg-none">Github</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
