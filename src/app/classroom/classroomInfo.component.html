@@ -8,28 +8,28 @@
                 <div class="card-body py-5">
                     <div class="row">
                         <div class="col-md-6">
-                            <p class="text-light">Start: <span *ngIf=!globals.selectedClassroom.state.isClassroomNotOpen class="text-default">{{globals.selectedClassroom.startDate_String}}</span><span *ngIf=globals.selectedClassroom.state.isClassroomNotOpen class="text-default">To Be Defined</span></p>
-                            <p class="text-light">Finish: <span *ngIf=!globals.selectedClassroom.state.isClassroomNotOpen class="text-default">{{globals.selectedClassroom.finishDate_String}}</span><span *ngIf=globals.selectedClassroom.state.isClassroomNotOpen class="text-default">To Be Defined</span></p>
-                            <p *ngIf=globals.selectedClassroom.state.isClassroomNotOpen class="text-light">Status: <span class="badge badge-pill badge-info">Not Open</span></p>
-                            <p *ngIf=globals.selectedClassroom.state.isClassroomOpen class="text-light">Status: <span class="badge badge-pill badge-success">Open</span></p>
-                            <p *ngIf=globals.selectedClassroom.state.isClassroomClosed class="text-light">Status: <span class="badge badge-pill badge-warning">Closed</span></p>
-                            <p *ngIf=globals.selectedClassroom.state.isClassroomActive class="text-light">Status: <span class="badge badge-pill badge-primary">Ongoing</span></p>
-                            <p *ngIf=globals.selectedClassroom.state.isCourseFinished class="text-light">Status: <span class="badge badge-pill badge-dark">Finished</span></p>
+                            <p class="text-bold">Start: <span *ngIf=!globals.selectedClassroom.state.isClassroomNotOpen class="text-default">{{globals.selectedClassroom.startDate_String}}</span><span *ngIf=globals.selectedClassroom.state.isClassroomNotOpen class="text-default">To Be Defined</span></p>
+                            <p class="text-bold">Finish: <span *ngIf=!globals.selectedClassroom.state.isClassroomNotOpen class="text-default">{{globals.selectedClassroom.finishDate_String}}</span><span *ngIf=globals.selectedClassroom.state.isClassroomNotOpen class="text-default">To Be Defined</span></p>
+                            <p *ngIf=globals.selectedClassroom.state.isClassroomNotOpen class="text-bold">Status: <span class="badge badge-pill badge-info">Not Open</span></p>
+                            <p *ngIf=globals.selectedClassroom.state.isClassroomOpen class="text-bold">Status: <span class="badge badge-pill badge-success">Open</span></p>
+                            <p *ngIf=globals.selectedClassroom.state.isClassroomClosed class="text-bold">Status: <span class="badge badge-pill badge-warning">Closed</span></p>
+                            <p *ngIf=globals.selectedClassroom.state.isClassroomActive class="text-bold">Status: <span class="badge badge-pill badge-primary">Ongoing</span></p>
+                            <p *ngIf=globals.selectedClassroom.state.isCourseFinished class="text-bold">Status: <span class="badge badge-pill badge-dark">Finished</span></p>
                         </div>
                         <div class="col-md-6">
-                            <p class="text-light">Price: <span class="text-default">{{globals.selectedClassroom.price}} DAI</span></p>
-                            <p class="text-light">Cut from Principal: <span class="text-default">{{globals.selectedClassroom.cutPrincipal}} %</span></p>
-                            <p class="text-light">Cut from Success Pool: <span class="text-default">{{globals.selectedClassroom.cutPool}} %</span></p>
+                            <p class="text-bold">Price: <span class="text-default">{{globals.selectedClassroom.price}} DAI</span></p>
+                            <p class="text-bold">Cut from Principal: <span class="text-default">{{globals.selectedClassroom.cutPrincipal}} %</span></p>
+                            <p class="text-bold">Cut from Success Pool: <span class="text-default">{{globals.selectedClassroom.cutPool}} %</span></p>
                         </div>
                     </div>
                     <div class="row mt-3">
                         <div class="col-md-6">
-                            <p class="text-light">Address: <span class="text-default">{{globals.selectedClassroom.smartcontract}}</span></p>
-                            <p class="text-light">Challenge: <span class="text-default">{{globals.selectedClassroom.addressChallenge}}</span></p>
+                            <p class="text-bold">Address: <span class="text-default">{{globals.selectedClassroom.smartcontract}}</span></p>
+                            <p class="text-bold">Challenge: <span class="text-default">{{globals.selectedClassroom.addressChallenge}}</span></p>
                         </div>
                         <div class="col-md-6">
-                            <p class="text-light">Description: <span class="text-default">{{globals.selectedClassroom.metadata.description}}</span></p>
-                            <p class="text-light">Notice: <span class="text-default">{{globals.selectedClassroom.metadata.notice}}</span></p>
+                            <p class="text-bold">Description: <span class="text-default">{{globals.selectedClassroom.metadata.description}}</span></p>
+                            <p class="text-bold">Notice: <span class="text-default">{{globals.selectedClassroom.metadata.notice}}</span></p>
                         </div>
                     </div>
                 </div>

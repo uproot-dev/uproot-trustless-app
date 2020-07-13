@@ -139,7 +139,7 @@
                 <div class="row justify-content-left mb-4">
                     <div class="col-lg-8">
                         <h2 class="display-3">classrooms</h2>
-                        <p class="lead text-default">Here you can see and access the classrooms of the university.</p>
+                        <p class="lead text-bold">Here you can see and access the classrooms of the university.</p>
                     </div>
                 </div>
                 <div *ngIf=!globals.classlistLoaded class="container">
@@ -160,7 +160,7 @@
                                 <div class="card card-lift--hover shadow border-0">
                                     <img class="card-img-top" src={{classroom.metadata.avatar}} alt="Card image cap">
                                     <div class="card-body py-5">
-                                        <h4 class="text-default text-uppercase">{{classroom.title}}</h4>
+                                        <h4 class="text-bold text-uppercase">{{classroom.title}}</h4>
                                         <div>
                                             <span *ngIf=classroom.state.isClassroomNotOpen class="badge badge-pill badge-info">Not Open</span>
                                             <span *ngIf=classroom.state.isClassroomOpen class="badge badge-pill badge-success">Open</span>
@@ -414,7 +414,7 @@
                             <div class="row mt-3">
                                 <div class="col-md-12">
                                     <div *ngIf="txMode=='preTX'" class="alert alert-neutral" role="alert">
-                                        <strong class="text-default">You need confirm this transaction on your portis
+                                        <strong class="text-bold">You need confirm this transaction on your portis
                                             wallet!</strong>
                                     </div>
                                     <div *ngIf="txMode=='processingTX'" class="alert alert-warning" role="alert">
@@ -472,17 +472,17 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label for="inputObjUpdateUniversity_Owner" class="UniversityAdmins mt-3">Owner:
-                                        <span class="text-default">{{globals.universityAdmin}}</span></label>
+                                        <span class="text-bold">{{globals.universityAdmin}}</span></label>
                                     <input id="inputObjUpdateUniversity_Owner" #inputUniversity_Owner class="form-control" type="text" size=32>
                                     <button type="button" (click)="setUniversityOwner(inputUniversity_Owner.value)" class="btn btn-sm btn-default text-white">Set</button>
                                     <br>
                                     <label for="inputObjUpdateUniversity_Name" class="UniversityAdmins mt-3">Name: <span
-                                            class="text-default">{{globals.universityName}}</span></label>
+                                            class="text-bold">{{globals.universityName}}</span></label>
                                     <input id="inputObjUpdateUniversity_Name" #inputUniversity_Name class="form-control" type="text" size=32>
                                     <button type="button" (click)="setUniversityName(inputUniversity_Name.value)" class="btn btn-sm btn-default text-white">Set</button>
                                     <br>
                                     <label for="inputObjUpdateUniversity_Cut" class="UniversityAdmins mt-3">Cut: <span
-                                            class="text-default">{{globals.universityCut}}</span></label>
+                                            class="text-bold">{{globals.universityCut}}</span></label>
                                     <input id="inputObjUpdateUniversity_Cut" #inputUniversity_Cut class="form-control" type="text" size=32>
                                     <button type="button" (click)="setUniversityCut(inputUniversity_Cut.value)" class="btn btn-sm btn-default text-white">Set</button>
                                 </div>
@@ -760,16 +760,15 @@
                                     <h4>University ENS Admin</h4>
                                 </div>
                                 <div class="col-md-6">
-                                    <p>ENS Name: <span class="text-default">{{globals.universityENSName}}</span> <span *ngIf=globals.universityENSNameRecord class="badge badge-pill badge-success">Recorded</span><span *ngIf=!globals.universityENSNameRecord
-                                            class="badge badge-pill badge-warning">Not Recorded</span></p>
-                                    <p>ENS TTL: <span class="text-default">{{globals.universityENSTTL}}</span> </p>
+                                    <p>ENS Name: <span class="text-bold">{{globals.universityENSName}}</span> <span *ngIf=globals.universityENSNameRecord class="badge badge-pill badge-success">Recorded</span><span *ngIf=!globals.universityENSNameRecord class="badge badge-pill badge-warning">Not Recorded</span></p>
+                                    <p>ENS TTL: <span class="text-bold">{{globals.universityENSTTL}}</span> </p>
                                     <button *ngIf=!globals.universityENSNameRecord type="button" class="btn btn-warning" (click)="setupUniversityENS()">Setup ENS</button>
                                 </div>
                                 <div class="col-md-6">
-                                    <p>Description: <span class="text-default">{{globals.universityENSDescription}}</span> </p>
+                                    <p>Description: <span class="text-bold">{{globals.universityENSDescription}}</span> </p>
                                     <input #inputUniversityAdminENSDescription class="form-control" placeholder="Address" type="text" size=32>
                                     <button type="button" class="btn btn-primary" (click)="updateENSDescription(inputUniversityAdminENSDescription.value)">Update</button>
-                                    <p>Notice: <span class="text-default">{{globals.universityENSNotice}}</span> </p>
+                                    <p>Notice: <span class="text-bold">{{globals.universityENSNotice}}</span> </p>
                                     <input #inputUniversityAdminENSNotice class="form-control" placeholder="Address" type="text" size=32>
                                     <button type="button" class="btn btn-primary" (click)="updateENSNotice(inputUniversityAdminENSNotice.value)">Update</button>
                                 </div>
