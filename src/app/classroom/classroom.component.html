@@ -74,7 +74,7 @@
                                     <i class="fa fa-wifi"></i>
                                 </div>
                                 <h6 class="text-warning text-uppercase">Connecting</h6>
-                                <p class="description mt-3">Connecting to your Wallet Provider and DeEd University.
+                                <p class="description mt-3">Connecting to your Wallet Provider and Uproot University.
                                 </p>
                             </div>
                         </div>
@@ -85,8 +85,8 @@
                                 <div class="icon icon-shape icon-shape-info rounded-circle mb-4">
                                     <i class="fa fa-star"></i>
                                 </div>
-                                <h6 class="text-info text-uppercase">Welcome to DeEd</h6>
-                                <p class="description mt-3">To connect to DeEd you need to install a Portis Wallet.
+                                <h6 class="text-info text-uppercase">Welcome to Uproot</h6>
+                                <p class="description mt-3">To connect to Uproot you need to install a Portis Wallet.
                                 </p>
                                 <button class="btn btn-info mt-4" (click)="conectPortis()">Conect Portis</button>
                             </div>
@@ -99,9 +99,9 @@
                                     <i class="fa fa-user"></i>
                                 </div>
                                 <h6 class="text-primary text-uppercase">Register Your Account</h6>
-                                <p class="description mt-3">To use to DeEd you need to register at University.</p>
+                                <p class="description mt-3">To use to Uproot you need to register at University.</p>
                                 <div #onLoginPlaceholder1></div>
-                                <button class="btn btn-primary mt-4" (click)="openModal('custom-modal-register'); txOn();">Register DeEd</button>
+                                <button class="btn btn-primary mt-4" (click)="openModal('custom-modal-register'); txOn();">Register Uproot</button>
                             </div>
                         </div>
                     </div>
@@ -143,7 +143,7 @@
                                 <h6 *ngIf=globals.selectedClassroom class="text-white text-uppercase">Register</h6>
                                 <h6 *ngIf=!globals.selectedClassroom class="text-white text-uppercase">Search</h6>
                                 <button *ngIf="globals.selectedClassroom&&(globals.mode=='unconnected')" class="btn btn-neutral mt-4" (click)="conectPortis()">Conect Portis</button>
-                                <button *ngIf="globals.selectedClassroom&&(globals.mode=='connected')" class="btn btn-neutral mt-4" (click)="openModal('custom-modal-register'); txOn();">Register DeEd</button>
+                                <button *ngIf="globals.selectedClassroom&&(globals.mode=='connected')" class="btn btn-neutral mt-4" (click)="openModal('custom-modal-register'); txOn();">Register Uproot</button>
                                 <a *ngIf=!globals.selectedClassroom (click)="openModal('custom-modal-search-classroom')" class="btn btn-neutral text-default mt-4">Search</a>
                             </div>
                         </div>
