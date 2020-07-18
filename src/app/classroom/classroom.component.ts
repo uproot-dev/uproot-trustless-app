@@ -666,22 +666,6 @@ export class ClassroomComponent implements OnInit {
 			});
 	}
 
-	configureUniswap(
-		uniswapDAI: string,
-		uniswapLINK: string,
-		uniswapRouter: string
-	) {
-		//TODO: abstract service
-		uniswapDAI = uniswapDAI ? uniswapDAI : environment.DAIAddress;
-		uniswapLINK = uniswapLINK ? uniswapLINK : environment.LINKAddress;
-		uniswapRouter = uniswapRouter
-			? uniswapRouter
-			: environment.UniswapRouter;
-		this.globals.service.classroomContractInstance
-			.configureUniswap(uniswapDAI, uniswapLINK, uniswapRouter)
-			.then((tx) => tx.wait().then(() => this.refreshClassroomConfigs()));
-	}
-
 	changeName(val) {
 		this.globals.service.classroomContractInstance
 			.changeName(val)
@@ -751,52 +735,6 @@ export class ClassroomComponent implements OnInit {
 			.then((tx) => {
 				this.ngxLoader.start();
 				tx.wait().then(() => this.refreshClassroomInfo());
-			});
-	}
-
-	configureOracles(
-		oracleRandom: string,
-		requestIdRandom: string,
-		oraclePaymentRandom: number,
-		oracleTimestamp: string,
-		requestIdTimestamp: string,
-		oraclePaymentTimestamp: number,
-		linkToken: string
-	) {
-		//TODO: abstract service
-		oracleRandom = oracleRandom
-			? oracleRandom
-			: environment.ChainlinkOracleRandom;
-		requestIdRandom = requestIdRandom
-			? requestIdRandom
-			: environment.ChainlinkRequestIdRandom;
-		oraclePaymentRandom = oraclePaymentRandom
-			? oraclePaymentRandom
-			: environment.ChainlinkOraclePaymentRandom;
-		oracleTimestamp = oracleTimestamp
-			? oracleTimestamp
-			: environment.ChainlinkOracleTimestamp;
-		requestIdTimestamp = requestIdTimestamp
-			? requestIdTimestamp
-			: environment.ChainlinkRequestIdTimestamp;
-		oraclePaymentTimestamp = oraclePaymentTimestamp
-			? oraclePaymentTimestamp
-			: environment.ChainlinkOraclePaymentTimestamp;
-		linkToken = linkToken ? linkToken : environment.LINKAddress;
-		this.globals.service.classroomContractInstance
-			.configureOracles(
-				oracleRandom,
-				requestIdRandom,
-				oraclePaymentRandom,
-				oracleTimestamp,
-				requestIdTimestamp,
-				oraclePaymentTimestamp,
-				linkToken,
-				true
-			)
-			.then((tx) => {
-				this.ngxLoader.start();
-				tx.wait().then(() => this.refreshClassroomConfigs());
 			});
 	}
 
