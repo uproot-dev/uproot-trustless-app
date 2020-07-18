@@ -36,11 +36,11 @@ $colors: map-merge(( "blue" : $blue, "indigo" : $indigo, "purple" : $purple, "pi
 $default : #20A749 !default;
 $primary : $teal !default;
 $secondary : $yellow !default;
-$success : $indigo !default;
-$info : $pink !default;
+$success : $green !default;
+$info : $indigo !default;
 $warning : $orange !default;
 $danger : $red !default;
-$light : $cyan !default;
+$light : $pink !default;
 $dark : $purple !default;
 $darker : darken($gray-900, 15%) !default;
 $facebook : #3b5999 !default;
@@ -57,9 +57,9 @@ $theme-colors: map-merge(( "default" : $default, "primary" : $primary, "secondar
 $brand-colors: () !default;
 $brand-colors: map-merge(( "facebook" : $facebook, "twitter" : $twitter, "google-plus" : $google-plus, "instagram" : $instagram, "pinterest" : $pinterest, "youtube" : $youtube, "slack" : $slack, "dribbble" : $dribbble, "github" : $github), $brand-colors);
 $shape-colors: () !default;
-$shape-colors: map-merge(( "default" : #32325d, "primary" : #5533ff, "secondary" : #24b47e, "neutral" : #e9ecef, "blue-gray" : #b2cbe1, ), $shape-colors);
+$shape-colors: map-merge(( "default" : #1F748C, "primary" : #20A749, "secondary" : #FFBB75, "neutral" : #ffeedb, "blue-gray" : #58A4B9, ), $shape-colors);
 $shapes-primary-colors: () !default;
-$shapes-primary-colors: map-merge(( "step-1-gradient-bg" : #281483, "step-2-gradient-bg" : #8f6ed5, "step-3-gradient-bg" : #d782d9, "span-1-bg" : #53f, "span-2-bg" : #4553ff, "span-3-bg" : #4f40ff, "span-4-bg" : #25ddf5, "span-5-bg" : #1fa2ff), $shapes-primary-colors);
+$shapes-primary-colors: map-merge(( "step-1-gradient-bg" : #1F748C, "step-2-gradient-bg" : #58A4B9, "step-3-gradient-bg" : #84C4D6, "span-1-bg" : #37869C, "span-2-bg" : #58A4B9, "span-3-bg" : #84C4D6, "span-4-bg" : #BAE2EE, "span-5-bg" : #1fa2ff), $shapes-primary-colors);
 $shapes-default-colors: () !default;
 $shapes-default-colors: map-merge(( "step-1-gradient-bg" : #7795f8, "step-2-gradient-bg" : #6772e5, "step-3-gradient-bg" : #555abf, "span-1-bg" : #7795f8, "span-2-bg" : #7b9aff, "span-3-bg" : #6f8ff8, "span-4-bg" : #76eea7, "span-5-bg" : #6adaff), $shapes-default-colors);
 $shapes-light-colors: () !default;

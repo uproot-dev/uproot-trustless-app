@@ -37,12 +37,12 @@ export class StudentComponent implements OnInit {
 				this.globals.service.provider,
 				false
 			);
-			console.log('Connected to infura');
+			console.warn('Connected to infura');
 		}
 		this.globals.service.connectStudent().then(
 			() => this.refreshAccountInfo(),
 			(err) => {
-				return console.log(err);
+				return console.warn('Error on connection: ' + err);
 			}
 		);
 	}

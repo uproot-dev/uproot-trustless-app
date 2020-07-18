@@ -20,7 +20,7 @@ export class InfuraService extends baseClientService {
 		super();
 		const provider = ethers.getDefaultProvider(environment.network);
 		this.setupProvider(provider);
-		console.log('Connected to infura');
+		console.warn('Connected to infura');
 	}
 
 	showPortis(){

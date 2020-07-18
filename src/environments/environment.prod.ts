@@ -23,7 +23,6 @@ export const environment = {
 	ChainlinkRequestIdTimestamp: '0x2ebb1c1a4b1e4229adac24ee0b5f784f00000000000000000000000000000000',
 	ChainlinkOraclePaymentTimestamp: 1,
 	AaveLendingPoolAddressesProvider : '0x1c8756FD2B28e9426CDBDcC7E3c4d64fa9A54728',
-	DefaultGasRelayHub: "0xEF46DD512bCD36619a6531Ca84B188b47D85124b",
 	DefaultTestPaymaster: "0x663946D7Ea17FEd07BF1420559F9FB73d85B5B03",
 	DefaultStakeManager: "0x41c7C7c1Bf501e2F43b51c200FEeEC87540AC925",
 	UniversityFundAddress: "0x630991655036A034Ff4eB99daEc449661988404C",

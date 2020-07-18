@@ -126,7 +126,7 @@ export class FundComponent implements OnInit {
 				this.globals.service.provider,
 				false
 			);
-			console.log('Connected to infura');
+			console.warn('Connected to infura');
 		}
 		this.delay(1000).then(() => {
 			this.refreshInfo();

@@ -12,11 +12,7 @@ import * as ERC20 from '../../../build/contracts/ERC20.json';
 import * as CDAI from '../../../build/contracts/CERC20.json';
 import * as ADAI from '../../../build/contracts/aToken.json';
 import { GenericUser } from '../../models/genericUser.model';
-import { NgxUiLoaderService } from 'ngx-ui-loader';
 
-@Injectable({
-	providedIn: 'root',
-})
 export class baseClientService {
 	public universityContractInstance: any;
 	public classroomContractInstance: any;
@@ -299,7 +295,6 @@ export class baseClientService {
 		let text = '';
 		text = text + (await this.universityContractInstance.daiToken()) + ',';
 		text = text + (await this.universityContractInstance.cDAI()) + ',';
-		text = text + (await this.universityContractInstance.relayHub()) + ',';
 		text =
 			text +
 			(await this.universityContractInstance.classroomFactory()) +

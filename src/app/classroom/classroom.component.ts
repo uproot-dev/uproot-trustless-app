@@ -47,7 +47,7 @@ export class ClassroomComponent implements OnInit {
 				this.globals.service.provider,
 				false
 			);
-			console.log('Connected to infura');
+			console.warn('Connected to infura');
 		}
 		if (!this.globals.selectedClassroom) return;
 		this.globals.service

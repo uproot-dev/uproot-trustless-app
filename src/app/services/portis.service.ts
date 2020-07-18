@@ -43,13 +43,13 @@ export class PortisService extends baseClientService {
 			console.warn('Not Connected!');
 			return false;
 		} else {
-			console.log('Connected with Portis!');
+			console.warn('Connected with Portis!');
 			this.portis.onLogout(() => {
-				console.log('User logged out');
+				console.warn('User logged out');
 				window.location.reload();
 			  });
 			this.portis.onActiveWalletChanged(walletAddress => {
-				console.log('Active wallet address:', walletAddress);
+				console.warn('Active wallet address:', walletAddress);
 				window.location.reload();
 			  });
 			return true;
