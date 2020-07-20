@@ -618,7 +618,7 @@ export class baseClientService {
 	}
 
 	public async payEntryPrice() {
-		const tx = await this.studentApplicationContractInstance.payEntryPrice();
+		const tx = await this.studentApplicationContractInstance.payMyEntryPrice();
 		return tx;
 	}
 

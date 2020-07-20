@@ -182,7 +182,7 @@
     },
     {
       "inputs": [],
-      "name": "payEntryPrice",
+      "name": "payMyEntryPrice",
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"
