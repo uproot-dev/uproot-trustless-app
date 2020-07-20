@@ -444,43 +444,6 @@ export class ClassroomComponent implements OnInit {
 	refreshClassroomConfigs(
 		classroom: Classroom = this.globals.selectedClassroom
 	) {
-		//TODO: abstract service
-		this.globals.service.classroomContractInstance
-			.oracleRandom()
-			.then(
-				(val) =>
-					(this.globals.selectedClassroom.configs.oracleRandom = val)
-			);
-		this.globals.service.classroomContractInstance
-			.requestIdRandom()
-			.then(
-				(val) =>
-					(this.globals.selectedClassroom.configs.requestIdRandom = val)
-			);
-		this.globals.service.classroomContractInstance
-			.oraclePaymentRandom()
-			.then(
-				(val) =>
-					(this.globals.selectedClassroom.configs.oraclePaymentRandom = val)
-			);
-		this.globals.service.classroomContractInstance
-			.oracleTimestamp()
-			.then(
-				(val) =>
-					(this.globals.selectedClassroom.configs.oracleTimestamp = val)
-			);
-		this.globals.service.classroomContractInstance
-			.requestIdTimestamp()
-			.then(
-				(val) =>
-					(this.globals.selectedClassroom.configs.requestIdTimestamp = val)
-			);
-		this.globals.service.classroomContractInstance
-			.oraclePaymentTimestamp()
-			.then(
-				(val) =>
-					(this.globals.selectedClassroom.configs.oraclePaymentTimestamp = val)
-			);
 		this.globals.service.classroomContractInstance
 			.aaveProvider()
 			.then(
@@ -500,7 +463,7 @@ export class ClassroomComponent implements OnInit {
 					(this.globals.selectedClassroom.configs.aaveLendingPoolCore = val)
 			);
 		this.globals.service.classroomContractInstance
-			.aTokenDAI()
+			.aDAI()
 			.then(
 				(val) =>
 					(this.globals.selectedClassroom.configs.aTokenDAI = val)

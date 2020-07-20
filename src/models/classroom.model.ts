@@ -26,12 +26,6 @@ export class Classroom {
 	};
 	public params = { compoundApplyPercentage: 50, aaveApplyPercentage: 50 };
 	public configs = {
-		oracleRandom: '',
-		requestIdRandom: '',
-		oraclePaymentRandom: 0,
-		oracleTimestamp: '',
-		requestIdTimestamp: '',
-		oraclePaymentTimestamp: 0,
 		aaveProvider: '',
 		aaveLendingPool: '',
 		aaveLendingPoolCore: '',

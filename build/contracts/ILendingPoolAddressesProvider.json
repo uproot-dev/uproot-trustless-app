@@ -40,15 +40,15 @@
     "absolutePath": "/mnt/e/Repositories/uproot-trustless-contracts/contracts/interface/Aave/ILendingPoolAddressesProvider.sol",
     "exportedSymbols": {
       "ILendingPoolAddressesProvider": [
-        7178
+        7123
       ]
     },
-    "id": 7179,
+    "id": 7124,
     "license": "GPL-3.0-or-later",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 7166,
+        "id": 7111,
         "literals": [
           "solidity",
           "^",
@@ -64,15 +64,15 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "documentation": {
-          "id": 7167,
+          "id": 7112,
           "nodeType": "StructuredDocumentation",
           "src": "76:133:16",
           "text": "@title ILendingPoolAddressesProvider interface\n@notice provides the interface to fetch the LendingPoolCore address"
         },
         "fullyImplemented": false,
-        "id": 7178,
+        "id": 7123,
         "linearizedBaseContracts": [
-          7178
+          7123
         ],
         "name": "ILendingPoolAddressesProvider",
         "nodeType": "ContractDefinition",
@@ -81,7 +81,7 @@
             "body": null,
             "documentation": null,
             "functionSelector": "ed6ff760",
-            "id": 7172,
+            "id": 7117,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
@@ -89,23 +89,23 @@
             "nodeType": "FunctionDefinition",
             "overrides": null,
             "parameters": {
-              "id": 7168,
+              "id": 7113,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "287:2:16"
             },
             "returnParameters": {
-              "id": 7171,
+              "id": 7116,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7170,
+                  "id": 7115,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 7172,
+                  "scope": 7117,
                   "src": "313:15:16",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -114,7 +114,7 @@
                     "typeString": "address payable"
                   },
                   "typeName": {
-                    "id": 7169,
+                    "id": 7114,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "313:15:16",
@@ -130,7 +130,7 @@
               ],
               "src": "312:17:16"
             },
-            "scope": 7178,
+            "scope": 7123,
             "src": "260:70:16",
             "stateMutability": "view",
             "virtual": false,
@@ -140,7 +140,7 @@
             "body": null,
             "documentation": null,
             "functionSelector": "0261bf8b",
-            "id": 7177,
+            "id": 7122,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
@@ -148,23 +148,23 @@
             "nodeType": "FunctionDefinition",
             "overrides": null,
             "parameters": {
-              "id": 7173,
+              "id": 7118,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "359:2:16"
             },
             "returnParameters": {
-              "id": 7176,
+              "id": 7121,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7175,
+                  "id": 7120,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 7177,
+                  "scope": 7122,
                   "src": "385:7:16",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -173,7 +173,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7174,
+                    "id": 7119,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "385:7:16",
@@ -189,14 +189,14 @@
               ],
               "src": "384:9:16"
             },
-            "scope": 7178,
+            "scope": 7123,
             "src": "336:58:16",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 7179,
+        "scope": 7124,
         "src": "213:184:16"
       }
     ],
@@ -206,15 +206,15 @@
     "absolutePath": "/mnt/e/Repositories/uproot-trustless-contracts/contracts/interface/Aave/ILendingPoolAddressesProvider.sol",
     "exportedSymbols": {
       "ILendingPoolAddressesProvider": [
-        7178
+        7123
       ]
     },
-    "id": 7179,
+    "id": 7124,
     "license": "GPL-3.0-or-later",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 7166,
+        "id": 7111,
         "literals": [
           "solidity",
           "^",
@@ -230,15 +230,15 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "documentation": {
-          "id": 7167,
+          "id": 7112,
           "nodeType": "StructuredDocumentation",
           "src": "76:133:16",
           "text": "@title ILendingPoolAddressesProvider interface\n@notice provides the interface to fetch the LendingPoolCore address"
         },
         "fullyImplemented": false,
-        "id": 7178,
+        "id": 7123,
         "linearizedBaseContracts": [
-          7178
+          7123
         ],
         "name": "ILendingPoolAddressesProvider",
         "nodeType": "ContractDefinition",
@@ -247,7 +247,7 @@
             "body": null,
             "documentation": null,
             "functionSelector": "ed6ff760",
-            "id": 7172,
+            "id": 7117,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
@@ -255,23 +255,23 @@
             "nodeType": "FunctionDefinition",
             "overrides": null,
             "parameters": {
-              "id": 7168,
+              "id": 7113,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "287:2:16"
             },
             "returnParameters": {
-              "id": 7171,
+              "id": 7116,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7170,
+                  "id": 7115,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 7172,
+                  "scope": 7117,
                   "src": "313:15:16",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -280,7 +280,7 @@
                     "typeString": "address payable"
                   },
                   "typeName": {
-                    "id": 7169,
+                    "id": 7114,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "313:15:16",
@@ -296,7 +296,7 @@
               ],
               "src": "312:17:16"
             },
-            "scope": 7178,
+            "scope": 7123,
             "src": "260:70:16",
             "stateMutability": "view",
             "virtual": false,
@@ -306,7 +306,7 @@
             "body": null,
             "documentation": null,
             "functionSelector": "0261bf8b",
-            "id": 7177,
+            "id": 7122,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
@@ -314,23 +314,23 @@
             "nodeType": "FunctionDefinition",
             "overrides": null,
             "parameters": {
-              "id": 7173,
+              "id": 7118,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "359:2:16"
             },
             "returnParameters": {
-              "id": 7176,
+              "id": 7121,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 7175,
+                  "id": 7120,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
-                  "scope": 7177,
+                  "scope": 7122,
                   "src": "385:7:16",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -339,7 +339,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 7174,
+                    "id": 7119,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "385:7:16",
@@ -355,14 +355,14 @@
               ],
               "src": "384:9:16"
             },
-            "scope": 7178,
+            "scope": 7123,
             "src": "336:58:16",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 7179,
+        "scope": 7124,
         "src": "213:184:16"
       }
     ],
@@ -374,7 +374,7 @@
   },
   "networks": {},
   "schemaVersion": "3.1.0",
-  "updatedAt": "2020-07-09T20:27:12.354Z",
+  "updatedAt": "2020-07-11T22:38:56.976Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},

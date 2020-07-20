@@ -311,7 +311,7 @@ export class baseClientService {
 			text + (await this.universityContractInstance.ensContract()) + ',';
 		text =
 			text +
-			(await this.universityContractInstance.ensTestRegistrar()) +
+			(await this.universityContractInstance.ensRegistrar()) +
 			',';
 		text =
 			text +
@@ -460,6 +460,12 @@ export class baseClientService {
 		return register;
 	}
 
+	async changeUniversityName(newName: string) {
+		const name = ethers.utils.formatBytes32String(newName);
+		const tx = await this.universityContractInstance.changeName(name);
+		return tx;
+	}
+
 	async createClassroom(
 		_Owner: string,
 		_Name: string,
@@ -470,7 +476,7 @@ export class baseClientService {
 		_Duration: number,
 		_Challengeaddress: string
 	) {
-		await this.universityContractInstance.newClassRoom(
+		const tx = await this.universityContractInstance.newClassRoom(
 			_Owner,
 			ethers.utils.formatBytes32String(_Name),
 			Math.round(_Cutfromprincipal * 1e4),
@@ -480,6 +486,7 @@ export class baseClientService {
 			Math.round(_Duration * 60 * 60 * 24),
 			_Challengeaddress
 		);
+		return tx;
 	}
 
 	async approveDAI(
@@ -524,6 +531,7 @@ export class baseClientService {
 			ethers.utils.solidityKeccak256(['string'], [label]),
 			environment.UniversityAddress
 		);
+		return tx;
 	}
 
 	async setResolver(node: string) {
@@ -531,6 +539,7 @@ export class baseClientService {
 			node,
 			environment.ENSPulbicResolverAddress
 		);
+		return tx;
 	}
 
 	async setAddr(node: string, address: string) {
@@ -538,12 +547,14 @@ export class baseClientService {
 			node,
 			address
 		);
+		return tx;
 	}
 
 	async setReverse(name: string) {
 		const tx = await this.universityContractInstance.registerInReverseRegistrar(
 			name
 		);
+		return tx;
 	}
 
 	public async setTxRecord(_node, key, text) {
@@ -553,24 +564,24 @@ export class baseClientService {
 			text,
 			environment.ENSPulbicResolverAddress
 		);
+		return tx;
 	}
 
 	public async claimSubnodeClassroom(_node, label, owner, classroom) {
 		const tx = await this.universityContractInstance.claimSubnodeClassroom(
 			_node,
 			ethers.utils.solidityKeccak256(['string'], [label]),
-			owner,
 			environment.ENSPulbicResolverAddress,
 			0,
 			classroom
 		);
+		return tx;
 	}
 
 	public async claimSubnodeStudent(_node, label, owner, student) {
 		const tx = await this.universityContractInstance.claimSubnodeStudent(
 			_node,
 			ethers.utils.solidityKeccak256(['string'], [label]),
-			owner,
 			environment.ENSPulbicResolverAddress,
 			0,
 			student

@@ -196,14 +196,23 @@ export class LandingComponent implements OnInit {
 		const normalName = this.globals.universityName
 			.toLowerCase()
 			.replace(/\s/g, '');
-		if (!this.globals.universityENSNameRecord)
-			await this.globals.service.registerInRegistrar(normalName);
+		let tx;
+		if (!this.globals.universityENSNameRecord) {
+			tx = await this.globals.service.registerInRegistrar(normalName);
+			await this.loadTx(tx);
+		}
 		const node = this.globals.ensService.node;
-		await this.globals.service.setResolver(node);
-		await this.globals.service.setAddr(node, environment.UniversityAddress);
-		await this.globals.service.setReverse(
+		tx = await this.globals.service.setResolver(node);
+		await this.loadTx(tx);
+		tx = await this.globals.service.setAddr(
+			node,
+			environment.UniversityAddress
+		);
+		await this.loadTx(tx);
+		tx = await this.globals.service.setReverse(
 			normalName + environment.ENSDomain
 		);
+		await this.loadTx(tx);
 	}
 
 	async updateClassrooms() {
@@ -294,7 +303,7 @@ export class LandingComponent implements OnInit {
 		} else {
 			this.txMode = 'processingTX';
 			const selfRegister = await this.globals.service.studentSelfRegister(
-				_name,
+				_name
 			);
 			if (!selfRegister) {
 				this.txMode = 'failedTX';
@@ -383,11 +392,22 @@ export class LandingComponent implements OnInit {
 		});
 	}
 
-	public async setUniversityOwner(param) {}
+	public async setUniversityOwner(param: string) {}
 
-	public async setUniversityName(param) {}
+	public async setUniversityName(param: string) {
+		const tx = await this.globals.service.changeUniversityName(param);
+		await this.loadTx(tx);
+	}
 
-	public async setUniversityCut(param) {}
+	private async loadTx(tx: any) {
+		this.ngxLoader.start();
+		this.globals.overlayLoader = true;
+		await tx.wait();
+		this.ngxLoader.stop();
+		this.globals.overlayLoader = false;
+	}
+
+	public async setUniversityCut(param: string) {}
 
 	public async setUniversityParams(param: string) {
 		const paramArray = param.split(',');

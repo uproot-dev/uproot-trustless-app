@@ -121,7 +121,7 @@
                 <div *ngIf=!globals.userIsClassroomAdmin class="row mb-4">
                     <div class="col-lg-4 mt-4">
                         <div class="card card-lift--hover shadow border-0 text-center">
-                            <div *ngIf="phase==0" class="card-body bg-gradient-success py-5">
+                            <div *ngIf="phase==0" class="card-body bg-gradient-secondary py-5">
                                 <div class="icon icon-shape icon-shape-default bg-white rounded-circle mb-4">
                                     1
                                 </div>
@@ -130,18 +130,18 @@
                                 <a *ngIf=globals.selectedClassroom (click)="openModal('custom-modal-1'); txOn();" class="btn btn-neutral mt-4">Apply</a>
                                 <a *ngIf=!globals.selectedClassroom (click)="openModal('custom-modal-search-classroom')" class="btn btn-neutral mt-4">Search</a>
                             </div>
-                            <div *ngIf="phase>0" class="card-body text-white bg-gradient-primary py-5">
+                            <div *ngIf="phase>0" class="card-body text-body bg-gradient-white py-5">
                                 <div class="icon icon-shape icon-shape-default bg-white rounded-circle mb-4">
                                     1
                                 </div>
-                                <h6 class="text-white text-uppercase">Applied</h6>
+                                <h6 class="text-body text-uppercase">Applied</h6>
                             </div>
-                            <div *ngIf="phase<0" class="card-body text-white bg-gradient-success py-5">
+                            <div *ngIf="phase<0" class="card-body text-body bg-gradient-secondary py-5">
                                 <div class="icon icon-shape icon-shape-default bg-white rounded-circle mb-4">
                                     1
                                 </div>
-                                <h6 *ngIf=globals.selectedClassroom class="text-white text-uppercase">Register</h6>
-                                <h6 *ngIf=!globals.selectedClassroom class="text-white text-uppercase">Search</h6>
+                                <h6 *ngIf=globals.selectedClassroom class="text-body text-uppercase">Register</h6>
+                                <h6 *ngIf=!globals.selectedClassroom class="text-body text-uppercase">Search</h6>
                                 <button *ngIf="globals.selectedClassroom&&(globals.mode=='unconnected')" class="btn btn-neutral mt-4" (click)="conectPortis()">Conect Portis</button>
                                 <button *ngIf="globals.selectedClassroom&&(globals.mode=='connected')" class="btn btn-neutral mt-4" (click)="openModal('custom-modal-register'); txOn();">Register Uproot</button>
                                 <a *ngIf=!globals.selectedClassroom (click)="openModal('custom-modal-search-classroom')" class="btn btn-neutral text-default mt-4">Search</a>
@@ -149,33 +149,33 @@
                         </div>
                     </div>
                     <div class="col-lg-4 mt-4">
-                        <div class="card card-lift--hover shadow border-0 text-center " [ngClass]="{ 'bg-gradient-primary': globals.selectedClassroom&&(phase!=1), 'bg-gradient-success': phase==1 }">
+                        <div class="card card-lift--hover shadow border-0 text-center " [ngClass]="{ 'bg-gradient-white': globals.selectedClassroom&&(phase!=1), 'bg-gradient-secondary': phase==1 }">
                             <div class="card-body py-5">
                                 <div class="icon icon-shape icon-shape-default rounded-circle mb-4" [ngClass]="{ 'bg-white': globals.selectedClassroom&&(phase>1) }">
                                     2
                                 </div>
                                 <h6 *ngIf="phase<2" class="text-default text-uppercase">Call for a Grant</h6>
-                                <h6 *ngIf="phase>1" class="text-default text-uppercase text-white">Grant closed</h6>
-                                <p *ngIf="phase<2" class="description mt-3 " [ngClass]="{ 'text-white': globals.selectedClassroom&&(phase!=1) }">If you don't need have founds to pay the fee you can request a grant.</p>
-                                <a *ngIf="phase==1" (click)="openModal('custom-modal-2'); txOn();" class="btn btn-default mt-4 text-white">Call</a>
+                                <h6 *ngIf="phase>1" class="text-default text-uppercase text-body">Grant closed</h6>
+                                <p *ngIf="phase<2" class="description mt-3 " [ngClass]="{ 'text-body': globals.selectedClassroom&&(phase!=1) }">If you don't need have founds to pay the fee you can request a grant.</p>
+                                <a *ngIf="phase==1" (click)="openModal('custom-modal-2'); txOn();" class="btn btn-default mt-4 text-body">Call</a>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-4 mt-4">
-                        <div class="card card-lift--hover shadow border-0 text-center" [ngClass]="{ 'bg-gradient-primary': globals.selectedClassroom&&(phase!=1), 'bg-gradient-success': phase==1 }">
+                        <div class="card card-lift--hover shadow border-0 text-center" [ngClass]="{ 'bg-gradient-white': globals.selectedClassroom&&(phase!=1), 'bg-gradient-secondary': phase==1 }">
                             <div class="card-body py-5">
                                 <div class="icon icon-shape icon-shape-default rounded-circle mb-4" [ngClass]="{ 'bg-white': globals.selectedClassroom&&(phase>1) }">
                                     3
                                 </div>
                                 <h6 *ngIf="phase<2" class="text-default text-uppercase">Start Application</h6>
-                                <h6 *ngIf="phase>1" class="text-default text-uppercase text-white">Entry already paid</h6>
-                                <p *ngIf="phase<2" class="description mt-3" [ngClass]="{ 'text-white': globals.selectedClassroom&&(phase!=1) }">You need to deposit the classroom fee to start your application.</p>
-                                <a *ngIf="phase==1" (click)="checkAllowance();openModal('custom-modal-3'); txOn();" class="btn btn-default mt-4 text-white">Deposit</a>
+                                <h6 *ngIf="phase>1" class="text-default text-uppercase text-body">Entry already paid</h6>
+                                <p *ngIf="phase<2" class="description mt-3" [ngClass]="{ 'text-body': globals.selectedClassroom&&(phase!=1) }">You need to deposit the classroom fee to start your application.</p>
+                                <a *ngIf="phase==1" (click)="checkAllowance();openModal('custom-modal-3'); txOn();" class="btn btn-default mt-4 text-body">Deposit</a>
                             </div>
                         </div>
                     </div>
                     <div *ngIf="phase==2" class="col-lg-6 mt-4">
-                        <div class="card card-lift--hover shadow border-0 text-center bg-gradient-success">
+                        <div class="card card-lift--hover shadow border-0 text-center bg-gradient-secondary">
                             <div class="card-body py-5">
                                 <div class="icon icon-shape icon-shape-default rounded-circle mb-4">
                                     4
@@ -186,33 +186,33 @@
                         </div>
                     </div>
                     <div *ngIf="phase!=2" class="col-lg-6 mt-4">
-                        <div class="card card-lift--hover shadow border-0 text-center" [ngClass]="{ 'bg-gradient-primary': globals.selectedClassroom&&(phase!=3), 'bg-gradient-success': phase==3  }">
+                        <div class="card card-lift--hover shadow border-0 text-center" [ngClass]="{ 'bg-gradient-white': globals.selectedClassroom&&(phase!=3), 'bg-gradient-secondary': phase==3  }">
                             <div class="card-body py-5">
                                 <div class="icon icon-shape icon-shape-default rounded-circle mb-4" [ngClass]="{ 'bg-white': globals.selectedClassroom&&(phase>3) }">
                                     4
                                 </div>
                                 <h6 *ngIf="phase<4" class="text-default text-uppercase">Access Material</h6>
-                                <h6 *ngIf="phase>3" class="text-default text-uppercase text-white">Classroom closed</h6>
-                                <p *ngIf="phase<4" class="description mt-3" [ngClass]="{ 'text-white': globals.selectedClassroom&&(phase!=3) }">Here you can access all the stuff and materials of this classroom.</p>
-                                <a *ngIf="phase==3" (click)="openModal('custom-modal-4'); txOn();" class="btn btn-default mt-4 text-white">Access</a>
+                                <h6 *ngIf="phase>3" class="text-default text-uppercase text-body">Classroom closed</h6>
+                                <p *ngIf="phase<4" class="description mt-3" [ngClass]="{ 'text-body': globals.selectedClassroom&&(phase!=3) }">Here you can access all the stuff and materials of this classroom.</p>
+                                <a *ngIf="phase==3" (click)="openModal('custom-modal-4'); txOn();" class="btn btn-default mt-4 text-body">Access</a>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-6 mt-4">
-                        <div class="card card-lift--hover shadow border-0 text-center" [ngClass]="{ 'bg-gradient-primary': globals.selectedClassroom&&(phase!=3), 'bg-gradient-success': phase==3  }">
+                        <div class="card card-lift--hover shadow border-0 text-center" [ngClass]="{ 'bg-gradient-white': globals.selectedClassroom&&(phase!=3), 'bg-gradient-secondary': phase==3  }">
                             <div class="card-body py-5">
                                 <div class="icon icon-shape icon-shape-default rounded-circle mb-4" [ngClass]="{ 'bg-white': globals.selectedClassroom&&(phase>3) }">
                                     5
                                 </div>
                                 <h6 *ngIf="phase<4" class="text-default text-uppercase">Submit Your Answer</h6>
-                                <h6 *ngIf="phase>3" class="text-default text-uppercase text-white">Classroom closed</h6>
-                                <p *ngIf="phase<4" class="description mt-3" [ngClass]="{ 'text-white': globals.selectedClassroom&&(phase!=3) }">Here you can send your secret to complete this classroom.</p>
-                                <a *ngIf="phase==3" (click)="openModal('custom-modal-5'); txOn();" class="btn btn-default mt-4 text-white">Submit</a>
+                                <h6 *ngIf="phase>3" class="text-default text-uppercase text-body">Classroom closed</h6>
+                                <p *ngIf="phase<4" class="description mt-3" [ngClass]="{ 'text-body': globals.selectedClassroom&&(phase!=3) }">Here you can send your secret to complete this classroom.</p>
+                                <a *ngIf="phase==3" (click)="openModal('custom-modal-5'); txOn();" class="btn btn-default mt-4 text-body">Submit</a>
                             </div>
                         </div>
                     </div>
                     <div *ngIf="phase==4" class="col-lg-8 mt-4">
-                        <div class="card card-lift--hover shadow border-0 text-center bg-gradient-success">
+                        <div class="card card-lift--hover shadow border-0 text-center bg-gradient-secondary">
                             <div class="card-body py-5">
                                 <div class="icon icon-shape icon-shape-default rounded-circle mb-4">
                                     6
@@ -223,27 +223,27 @@
                         </div>
                     </div>
                     <div *ngIf="phase!=4" class="col-lg-8 mt-4">
-                        <div class="card card-lift--hover shadow border-0 text-center" [ngClass]="{ 'bg-gradient-primary': globals.selectedClassroom&&(phase!=5), 'bg-gradient-success': phase==5  }">
+                        <div class="card card-lift--hover shadow border-0 text-center" [ngClass]="{ 'bg-gradient-white': globals.selectedClassroom&&(phase!=5), 'bg-gradient-secondary': phase==5  }">
                             <div class="card-body py-5">
                                 <div class="icon icon-shape icon-shape-default rounded-circle mb-4" [ngClass]="{ 'bg-white': globals.selectedClassroom&&(phase>5) }">
                                     6
                                 </div>
                                 <h6 *ngIf="phase<6" class="text-default text-uppercase">Claim Your Reward</h6>
-                                <h6 *ngIf="phase>5" class="text-default text-uppercase text-white">Reward claimed</h6>
-                                <p *ngIf="phase<6" class="description mt-3" [ngClass]="{ 'text-white': globals.selectedClassroom&&(phase!=5) }">If you send correct answer you can collect you reward here.</p><br>
-                                <a *ngIf="phase==5" (click)="openModal('custom-modal-6'); txOn();" class="btn btn-default mt-4 text-white">Claim</a>
+                                <h6 *ngIf="phase>5" class="text-default text-uppercase text-body">Reward claimed</h6>
+                                <p *ngIf="phase<6" class="description mt-3" [ngClass]="{ 'text-body': globals.selectedClassroom&&(phase!=5) }">If you send correct answer you can collect you reward here.</p><br>
+                                <a *ngIf="phase==5" (click)="openModal('custom-modal-6'); txOn();" class="btn btn-default mt-4 text-body">Claim</a>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-4 mt-4">
-                        <div class="card card-lift--hover shadow border-0 text-center " [ngClass]="{ 'bg-gradient-primary': globals.selectedClassroom&&(phase!=6), 'bg-gradient-success': phase==6  }">
+                        <div class="card card-lift--hover shadow border-0 text-center " [ngClass]="{ 'bg-gradient-white': globals.selectedClassroom&&(phase!=6), 'bg-gradient-secondary': phase==6  }">
                             <div class="card-body py-5">
                                 <div class="icon icon-shape icon-shape-default rounded-circle mb-4" [ngClass]="{ 'bg-white': globals.selectedClassroom&&(phase>6) }">
                                     7
                                 </div>
                                 <h6 class="text-default text-uppercase">Start your own classroom</h6>
-                                <p class="description mt-3" [ngClass]="{ 'text-white': globals.selectedClassroom&&(phase!=6) }">After you complete a classroom you can create a new one.</p>
-                                <a *ngIf="phase==6" (click)="openModal('custom-modal-7'); txOn();" class="btn btn-default mt-4 text-white">Create</a>
+                                <p class="description mt-3" [ngClass]="{ 'text-body': globals.selectedClassroom&&(phase!=6) }">After you complete a classroom you can create a new one.</p>
+                                <a *ngIf="phase==6" (click)="openModal('custom-modal-7'); txOn();" class="btn btn-default mt-4 text-body">Create</a>
                             </div>
                         </div>
                     </div>
@@ -252,12 +252,12 @@
         </div>
         <div *ngIf=!globals.selectedClassroom class="row mb-4">
             <div class="container">
-                <div class="card bg-gradient-success shadow-lg border-0">
+                <div class="card bg-gradient-secondary shadow-lg border-0">
                     <div class="p-5">
                         <div class="row align-items-center">
                             <div class="col-lg-8">
-                                <h4 class="text-white">Start by choosing the perfect classroom for you.</h4>
-                                <p class="lead text-white mt-3">You will need to connect to a wallet service in order to interact with this dApp.</p>
+                                <h4 class="text-body">Start by choosing the perfect classroom for you.</h4>
+                                <p class="lead text-body mt-3">You will need to connect to a wallet service in order to interact with this dApp.</p>
                             </div>
                             <div class="col-lg-3 ml-lg-auto"><a [routerLink]="['/']" fragment=classrooms class="btn btn-lg btn-block btn-white">SELECT CLASSROOM</a></div>
                         </div>
@@ -442,12 +442,12 @@
         <form role="form">
             <div class="row justify-content-center">
                 <div class="col-md-8">
-                    <div class="card shadow bg-gradient-default border-0">
+                    <div class="card shadow bg-gradient-white border-0">
                         <div class="card-body py-5">
-                            <h3 class="text-center text-white">Register at University</h3>
+                            <h3 class="text-center text-body">Register at University</h3>
                             <div class="row mt-3">
                                 <div class="col-md-12">
-                                    <h2 class="description text-white">Create your student registry in this university and enjoy all its features.</h2>
+                                    <h2 class="description text-body">Create your student registry in this university and enjoy all its features.</h2>
                                 </div>
                             </div>
                             <div class="row mt-3">
@@ -480,12 +480,12 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card-footer bg-gradient-default">
+                        <div class="card-footer bg-gradient-white">
                             <a (click)="closeModal('custom-modal-register'); txOff()" class="btn btn-neutral btn-icon mb-3 mb-sm-0">
                                 <span class="btn-inner--icon"><i class="fa fa-university"></i></span>
                                 <span class="btn-inner--text">Back</span>
                             </a>
-                            <a *ngIf="txMode=='preTX'" type="submit" (click)="studentSelfRegister(studentInputName.value)" class="btn btn-success btn-icon text-white mb-3 mb-sm-0">
+                            <a *ngIf="txMode=='preTX'" type="submit" (click)="studentSelfRegister(studentInputName.value)" class="btn btn-success btn-icon text-body mb-3 mb-sm-0">
                                 <span class="btn-inner--icon"><i class="fa fa-send"></i></span>
                                 <span class="btn-inner--text">Register</span>
                             </a>
@@ -499,12 +499,12 @@
         <form role="form">
             <div class="row justify-content-center">
                 <div class="col-md-6">
-                    <div class="card shadow bg-gradient-default border-0">
+                    <div class="card shadow bg-gradient-white border-0">
                         <div class="card-body py-5">
-                            <h3 class="text-center text-white">Apply for this classroom</h3>
+                            <h3 class="text-center text-body">Apply for this classroom</h3>
                             <div class="row mt-3">
                                 <div class="col-md-12">
-                                    <h2 class="description text-center text-white">To start this classroom you need to send your application.</h2>
+                                    <h2 class="description text-center text-body">To start this classroom you need to send your application.</h2>
                                 </div>
                             </div>
                             <div class="row mt-3">
@@ -525,12 +525,12 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card-footer bg-gradient-default">
+                        <div class="card-footer bg-gradient-white">
                             <a (click)="closeModal('custom-modal-1'); txOff(); refreshClassroomInfo();" class="btn btn-neutral btn-icon mb-3 mb-sm-0">
                                 <span class="btn-inner--icon"><i class="fa fa-arrow-left"></i></span>
                                 <span class="btn-inner--text">Back</span>
                             </a>
-                            <a *ngIf="txMode=='preTX'" type="submit" (click)="applyClassroom()" class="btn btn-success btn-icon text-white mb-3 mb-sm-0">
+                            <a *ngIf="txMode=='preTX'" type="submit" (click)="applyClassroom()" class="btn btn-success btn-icon text-body mb-3 mb-sm-0">
                                 <span class="btn-inner--icon"><i class="fa fa-send"></i></span>
                                 <span class="btn-inner--text">Apply</span>
                             </a>
@@ -544,12 +544,12 @@
         <form role="form">
             <div class="row justify-content-center">
                 <div class="col-md-6">
-                    <div class="card shadow bg-gradient-default border-0">
+                    <div class="card shadow bg-gradient-white border-0">
                         <div class="card-body py-5">
-                            <h3 class="text-center text-white">Call for a grant</h3>
+                            <h3 class="text-center text-body">Call for a grant</h3>
                             <div class="row mt-3">
                                 <div class="col-md-12">
-                                    <h2 class="description text-center text-white">If you don't need have founds to pay the fee you can request a grant.</h2>
+                                    <h2 class="description text-center text-body">If you don't need have founds to pay the fee you can request a grant.</h2>
                                 </div>
                             </div>
                             <div class="input-group input-group-alternative mb-3">
@@ -576,12 +576,12 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card-footer bg-gradient-default">
+                        <div class="card-footer bg-gradient-white">
                             <a (click)="closeModal('custom-modal-2'); txOff(); refreshClassroomInfo();" class="btn btn-neutral btn-icon mb-3 mb-sm-0">
                                 <span class="btn-inner--icon"><i class="fa fa-arrow-left"></i></span>
                                 <span class="btn-inner--text">Back</span>
                             </a>
-                            <a *ngIf="txMode=='preTX'" type="submit" class="btn btn-success btn-icon text-white mb-3 mb-sm-0">
+                            <a *ngIf="txMode=='preTX'" type="submit" class="btn btn-success btn-icon text-body mb-3 mb-sm-0">
                                 <span class="btn-inner--icon"><i class="fa fa-send"></i></span>
                                 <span class="btn-inner--text">Call</span>
                             </a>
@@ -595,13 +595,13 @@
         <form role="form">
             <div class="row justify-content-center">
                 <div class="col-md-6">
-                    <div class="card shadow bg-gradient-default border-0">
+                    <div class="card shadow bg-gradient-white border-0">
                         <div class="card-body py-5">
-                            <h3 class="text-center text-white">Start your application</h3>
+                            <h3 class="text-center text-body">Start your application</h3>
                             <div class="row mt-3">
                                 <div class="col-md-12">
-                                    <h2 class="description text-center text-white">You need to approve and deposit fee to start your application.</h2>
-                                    <h4 class="text-center text-white">Price: {{this.globals.selectedClassroom.price}} DAI</h4>
+                                    <h2 class="description text-center text-body">You need to approve and deposit fee to start your application.</h2>
+                                    <h4 class="text-center text-body">Price: {{this.globals.selectedClassroom.price}} DAI</h4>
                                 </div>
                             </div>
                             <div class="row mt-3">
@@ -622,20 +622,20 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card-footer bg-gradient-default">
+                        <div class="card-footer bg-gradient-white">
                             <a (click)="closeModal('custom-modal-3'); txOff(); refreshClassroomInfo();" class="btn btn-neutral btn-icon mb-3 mb-sm-0">
                                 <span class="btn-inner--icon"><i class="fa fa-arrow-left"></i></span>
                                 <span class="btn-inner--text">Back</span>
                             </a>
-                            <a *ngIf="allowanceMode==0" type="submit" class="btn btn-primary btn-icon text-white mb-3 mb-sm-0">
+                            <a *ngIf="allowanceMode==0" type="submit" class="btn btn-primary btn-icon text-body mb-3 mb-sm-0">
                                 <span class="btn-inner--icon"><i class="fa fa-check"></i></span>
                                 <span class="btn-inner--text">Checking...</span>
                             </a>
-                            <a *ngIf="(allowanceMode==1)&&(txMode=='preTX')" (click)="approveStart()" type="submit" class="btn btn-primary btn-icon text-white mb-3 mb-sm-0">
+                            <a *ngIf="(allowanceMode==1)&&(txMode=='preTX')" (click)="approveStart()" type="submit" class="btn btn-primary btn-icon text-body mb-3 mb-sm-0">
                                 <span class="btn-inner--icon"><i class="fa fa-check"></i></span>
                                 <span class="btn-inner--text">Approve</span>
                             </a>
-                            <a *ngIf="allowanceMode==2" (click)="payPrice()" type="submit" class="btn btn-success btn-icon text-white mb-3 mb-sm-0">
+                            <a *ngIf="allowanceMode==2" (click)="payPrice()" type="submit" class="btn btn-success btn-icon text-body mb-3 mb-sm-0">
                                 <span class="btn-inner--icon"><i class="fa fa-send"></i></span>
                                 <span class="btn-inner--text">Transfer</span>
                             </a>
@@ -649,16 +649,16 @@
         <form role="form">
             <div class="row justify-content-center">
                 <div class="col-md-6">
-                    <div class="card shadow bg-gradient-default border-0">
+                    <div class="card shadow bg-gradient-white border-0">
                         <div class="card-body py-5">
-                            <h3 class="text-center text-white">Classroom material</h3>
+                            <h3 class="text-center text-body">Classroom material</h3>
                             <div *ngIf=myStudentApplication class="row mt-3">
                                 <div class="col-md-12">
                                     <textarea class="form-control" rows="10" wrap="hard">{{myStudentApplication.material}}</textarea>
                                 </div>
                             </div>
                         </div>
-                        <div class="card-footer bg-gradient-default">
+                        <div class="card-footer bg-gradient-white">
                             <a (click)="closeModal('custom-modal-4'); txOff(); refreshClassroomInfo();" class="btn btn-neutral btn-icon mb-3 mb-sm-0">
                                 <span class="btn-inner--icon"><i class="fa fa-arrow-left"></i></span>
                                 <span class="btn-inner--text">Back</span>
@@ -673,12 +673,12 @@
         <form role="form">
             <div class="row justify-content-center">
                 <div class="col-md-6">
-                    <div class="card shadow bg-gradient-default border-0">
+                    <div class="card shadow bg-gradient-white border-0">
                         <div class="card-body py-5">
-                            <h3 class="text-center text-white">Submit your answer</h3>
+                            <h3 class="text-center text-body">Submit your answer</h3>
                             <div class="row mt-3">
                                 <div class="col-md-12">
-                                    <h2 class="description text-center text-white">Here you can set your secret to protect your answer. Don't share this with anyone</h2>
+                                    <h2 class="description text-center text-body">Here you can set your secret to protect your answer. Don't share this with anyone</h2>
                                 </div>
                             </div>
                             <div class="row mt-3">
@@ -711,12 +711,12 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card-footer bg-gradient-default">
+                        <div class="card-footer bg-gradient-white">
                             <a (click)="closeModal('custom-modal-5'); txOff(); refreshClassroomInfo();" class="btn btn-neutral btn-icon mb-3 mb-sm-0">
                                 <span class="btn-inner--icon"><i class="fa fa-arrow-left"></i></span>
                                 <span class="btn-inner--text">Back</span>
                             </a>
-                            <a *ngIf="txMode=='preTX'" (click)="sendAnswer(secret.value)" type="submit" class="btn btn-success btn-icon text-white mb-3 mb-sm-0">
+                            <a *ngIf="txMode=='preTX'" (click)="sendAnswer(secret.value)" type="submit" class="btn btn-success btn-icon text-body mb-3 mb-sm-0">
                                 <span class="btn-inner--icon"><i class="fa fa-send"></i></span>
                                 <span class="btn-inner--text">Set Secret</span>
                             </a>
@@ -730,17 +730,17 @@
         <form role="form">
             <div class="row justify-content-center">
                 <div class="col-md-6">
-                    <div class="card shadow bg-gradient-default border-0">
+                    <div class="card shadow bg-gradient-white border-0">
                         <div class="card-body py-5">
-                            <h3 class="text-center text-white">Claim your reward</h3>
+                            <h3 class="text-center text-body">Claim your reward</h3>
                             <div class="row mt-3">
                                 <div class="col-md-12">
-                                    <h2 class="description text-center text-white">If you send correct answer you can collect you reward here.</h2>
+                                    <h2 class="description text-center text-body">If you send correct answer you can collect you reward here.</h2>
                                 </div>
                             </div>
-                            <h4 class=" text-default text-white"><strong>Principal to be returned: </strong>{{myStudentApplication.principal}} of {{globals.selectedClassroom.price}} DAI </h4>
-                            <h4 class=" text-default text-white"><strong>Your prize: </strong>{{myStudentApplication.prize}} DAI </h4>
-                            <h4 class=" text-default text-white"><strong>Total: </strong>{{myStudentApplication.funds}} DAI </h4>
+                            <h4 class=" text-default text-body"><strong>Principal to be returned: </strong>{{myStudentApplication.principal}} of {{globals.selectedClassroom.price}} DAI </h4>
+                            <h4 class=" text-default text-body"><strong>Your prize: </strong>{{myStudentApplication.prize}} DAI </h4>
+                            <h4 class=" text-default text-body"><strong>Total: </strong>{{myStudentApplication.funds}} DAI </h4>
                             <div class="row mt-3">
                                 <div class="col-md-12">
                                     <div *ngIf="txMode=='preTX'" class="alert alert-neutral" role="alert">
@@ -759,12 +759,12 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card-footer bg-gradient-default">
+                        <div class="card-footer bg-gradient-white">
                             <a (click)="closeModal('custom-modal-6'); txOff(); refreshClassroomInfo();" class="btn btn-neutral btn-icon mb-3 mb-sm-0">
                                 <span class="btn-inner--icon"><i class="fa fa-arrow-left"></i></span>
                                 <span class="btn-inner--text">Back</span>
                             </a>
-                            <a *ngIf="txMode=='preTX'" (click)="colletcReward()" type="submit" class="btn btn-success btn-icon text-white mb-3 mb-sm-0">
+                            <a *ngIf="txMode=='preTX'" (click)="colletcReward()" type="submit" class="btn btn-success btn-icon text-body mb-3 mb-sm-0">
                                 <span class="btn-inner--icon"><i class="fa fa-send"></i></span>
                                 <span class="btn-inner--text">Collect</span>
                             </a>
@@ -778,12 +778,12 @@
         <form role="form">
             <div class="row justify-content-center">
                 <div class="col-md-12">
-                    <div class="card shadow bg-gradient-default border-0">
+                    <div class="card shadow bg-gradient-white border-0">
                         <div class="card-body py-5">
-                            <h3 class="text-center text-white">Create new classroom</h3>
+                            <h3 class="text-center text-body">Create new classroom</h3>
                             <div class="row mt-3">
                                 <div class="col-md-12">
-                                    <h2 class="description text-center text-white">After you complete a classroom you can create a new one.</h2>
+                                    <h2 class="description text-center text-body">After you complete a classroom you can create a new one.</h2>
                                 </div>
                             </div>
                             <div class="row mt-3">
@@ -886,7 +886,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card-footer bg-gradient-default">
+                        <div class="card-footer bg-gradient-white">
                             <a (click)="closeModal('custom-modal-7'); txOff(); refreshClassroomInfo();" class="btn btn-neutral btn-icon mb-3 mb-sm-0">
                                 <span class="btn-inner--icon"><i class="fa fa-arrow-left"></i></span>
                                 <span class="btn-inner--text">Back</span>

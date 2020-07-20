@@ -763,6 +763,7 @@
                                     <p>ENS Name: <span class="text-bold">{{globals.universityENSName}}</span> <span *ngIf=globals.universityENSNameRecord class="badge badge-pill badge-success">Recorded</span><span *ngIf=!globals.universityENSNameRecord class="badge badge-pill badge-warning">Not Recorded</span></p>
                                     <p>ENS TTL: <span class="text-bold">{{globals.universityENSTTL}}</span> </p>
                                     <button *ngIf=!globals.universityENSNameRecord type="button" class="btn btn-warning" (click)="setupUniversityENS()">Setup ENS</button>
+                                    <button *ngIf=globals.universityENSNameRecord type="button" class="btn btn-warning" (click)="setupUniversityENS()">Fix ENS</button>
                                 </div>
                                 <div class="col-md-6">
                                     <p>Description: <span class="text-bold">{{globals.universityENSDescription}}</span> </p>

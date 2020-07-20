@@ -12,7 +12,7 @@ export const environment = {
 	ENSRegistrarAddress: '0x09B5bd82f3351A4c8437FC6D7772A9E6cd5D25A1', //TestRegistrar
 	ENSPulbicResolverAddress: '0x42D63ae25990889E35F215bC95884039Ba354115', //TestResolver
 	ENSReverseRegistrarAddress: '0x6F628b68b30Dc3c17f345c9dbBb1E483c2b7aE5c',
-	ENSUniversityName: 'university',
+	ENSUniversityName: 'uprootbeta',
 	ENSDomain: '.test',
 	WETHAddress: '0xc778417e063141139fce010982780140aa0cd5ab',
 	DAIAddress: '0xf80A32A835F79D7787E8a8ee5721D0fEaFd78108',
