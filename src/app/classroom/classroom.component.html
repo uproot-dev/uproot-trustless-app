@@ -67,56 +67,9 @@
                             </a>
                         </div>
                     </div>
-                    <div class="col-lg-4" *ngIf="globals.mode=='loadingPage'">
-                        <div class="card card-lift--hover shadow border-0 text-center">
-                            <div class="card-body py-5">
-                                <div class="icon icon-shape icon-shape-warning rounded-circle fa-3x mb-4">
-                                    <i class="fa fa-wifi"></i>
-                                </div>
-                                <h6 class="text-warning text-uppercase">Connecting</h6>
-                                <p class="description mt-3">Connecting to your Wallet Provider and Uproot University.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4" *ngIf="globals.mode=='unconnected'">
-                        <div class="card card-lift--hover shadow border-0 text-center">
-                            <div class="card-body py-5">
-                                <div class="icon icon-shape icon-shape-info rounded-circle mb-4">
-                                    <i class="fa fa-star"></i>
-                                </div>
-                                <h6 class="text-info text-uppercase">Welcome to Uproot</h6>
-                                <p class="description mt-3">To connect to Uproot you need to install a Portis Wallet.
-                                </p>
-                                <button class="btn btn-info mt-4" (click)="conectPortis()">Conect Portis</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4" *ngIf="globals.mode=='connected'">
-                        <div class="card card-lift--hover shadow border-0 text-center">
-                            <div class="card-body py-5">
-                                <div class="icon icon-shape icon-shape-primary rounded-circle mb-4">
-                                    <i class="fa fa-user"></i>
-                                </div>
-                                <h6 class="text-primary text-uppercase">Register Your Account</h6>
-                                <p class="description mt-3">To use to Uproot you need to register at University.</p>
-                                <div #onLoginPlaceholder1></div>
-                                <button class="btn btn-primary mt-4" (click)="openModal('custom-modal-register'); txOn();">Register Uproot</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4" *ngIf="globals.mode=='registered'">
-                        <div class="card card-lift--hover shadow border-0 text-center">
-                            <div class="card-body py-5">
-                                <div class="icon icon-shape icon-shape-success rounded-circle mb-4">
-                                    <i class="fa fa-user"></i>
-                                </div>
-                                <h6 class="text-success text-uppercase">Connected</h6>
-                                <p class="description">Address: {{globals.address}} </p>
-                                <button [routerLink]="['/student']" class="btn btn-success mt-4">Go to Account</button>
-                            </div>
-                        </div>
-                    </div>
+					<div class="col-lg-4" >
+						<app-wallet></app-wallet>
+					</div>
                 </div>
                 <div *ngIf=!globals.userIsClassroomAdmin class="row mb-4">
                     <div class="col-lg-4 mt-4">
@@ -142,9 +95,9 @@
                                 </div>
                                 <h6 *ngIf=globals.selectedClassroom class="text-body text-uppercase">Register</h6>
                                 <h6 *ngIf=!globals.selectedClassroom class="text-body text-uppercase">Search</h6>
-                                <button *ngIf="globals.selectedClassroom&&(globals.mode=='unconnected')" class="btn btn-neutral mt-4" (click)="conectPortis()">Conect Portis</button>
+                                <button *ngIf="globals.selectedClassroom&&(globals.mode=='unconnected')" class="btn btn-neutral mt-4" (click)="connectWallet()">connect Wallet</button>
                                 <button *ngIf="globals.selectedClassroom&&(globals.mode=='connected')" class="btn btn-neutral mt-4" (click)="openModal('custom-modal-register'); txOn();">Register Uproot</button>
-                                <a *ngIf=!globals.selectedClassroom (click)="openModal('custom-modal-search-classroom')" class="btn btn-neutral text-default mt-4">Search</a>
+                                <a *ngIf="!globals.selectedClassroom" (click)="openModal('custom-modal-search-classroom')" class="btn btn-neutral text-default mt-4">Search</a>
                             </div>
                         </div>
                     </div>

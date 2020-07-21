@@ -5,19 +5,13 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Classroom } from 'src/models/classroom.model';
 import { GenericUser } from 'src/models/genericUser.model';
 import { CLASSROOMS } from 'src/models/mock-classroom';
-import { Student } from 'src/models/student.model';
 import { ModalService } from '../_modal';
 import { Globals } from '../app.globals';
 import { ClassroomInfoComponent } from '../classroom/classroomInfo.component';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
-
-import { PortisService } from '../services/portis.service';
-import { InfuraService } from '../services/infura.service';
-import { ENSService } from '../services/ens.service';
 import { environment } from 'src/environments/environment';
+import { InfuraService } from '../services/infura.service';
 import Web3 from 'web3';
-import { MetamaskService } from '../services/metamask.service';
-import { ethers } from 'ethers';
 
 const web3 = new Web3(Web3.givenProvider);
 
@@ -47,15 +41,12 @@ export class LandingComponent implements OnInit {
 	constructor(
 		public globals: Globals,
 		private modalService: ModalService,
-		public portisService: PortisService,
 		private ngxLoader: NgxUiLoaderService
 	) {}
 
 	async ngOnInit() {
 		if (!this.globals.service) {
-			if (environment.connectMetamskForTests)
-				this.connectMetamaskForTests();
-			else this.globals.service = new InfuraService();
+			this.globals.service = new InfuraService();
 			await this.globals.ensService.configureProvider(
 				this.globals.service.provider,
 				false
@@ -63,11 +54,6 @@ export class LandingComponent implements OnInit {
 		}
 		if (this.globals.universityInfoNeedsRefresh)
 			this.refreshUniversityInfo();
-	}
-
-	connectMetamaskForTests() {
-		this.globals.service = new MetamaskService();
-		this.initSigner();
 	}
 
 	openModal(id: string) {
@@ -87,15 +73,6 @@ export class LandingComponent implements OnInit {
 		else this.globals.selectedClassroom = null;
 	}
 
-	onConnect(student: Student | void): void {
-		if (student) this.globals.selectedStudent = student;
-		else
-			this.globals.selectedStudent = new Student(
-				this.globals,
-				this.globals.ADDR0
-			);
-	}
-
 	txOn() {
 		this.txMode = 'preTX';
 	}
@@ -106,39 +83,6 @@ export class LandingComponent implements OnInit {
 
 	clear() {
 		this.form.reset();
-	}
-
-	async conectPortis(): Promise<any> {
-		this.globals.mode = 'loadingPage';
-		const answer = await this.portisService.initPortis();
-		if (!answer) {
-			this.globals.mode = 'unconnected';
-			return;
-		}
-		this.globals.address = await this.portisService.getAddress();
-		this.globals.service = this.portisService;
-		await this.initSigner();
-	}
-
-	private async initSigner() {
-		this.globals.address = await this.globals.service.getAddress();
-		this.globals.ensService.configureProvider(this.portisService.provider);
-		if (
-			this.roleMembersAdmin &&
-			this.roleMembersAdmin['DEFAULT_ADMIN_ROLE'].find(
-				(element) => element.address == this.globals.address
-			)
-		)
-			this.globals.userIsUniversityAdmin = true;
-		const isRegistered = await this.globals.service.isStudentRegistred();
-		if (!isRegistered) {
-			this.globals.mode = 'connected';
-		} else {
-			this.globals.userIsStudent = true;
-			this.globals.mode = 'registered';
-			const studentSmartContract = await this.globals.service.getStudentSmartContract();
-			this.onConnect(new Student(this.globals, studentSmartContract));
-		}
 	}
 
 	async refreshUniversityInfo(): Promise<any> {
@@ -296,24 +240,6 @@ export class LandingComponent implements OnInit {
 		this.globals.address = await this.globals.service.getAddress();
 	}
 
-	async studentSelfRegister(_name: string): Promise<any> {
-		this.txOn();
-		if (_name.length < 1) {
-			this.txMode = 'failedTX';
-		} else {
-			this.txMode = 'processingTX';
-			const selfRegister = await this.globals.service.studentSelfRegister(
-				_name
-			);
-			if (!selfRegister) {
-				this.txMode = 'failedTX';
-			} else {
-				this.hashTx = selfRegister.hash;
-				this.txMode = 'successTX';
-			}
-		}
-	}
-
 	getClassrooms(id: Number) {
 		const data = localStorage.getItem('classrooms');
 		if (data) {
@@ -351,43 +277,41 @@ export class LandingComponent implements OnInit {
 		this.globals.service.recoverFunds(val);
 	}
 
-	roleMembersAdmin: Map<string, Array<GenericUser>>;
-
 	loadUniversityAdmin() {
 		this.modeUniversityAdmin = 'unconnected';
-		this.roleMembersAdmin = new Map<string, Array<GenericUser>>();
+		this.globals.roleMembersAdmin = new Map<string, Array<GenericUser>>();
 		this.getRoleMembers('DEFAULT_ADMIN_ROLE').then((result) => {
-			this.roleMembersAdmin['DEFAULT_ADMIN_ROLE'] = result;
+			this.globals.roleMembersAdmin['DEFAULT_ADMIN_ROLE'] = result;
 			if (
-				this.roleMembersAdmin['DEFAULT_ADMIN_ROLE'].find(
+				this.globals.roleMembersAdmin['DEFAULT_ADMIN_ROLE'].find(
 					(element) => element.address == this.globals.address
 				)
 			)
 				this.globals.userIsUniversityAdmin = true;
 		});
 		this.getRoleMembers('FUNDS_MANAGER_ROLE').then((result) => {
-			this.roleMembersAdmin['FUNDS_MANAGER_ROLE'] = result;
+			this.globals.roleMembersAdmin['FUNDS_MANAGER_ROLE'] = result;
 		});
 		this.getRoleMembers('CLASSLIST_ADMIN_ROLE').then((result) => {
-			this.roleMembersAdmin['CLASSLIST_ADMIN_ROLE'] = result;
+			this.globals.roleMembersAdmin['CLASSLIST_ADMIN_ROLE'] = result;
 		});
 		this.getRoleMembers('GRANTS_MANAGER_ROLE').then((result) => {
-			this.roleMembersAdmin['GRANTS_MANAGER_ROLE'] = result;
+			this.globals.roleMembersAdmin['GRANTS_MANAGER_ROLE'] = result;
 		});
 		this.getRoleMembers('UNIVERSITY_OVERSEER_ROLE').then((result) => {
-			this.roleMembersAdmin['UNIVERSITY_OVERSEER_ROLE'] = result;
+			this.globals.roleMembersAdmin['UNIVERSITY_OVERSEER_ROLE'] = result;
 		});
 		this.getRoleMembers('REGISTERED_SUPPLIER_ROLE').then((result) => {
-			this.roleMembersAdmin['REGISTERED_SUPPLIER_ROLE'] = result;
+			this.globals.roleMembersAdmin['REGISTERED_SUPPLIER_ROLE'] = result;
 		});
 		this.getRoleMembers('STUDENT_IDENTITY_ROLE').then((result) => {
-			this.roleMembersAdmin['STUDENT_IDENTITY_ROLE'] = result;
+			this.globals.roleMembersAdmin['STUDENT_IDENTITY_ROLE'] = result;
 		});
 		this.getRoleMembers('CLASSROOM_PROFESSOR_ROLE').then((result) => {
-			this.roleMembersAdmin['CLASSROOM_PROFESSOR_ROLE'] = result;
+			this.globals.roleMembersAdmin['CLASSROOM_PROFESSOR_ROLE'] = result;
 		});
 		this.getRoleMembers('READ_STUDENT_LIST_ROLE').then((result) => {
-			this.roleMembersAdmin['READ_STUDENT_LIST_ROLE'] = result;
+			this.globals.roleMembersAdmin['READ_STUDENT_LIST_ROLE'] = result;
 			this.modeUniversityAdmin = 'loaded';
 		});
 	}

@@ -23,7 +23,7 @@ export class InfuraService extends baseClientService {
 		console.warn('Connected to infura');
 	}
 
-	showPortis(){
+	showWallet(){
 
 	}
 }

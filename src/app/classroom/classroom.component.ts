@@ -5,16 +5,15 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Classroom } from 'src/models/classroom.model';
 import { ModalService } from '../_modal';
 import { Globals } from '../app.globals';
-
-import { PortisService } from '../services/portis.service';
 import { InfuraService } from '../services/infura.service';
 import { environment } from 'src/environments/environment';
-import { ENSService } from '../services/ens.service';
 import { ethers } from 'ethers';
-import * as Web3 from 'web3';
 import { StudentApplication } from 'src/models/studentApplication.model';
 import { Student } from 'src/models/student.model';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { WalletComponent } from '../wallet/wallet.component';
+import { PortisService } from '../services/portis.service';
+import { MetamaskService } from '../services/metamask.service';
 
 @Component({
 	selector: 'app-classroom',
@@ -36,7 +35,6 @@ export class ClassroomComponent implements OnInit {
 	constructor(
 		public globals: Globals,
 		private modalService: ModalService,
-		public portisService: PortisService,
 		private ngxLoader: NgxUiLoaderService
 	) {}
 
@@ -303,38 +301,6 @@ export class ClassroomComponent implements OnInit {
 		this.refreshClassroomMetadata();
 	}
 
-	async conectPortis(): Promise<any> {
-		this.globals.mode = 'loadingPage';
-		const answer = await this.portisService.initPortis();
-		if (!answer) {
-			this.globals.mode = 'unconnected';
-			return;
-		}
-		this.globals.address = await this.portisService.getAddress();
-		this.globals.service = this.portisService;
-		this.globals.ensService.configureProvider(this.portisService.provider);
-		if (this.globals.selectedClassroom) {
-			await this.portisService.connectClassroom(
-				this.globals.selectedClassroom.smartcontract
-			);
-			const adminAddress = await this.portisService.getClassroomOwner();
-			this.globals.userIsClassroomAdmin =
-				this.globals.address == adminAddress;
-		}
-		const isRegistered = await this.globals.service.isStudentRegistred();
-		if (!isRegistered) {
-			this.globals.mode = 'connected';
-			return;
-		} else {
-			this.globals.userIsStudent = true;
-			this.globals.mode = 'registered';
-			const studentSmartContract = await this.globals.service.getStudentSmartContract();
-			this.onConnect(new Student(this.globals, studentSmartContract));
-			this.checkApplication();
-			return;
-		}
-	}
-
 	onConnect(student: Student | void): void {
 		if (student) this.globals.selectedStudent = student;
 		else
@@ -342,6 +308,11 @@ export class ClassroomComponent implements OnInit {
 				this.globals,
 				this.globals.ADDR0
 			);
+	}
+
+	async connectWallet() {
+		const wComp = new WalletComponent(this.modalService, new MetamaskService, new PortisService, this.globals);
+		wComp.connectWallet();
 	}
 
 	async registerENSRecord() {
@@ -561,18 +532,9 @@ export class ClassroomComponent implements OnInit {
 			});
 	}
 
-	applyDAI() {
-		this.globals.service.classroomContractInstance
-			.applyDAI({ gasLimit: 821000 })
-			.then((tx) => {
-				this.ngxLoader.start();
-				tx.wait().then(() => this.refreshClassroomInfo());
-			});
-	}
-
 	beginCourse() {
 		this.globals.service.classroomContractInstance
-			.beginCourse(false)
+			.beginCourse({ gasLimit: 821000 })
 			.then((tx) => {
 				this.ngxLoader.start();
 				tx.wait().then(() => this.refreshClassroomInfo());

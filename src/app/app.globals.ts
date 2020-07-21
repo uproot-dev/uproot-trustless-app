@@ -4,8 +4,8 @@ import { InfuraService } from './services/infura.service';
 import { Classroom } from 'src/models/classroom.model';
 import { ENSService } from './services/ens.service';
 import { Student } from 'src/models/student.model';
-import { baseClientService } from './services/baseClient.service';
 import { MetamaskService } from './services/metamask.service';
+import { GenericUser } from 'src/models/genericUser.model';
 
 @Injectable()
 export class Globals {
@@ -45,4 +45,6 @@ export class Globals {
 	public universityAdmin: any;
 	public universityParams: any;
 	public universityFundAddress: string;
+
+	roleMembersAdmin: Map<string, Array<GenericUser>>;
 }

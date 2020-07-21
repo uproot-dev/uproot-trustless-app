@@ -1,0 +1,164 @@
+<div>
+	<div class="card card-lift--hover shadow border-0 text-center" *ngIf="globals.mode == 'unconnected'">
+		<div class="card-body py-5">
+			<div class="icon icon-shape icon-shape-info rounded-circle mb-4">
+				<i class="fa fa-star"></i>
+			</div>
+			<h6 class="text-info text-uppercase">Welcome to Uproot</h6>
+			<p class="description mt-3">
+				To interact with the smart contracts you need to connect your wallet.
+			</p>
+			<button class="btn btn-info mt-4" (click)="connectWallet()">
+				Connect wallet
+			</button>
+		</div>
+	</div>
+	<div class="card card-lift--hover shadow border-0 text-center" *ngIf="globals.mode == 'loadingPage'">
+		<div class="card-body py-5">
+			<div class="icon icon-shape icon-shape-warning rounded-circle fa-3x mb-4">
+				<i class="fa fa-wifi"></i>
+			</div>
+			<h6 class="text-warning text-uppercase">Connecting</h6>
+			<p class="description mt-3">
+				Connecting to your Wallet Provider and Uproot University.
+			</p>
+		</div>
+	</div>
+	<div class="card card-lift--hover shadow border-0 text-center" *ngIf="globals.mode == 'connected'">
+		<div class="card-body py-5">
+			<div class="icon icon-shape icon-shape-primary rounded-circle mb-4">
+				<i class="fa fa-user"></i>
+			</div>
+			<h6 class="text-primary text-uppercase">Register Your Account</h6>
+			<p class="description mt-3">
+				To use to Uproot you need to register at University.
+			</p>
+			<div #onLoginPlaceholder1></div>
+			<button class="btn btn-primary mt-4" (click)="openModal('custom-modal-register'); txOn()">
+				Register Uproot
+			</button>
+		</div>
+	</div>
+	<div class="card card-lift--hover shadow border-0 text-center" *ngIf="globals.mode == 'registered'">
+		<div class="card-body py-5">
+			<div class="icon icon-shape icon-shape-success rounded-circle mb-4">
+				<i class="fa fa-user"></i>
+			</div>
+			<h6 class="text-success text-uppercase">Connected</h6>
+			<p class="description">Address: {{ globals.address }}</p>
+			<button [routerLink]="['/student']" class="btn btn-success mt-4">
+				Go to Account
+			</button>
+		</div>
+	</div>
+</div>
+<jw-modal id="select-provider">
+	<div class="row justify-content-center">
+		<div class="col-md-4">
+			<div class="card card-lift--hover shadow border-0 text-center">
+				<div class="card-header py-2 bg-info">
+					<h6 class="text-white text-uppercase">Choose a provider</h6>
+				</div>
+				<div class="card-body py-2 bg-secondary">
+					<div class="row justify-content-center align-content-center">
+						<div class="col-md-6">
+							<button
+								class="btn btn-secondary btn-fab btn-icon btn-round m-2"
+								(click)="connectMetamask(); closeModal('select-provider')"
+							>
+								<span
+									><img src="../../assets/img/icons/common/metamask.svg" alt="Metamask Icon" width="128" height="128"
+								/></span>
+							</button>
+						</div>
+						<div class="col-md-6">
+							<button
+								class="btn btn-secondary btn-fab btn-icon btn-round m-2"
+								(click)="connectPortis(); closeModal('select-provider')"
+							>
+								<span
+									><img src="../../assets/img/icons/common/portis.svg" alt="Portis Icon" width="128" height="128"
+								/></span>
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</jw-modal>
+<jw-modal id="custom-modal-register">
+	<form role="form">
+		<div class="row justify-content-center">
+			<div class="col-md-8">
+				<div class="card shadow bg-gradient-default border-0">
+					<div class="card-body py-5">
+						<h3 class="text-center text-white">
+							Register at University
+						</h3>
+						<div class="row mt-3">
+							<div class="col-md-12">
+								<h2 class="description text-white">
+									Create your student registry in this university and enjoy all its features.
+								</h2>
+							</div>
+						</div>
+						<div class="row mt-3">
+							<div class="col-md-12">
+								<div class="form-group" [ngClass]="{ focused: focus === true }">
+									<div class="input-group input-group-alternative mb-3">
+										<div class="input-group-prepend">
+											<span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+										</div>
+										<input
+											id="studentInputName"
+											#studentInputName
+											class="form-control"
+											placeholder="Name"
+											type="text"
+											(focus)="focus = true"
+											(blur)="focus = false"
+										/>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row mt-3">
+							<div class="col-md-12">
+								<div *ngIf="txMode == 'preTX'" class="alert alert-neutral" role="alert">
+									<strong class="text-dark">You need confirm this transaction on your portis wallet!</strong>
+								</div>
+								<div *ngIf="txMode == 'processingTX'" class="alert alert-warning" role="alert">
+									<strong>Wait!</strong> Registering your account ...
+								</div>
+								<div *ngIf="txMode == 'successTX'" class="alert alert-success" role="alert">
+									<strong>Success!</strong> Transaction Hash
+									{{ hashTx }}
+									<a href="https://ropsten.etherscan.io/tx/{{ hashTx }}" target="_blank">See On Etherscan</a>
+								</div>
+								<div *ngIf="txMode == 'failedTX'" class="alert alert-danger" role="alert">
+									<strong>Failed!</strong> Transaction didn't complete. Try again!
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="card-footer bg-gradient-default">
+						<a (click)="closeModal('custom-modal-register'); txOff()" class="btn btn-neutral btn-icon mb-3 mb-sm-0">
+							<span class="btn-inner--icon"><i class="fa fa-university"></i></span>
+							<span class="btn-inner--text">Back</span>
+						</a>
+						<a
+							*ngIf="txMode == 'preTX'"
+							type="submit"
+							(click)="studentSelfRegister(studentInputName.value)"
+							class="btn btn-success btn-icon text-white mb-3 mb-sm-0"
+						>
+							<span class="btn-inner--icon"><i class="fa fa-send"></i></span>
+							<span class="btn-inner--text">Register</span>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</jw-modal>

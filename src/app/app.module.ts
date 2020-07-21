@@ -14,6 +14,7 @@ import { StudentComponent } from './student/student.component';
 import { ClassroomInfoComponent } from './classroom/classroomInfo.component';
 import { FundComponent } from './fund/fund.component';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
+import { WalletComponent } from './wallet/wallet.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { NgxUiLoaderModule } from 'ngx-ui-loader';
     NavbarComponent,
     FooterComponent,
     StudentComponent,
-    FundComponent
+    FundComponent,
+    WalletComponent
   ],
   imports: [
     BrowserModule,

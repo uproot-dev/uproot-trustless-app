@@ -56,7 +56,7 @@ export class PortisService extends baseClientService {
 		}
 	}
 
-	showPortis() {
+	showWallet() {
 		this.portis.showPortis();
 	}
 }
