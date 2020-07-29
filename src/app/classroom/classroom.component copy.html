@@ -17,50 +17,42 @@
                         <h1 class="display-3  text-white">get started
                             <span>begin your journey today</span>
                         </h1>
-                        <p class="lead  text-white">Climb your way to mastering a new skill in 7 easy steps. In this
-                            process you can earn money and even become a teacher yourself in the end.
-                        <div class="btn-wrapper">
-                            <a [routerLink]="['/']" class="btn btn-white btn-icon mb-3 mb-sm-0">
-                                <span class="btn-inner--icon"><i class="fa fa-arrow-left"></i></span>
-                                <span class="btn-inner--text">Back</span>
-                            </a>
-                            <a (click)="openModal('custom-modal-search-classroom');"
-                                class="btn btn-primary text-white btn-icon mb-3 mb-sm-0">
-                                <span class="btn-inner--icon"><i class="fa fa-search"></i></span>
-                                <span class="btn-inner--text">Search Address</span>
-                            </a>
-                        </div>
+                        <p class="lead  text-white">Climb your way to mastering a new skill in 7 easy steps. In this process you can earn money and even become a teacher yourself in the end.
+                            <div class="btn-wrapper">
+                                <a [routerLink]="['/']" class="btn btn-white btn-icon mb-3 mb-sm-0">
+                                    <span class="btn-inner--icon"><i class="fa fa-arrow-left"></i></span>
+                                    <span class="btn-inner--text">Back</span>
+                                </a>
+                                <a (click)="openModal('custom-modal-search-classroom');" class="btn btn-primary text-white btn-icon mb-3 mb-sm-0">
+                                    <span class="btn-inner--icon"><i class="fa fa-search"></i></span>
+                                    <span class="btn-inner--text">Search Address</span>
+                                </a>
+                            </div>
                     </div>
                     <div *ngIf=globals.selectedClassroom class="col-lg-8 mb-4">
                         <h1 class="display-3  text-white">classroom
                             <span>{{globals.selectedClassroom.title}}</span>
-                            <span *ngIf=globals.selectedClassroom.metadata.ENSName class="text-muted"
-                                style="font-size:smaller;">@{{globals.selectedClassroom.metadata.ENSName}}</span>
+                            <span *ngIf=globals.selectedClassroom.metadata.ENSName class="text-muted" style="font-size:smaller;">@{{globals.selectedClassroom.metadata.ENSName}}</span>
                         </h1>
-                        <p *ngIf=globals.selectedClassroom.metadata.description class="lead text-white">
-                            {{globals.selectedClassroom.metadata.description}}</p>
-                        <p *ngIf=!globals.selectedClassroom.metadata.description class="lead text-white">No metadata for
-                            description.</p>
-                        <div *ngIf=globals.selectedClassroom.ENSHasNotice&&displayNotice #classroomNotice
-                            class="alert alert-info alert-dismissible fade show" role="alert">
+                        <p *ngIf=globals.selectedClassroom.metadata.description class="lead text-white">{{globals.selectedClassroom.metadata.description}}</p>
+                        <p *ngIf=!globals.selectedClassroom.metadata.description class="lead text-white">No metadata for description.</p>
+                        <div *ngIf=globals.selectedClassroom.ENSHasNotice&&displayNotice #classroomNotice class="alert alert-info alert-dismissible fade show" role="alert">
                             <button type="button" class="close" aria-label="Close" (click)="closeNotice()">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
+							  <span aria-hidden="true">&times;</span>
+							</button>
                             <strong>Classroom Notice: </strong> {{globals.selectedClassroom.metadata.notice}}
                         </div>
-                        <div *ngIf="myStudentApplication&&!myStudentApplication.correctAnswer&&displayNotice"
-                            #applicationNotice1 class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <div *ngIf="myStudentApplication&&!myStudentApplication.correctAnswer&&displayNotice" #applicationNotice1 class="alert alert-warning alert-dismissible fade show" role="alert">
                             <button type="button" class="close" aria-label="Close" (click)="closeNotice()">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
+							  <span aria-hidden="true">&times;</span>
+							</button>
                             <strong>Student application address: </strong> {{myStudentApplication.address}}<br>
                             <strong>Your answer is wrong or null so far. </strong>
                         </div>
-                        <div *ngIf="myStudentApplication&&myStudentApplication.correctAnswer&&displayNotice"
-                            #applicationNotice2 class="alert alert-success alert-dismissible fade show" role="alert">
+                        <div *ngIf="myStudentApplication&&myStudentApplication.correctAnswer&&displayNotice" #applicationNotice2 class="alert alert-success alert-dismissible fade show" role="alert">
                             <button type="button" class="close" aria-label="Close" (click)="closeNotice()">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
+							  <span aria-hidden="true">&times;</span>
+							</button>
                             <strong>Student application address: </strong> {{myStudentApplication.address}}<br>
                             <strong>Your answer is correct. Congratulations! </strong>
                         </div>
@@ -69,95 +61,142 @@
                                 <span class="btn-inner--icon"><i class="fa fa-arrow-left"></i></span>
                                 <span class="btn-inner--text">Back</span>
                             </a>
-                            <a (click)="openModal('custom-modal-classroomInfo');"
-                                class="btn btn-success text-white btn-icon mb-3 mb-sm-0">
+                            <a (click)="openModal('custom-modal-classroomInfo');" class="btn btn-success text-white btn-icon mb-3 mb-sm-0">
                                 <span class="btn-inner--icon"><i class="fa fa-search"></i></span>
                                 <span class="btn-inner--text">Details</span>
                             </a>
                         </div>
                     </div>
-                    <div class="col-lg-4">
-                        <app-wallet></app-wallet>
-                    </div>
+					<div class="col-lg-4" >
+						<app-wallet></app-wallet>
+					</div>
                 </div>
                 <div *ngIf=!globals.userIsClassroomAdmin class="row mb-4">
-                    <div class="col-lg-3 mt-4">
-                        <div class="card shadow border-0 text-center">
-                            <div *ngIf="phase==0" class="card-body bg-gradient-primary py-3">
-                                <h5 class="text-default text-uppercase">Application</h5>
-                            </div>
-                            <div *ngIf="phase>0" class="card-body bg-gradient-secondary py-3">
-                                <h5 class="text-default text-uppercase">Application</h5>
-                            </div>
-                            <div *ngIf="phase<0" class="card-body bg-gradient-default py-3">
-                                <h5 class="text-white text-uppercase">Application</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 mt-4">
-                        <div class="card shadow border-0 text-center">
-                            <div *ngIf="phase==1" class="card-body bg-gradient-primary py-3">
-                                <h5 class="text-default text-uppercase">Open for Stake</h5>
-                            </div>
-                            <div *ngIf="phase>1" class="card-body bg-gradient-secondary py-3">
-                                <h5 class="text-default text-uppercase">Open for Stake</h5>
-                            </div>
-                            <div *ngIf="phase<1" class="card-body bg-gradient-neutral py-3">
-                                <h5 class="text-dark text-uppercase">Open for Stake</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 mt-4">
-                        <div class="card shadow border-0 text-center">
-                            <div *ngIf="phase==0" class="card-body bg-gradient-primary py-3">
-                                <h5 class="text-default text-uppercase">On course</h5>
-                            </div>
-                            <div *ngIf="phase>0" class="card-body bg-gradient-secondary py-3">
-                                <h5 class="text-default text-uppercase">On Course</h5>
-                            </div>
-                            <div *ngIf="phase<0" class="card-body bg-gradient-neutral py-3">
-                                <h5 class="text-dark text-uppercase">On Course</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 mt-4">
-                        <div class="card shadow border-0 text-center">
-                            <div *ngIf="phase==0" class="card-body bg-gradient-primary py-3">
-                                <h5 class="text-default text-uppercase">Finished</h5>
-                            </div>
-                            <div *ngIf="phase>0" class="card-body bg-gradient-secondary py-3">
-                                <h5 class="text-default text-uppercase">Finished</h5>
-                            </div>
-                            <div *ngIf="phase<0" class="card-body bg-gradient-neutral py-3">
-                                <h5 class="text-dark text-uppercase">Finished</h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div *ngIf=!globals.selectedClassroom class="row mb-4">
-                    <div class="container">
-                        <div class="card bg-neutral shadow-lg border-0">
-                            <div class="p-5">
-                                <div class="row align-items-center">
-                                    <div class="col-lg-6 mb-4">
-                                        <h4 class="text-body">Apply in this classroom</h4>
-                                        <p class="lead text-body mt-3">You will need to connect to a wallet service in
-                                            order to interact with this dApp.</p>
-                                        <p class="lead text-body mt-3">You will need to connect to a wallet service in
-                                            order to interact with this dApp.</p>
-                                        <p class="lead text-body mt-3">You will need to connect to a wallet service in
-                                            order to interact with this dApp.</p>
-                                    </div>
-                                    <div class="col-lg-6 ml-lg-auto mb-4">
-                                        <div class="position-relative pl-md-5">
-                                            <img src="./assets/img/classroom/apply.jpg" class="img-center img-fluid">
-                                        </div>
-                                    </div>
+                    <div class="col-lg-4 mt-4">
+                        <div class="card card-lift--hover shadow border-0 text-center">
+                            <div *ngIf="phase==0" class="card-body bg-gradient-secondary py-5">
+                                <div class="icon icon-shape icon-shape-default bg-white rounded-circle mb-4">
+                                    1
                                 </div>
-                                <div class="row align-items-center">
-                                    <a [routerLink]="['/']" fragment=classrooms
-                                    class="btn btn-lg btn-block btn-default mt-3">Apply Now</a>
+                                <h6 class="text-default text-uppercase">Apply For Course</h6>
+                                <p *ngIf=globals.selectedClassroom class="description mt-3">To start this classroom you need to send your application.</p>
+                                <a *ngIf=globals.selectedClassroom (click)="openModal('custom-modal-1'); txOn();" class="btn btn-neutral mt-4">Apply</a>
+                                <a *ngIf=!globals.selectedClassroom (click)="openModal('custom-modal-search-classroom')" class="btn btn-neutral mt-4">Search</a>
+                            </div>
+                            <div *ngIf="phase>0" class="card-body text-body bg-gradient-white py-5">
+                                <div class="icon icon-shape icon-shape-default bg-white rounded-circle mb-4">
+                                    1
                                 </div>
+                                <h6 class="text-body text-uppercase">Applied</h6>
+                            </div>
+                            <div *ngIf="phase<0" class="card-body text-body bg-gradient-secondary py-5">
+                                <div class="icon icon-shape icon-shape-default bg-white rounded-circle mb-4">
+                                    1
+                                </div>
+                                <h6 *ngIf=globals.selectedClassroom class="text-body text-uppercase">Register</h6>
+                                <h6 *ngIf=!globals.selectedClassroom class="text-body text-uppercase">Search</h6>
+                                <button *ngIf="globals.selectedClassroom&&(globals.mode=='unconnected')" class="btn btn-neutral mt-4" (click)="connectWallet()">connect Wallet</button>
+                                <button *ngIf="globals.selectedClassroom&&(globals.mode=='connected')" class="btn btn-neutral mt-4" (click)="openModal('custom-modal-register'); txOn();">Register Uproot</button>
+                                <a *ngIf="!globals.selectedClassroom" (click)="openModal('custom-modal-search-classroom')" class="btn btn-neutral text-default mt-4">Search</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 mt-4">
+                        <div class="card card-lift--hover shadow border-0 text-center " [ngClass]="{ 'bg-gradient-white': globals.selectedClassroom&&(phase!=1), 'bg-gradient-secondary': phase==1 }">
+                            <div class="card-body py-5">
+                                <div class="icon icon-shape icon-shape-default rounded-circle mb-4" [ngClass]="{ 'bg-white': globals.selectedClassroom&&(phase>1) }">
+                                    2
+                                </div>
+                                <h6 *ngIf="phase<2" class="text-default text-uppercase">Call for a Grant</h6>
+                                <h6 *ngIf="phase>1" class="text-default text-uppercase text-body">Grant closed</h6>
+                                <p *ngIf="phase<2" class="description mt-3 " [ngClass]="{ 'text-body': globals.selectedClassroom&&(phase!=1) }">If you don't need have founds to pay the fee you can request a grant.</p>
+                                <a *ngIf="phase==1" (click)="openModal('custom-modal-2'); txOn();" class="btn btn-default mt-4 text-body">Call</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 mt-4">
+                        <div class="card card-lift--hover shadow border-0 text-center" [ngClass]="{ 'bg-gradient-white': globals.selectedClassroom&&(phase!=1), 'bg-gradient-secondary': phase==1 }">
+                            <div class="card-body py-5">
+                                <div class="icon icon-shape icon-shape-default rounded-circle mb-4" [ngClass]="{ 'bg-white': globals.selectedClassroom&&(phase>1) }">
+                                    3
+                                </div>
+                                <h6 *ngIf="phase<2" class="text-default text-uppercase">Start Application</h6>
+                                <h6 *ngIf="phase>1" class="text-default text-uppercase text-body">Entry already paid</h6>
+                                <p *ngIf="phase<2" class="description mt-3" [ngClass]="{ 'text-body': globals.selectedClassroom&&(phase!=1) }">You need to deposit the classroom fee to start your application.</p>
+                                <a *ngIf="phase==1" (click)="checkAllowance();openModal('custom-modal-3'); txOn();" class="btn btn-default mt-4 text-body">Deposit</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="phase==2" class="col-lg-6 mt-4">
+                        <div class="card card-lift--hover shadow border-0 text-center bg-gradient-secondary">
+                            <div class="card-body py-5">
+                                <div class="icon icon-shape icon-shape-default rounded-circle mb-4">
+                                    4
+                                </div>
+                                <h6 class="text-default text-uppercase">Wait</h6>
+                                <p class="description mt-3">Wait for your teacher to open the course. In the meantime, what about recomending this classroom to your friends? Everybody will benefit from more shared pool resources!</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="phase!=2" class="col-lg-6 mt-4">
+                        <div class="card card-lift--hover shadow border-0 text-center" [ngClass]="{ 'bg-gradient-white': globals.selectedClassroom&&(phase!=3), 'bg-gradient-secondary': phase==3  }">
+                            <div class="card-body py-5">
+                                <div class="icon icon-shape icon-shape-default rounded-circle mb-4" [ngClass]="{ 'bg-white': globals.selectedClassroom&&(phase>3) }">
+                                    4
+                                </div>
+                                <h6 *ngIf="phase<4" class="text-default text-uppercase">Access Material</h6>
+                                <h6 *ngIf="phase>3" class="text-default text-uppercase text-body">Classroom closed</h6>
+                                <p *ngIf="phase<4" class="description mt-3" [ngClass]="{ 'text-body': globals.selectedClassroom&&(phase!=3) }">Here you can access all the stuff and materials of this classroom.</p>
+                                <a *ngIf="phase==3" (click)="openModal('custom-modal-4'); txOn();" class="btn btn-default mt-4 text-body">Access</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 mt-4">
+                        <div class="card card-lift--hover shadow border-0 text-center" [ngClass]="{ 'bg-gradient-white': globals.selectedClassroom&&(phase!=3), 'bg-gradient-secondary': phase==3  }">
+                            <div class="card-body py-5">
+                                <div class="icon icon-shape icon-shape-default rounded-circle mb-4" [ngClass]="{ 'bg-white': globals.selectedClassroom&&(phase>3) }">
+                                    5
+                                </div>
+                                <h6 *ngIf="phase<4" class="text-default text-uppercase">Submit Your Answer</h6>
+                                <h6 *ngIf="phase>3" class="text-default text-uppercase text-body">Classroom closed</h6>
+                                <p *ngIf="phase<4" class="description mt-3" [ngClass]="{ 'text-body': globals.selectedClassroom&&(phase!=3) }">Here you can send your secret to complete this classroom.</p>
+                                <a *ngIf="phase==3" (click)="openModal('custom-modal-5'); txOn();" class="btn btn-default mt-4 text-body">Submit</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="phase==4" class="col-lg-8 mt-4">
+                        <div class="card card-lift--hover shadow border-0 text-center bg-gradient-secondary">
+                            <div class="card-body py-5">
+                                <div class="icon icon-shape icon-shape-default rounded-circle mb-4">
+                                    6
+                                </div>
+                                <h6 class="text-default text-uppercase">Wait</h6>
+                                <p class="description mt-3">Wait until your teacher closes the classroom. In the meantime you can update your application whenever you want.</p><br>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="phase!=4" class="col-lg-8 mt-4">
+                        <div class="card card-lift--hover shadow border-0 text-center" [ngClass]="{ 'bg-gradient-white': globals.selectedClassroom&&(phase!=5), 'bg-gradient-secondary': phase==5  }">
+                            <div class="card-body py-5">
+                                <div class="icon icon-shape icon-shape-default rounded-circle mb-4" [ngClass]="{ 'bg-white': globals.selectedClassroom&&(phase>5) }">
+                                    6
+                                </div>
+                                <h6 *ngIf="phase<6" class="text-default text-uppercase">Claim Your Reward</h6>
+                                <h6 *ngIf="phase>5" class="text-default text-uppercase text-body">Reward claimed</h6>
+                                <p *ngIf="phase<6" class="description mt-3" [ngClass]="{ 'text-body': globals.selectedClassroom&&(phase!=5) }">If you send correct answer you can collect you reward here.</p><br>
+                                <a *ngIf="phase==5" (click)="openModal('custom-modal-6'); txOn();" class="btn btn-default mt-4 text-body">Claim</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 mt-4">
+                        <div class="card card-lift--hover shadow border-0 text-center " [ngClass]="{ 'bg-gradient-white': globals.selectedClassroom&&(phase!=6), 'bg-gradient-secondary': phase==6  }">
+                            <div class="card-body py-5">
+                                <div class="icon icon-shape icon-shape-default rounded-circle mb-4" [ngClass]="{ 'bg-white': globals.selectedClassroom&&(phase>6) }">
+                                    7
+                                </div>
+                                <h6 class="text-default text-uppercase">Start your own classroom</h6>
+                                <p class="description mt-3" [ngClass]="{ 'text-body': globals.selectedClassroom&&(phase!=6) }">After you complete a classroom you can create a new one.</p>
+                                <a *ngIf="phase==6" (click)="openModal('custom-modal-7'); txOn();" class="btn btn-default mt-4 text-body">Create</a>
                             </div>
                         </div>
                     </div>
@@ -171,11 +210,9 @@
                         <div class="row align-items-center">
                             <div class="col-lg-8">
                                 <h4 class="text-body">Start by choosing the perfect classroom for you.</h4>
-                                <p class="lead text-body mt-3">You will need to connect to a wallet service in order to
-                                    interact with this dApp.</p>
+                                <p class="lead text-body mt-3">You will need to connect to a wallet service in order to interact with this dApp.</p>
                             </div>
-                            <div class="col-lg-3 ml-lg-auto"><a [routerLink]="['/']" fragment=classrooms
-                                    class="btn btn-lg btn-block btn-white">SELECT CLASSROOM</a></div>
+                            <div class="col-lg-3 ml-lg-auto"><a [routerLink]="['/']" fragment=classrooms class="btn btn-lg btn-block btn-white">SELECT CLASSROOM</a></div>
                         </div>
                     </div>
                 </div>
@@ -188,31 +225,21 @@
         <div *ngIf=globals.selectedClassroom class="card card-profile shadow mt--200">
             <div class="px-4">
                 <div class="text-center mt-5">
-                    <h4 *ngIf=globals.selectedClassroom.state.isClassroomNotOpen class="text-light">Status: <span
-                            class="badge badge-pill badge-info">Not Open</span></h4>
-                    <h4 *ngIf=globals.selectedClassroom.state.isClassroomOpen class="text-light">Status: <span
-                            class="badge badge-pill badge-success">Open</span></h4>
-                    <h4 *ngIf=globals.selectedClassroom.state.isClassroomClosed class="text-light">Status: <span
-                            class="badge badge-pill badge-warning">Closed</span></h4>
-                    <h4 *ngIf=globals.selectedClassroom.state.isClassroomActive class="text-light">Status: <span
-                            class="badge badge-pill badge-primary">Ongoing</span></h4>
-                    <h4 *ngIf=globals.selectedClassroom.state.isCourseFinished class="text-light">Status: <span
-                            class="badge badge-pill badge-dark">Finished</span></h4>
+                    <h4 *ngIf=globals.selectedClassroom.state.isClassroomNotOpen class="text-light">Status: <span class="badge badge-pill badge-info">Not Open</span></h4>
+                    <h4 *ngIf=globals.selectedClassroom.state.isClassroomOpen class="text-light">Status: <span class="badge badge-pill badge-success">Open</span></h4>
+                    <h4 *ngIf=globals.selectedClassroom.state.isClassroomClosed class="text-light">Status: <span class="badge badge-pill badge-warning">Closed</span></h4>
+                    <h4 *ngIf=globals.selectedClassroom.state.isClassroomActive class="text-light">Status: <span class="badge badge-pill badge-primary">Ongoing</span></h4>
+                    <h4 *ngIf=globals.selectedClassroom.state.isCourseFinished class="text-light">Status: <span class="badge badge-pill badge-dark">Finished</span></h4>
                 </div>
                 <div class="mt-2 py-5 border-top text-center">
                     <h4>Classroom Management</h4>
                     <div class="row justify-content-center">
                         <br>
-                        <button class="btn btn-md btn-info width:120px"
-                            (click)="openModal('classroom-metadata-admin')">Metadata</button>
-                        <button class="btn btn-md btn-info width:120px"
-                            (click)="openModal('classroom-params-admin')">Params</button>
-                        <button class="btn btn-md btn-info width:120px"
-                            (click)="openModal('classroom-funds-admin')">Funds</button>
-                        <button class="btn btn-md btn-warning width:120px"
-                            (click)="openModal('classroom-configs-admin')">Configs</button>
-                        <button class="btn btn-md btn-warning width:120px"
-                            (click)="openModal('classroom-transfer-admin')">Transfer</button>
+                        <button class="btn btn-md btn-info width:120px" (click)="openModal('classroom-metadata-admin')">Metadata</button>
+                        <button class="btn btn-md btn-info width:120px" (click)="openModal('classroom-params-admin')">Params</button>
+                        <button class="btn btn-md btn-info width:120px" (click)="openModal('classroom-funds-admin')">Funds</button>
+                        <button class="btn btn-md btn-warning width:120px" (click)="openModal('classroom-configs-admin')">Configs</button>
+                        <button class="btn btn-md btn-warning width:120px" (click)="openModal('classroom-transfer-admin')">Transfer</button>
                     </div>
                 </div>
                 <div class="mt-2 py-5 text-left">
@@ -225,27 +252,12 @@
                         <h5>Pooled returns: {{globals.selectedClassroom.classdata.investmentReturns}} DAI</h5>
                         <h5>Course balance: {{globals.selectedClassroom.classdata.courseBalance}} DAI</h5>
                     </div>
-                    <button
-                        *ngIf="globals.selectedClassroom.state.isClassroomNotOpen&&globals.selectedClassroom.classdata.validStudents==0"
-                        class="btn btn-lg btn-icon btn-3 btn-success" (click)="openApplications()" type="button"><span
-                            class="btn-inner--text">Open applications</span></button>
-                    <button *ngIf=globals.selectedClassroom.state.isClassroomOpen
-                        class="btn btn-lg btn-icon btn-3 btn-warning" type="button" (click)="closeApplications()"><span
-                            class="btn-inner--icon"><i class="ni ni-close"></i></span><span
-                            class="btn-inner--text">Close applications</span></button>
-                    <button *ngIf="globals.selectedClassroom.state.isClassroomClosed"
-                        class="btn btn-lg btn-icon btn-3 btn-success" (click)="beginCourse()" type="button"><span
-                            class="btn-inner--text">Begin Course</span></button>
-                    <button *ngIf=globals.selectedClassroom.state.isClassroomActive
-                        class="btn btn-lg btn-icon btn-3 btn-success" (click)="finishCourse()" type="button"><span
-                            class="btn-inner--text">Finish Course</span></button>
-                    <button *ngIf=globals.selectedClassroom.state.isCourseFinished
-                        class="btn btn-lg btn-icon btn-3 btn-success" (click)="processResults()" type="button"><span
-                            class="btn-inner--text">Process Results</span></button>
-                    <button
-                        *ngIf="globals.selectedClassroom.funds.DAI>0&&globals.selectedClassroom.classdata.students==0&&globals.selectedClassroom.classdata.validStudents==0"
-                        class="btn btn-lg btn-icon btn-3 btn-success" (click)="withdrawAllResults()" type="button"><span
-                            class="btn-inner--text">Withdraw Results</span></button>
+                    <button *ngIf="globals.selectedClassroom.state.isClassroomNotOpen&&globals.selectedClassroom.classdata.validStudents==0" class="btn btn-lg btn-icon btn-3 btn-success" (click)="openApplications()" type="button"><span class="btn-inner--text">Open applications</span></button>
+                    <button *ngIf=globals.selectedClassroom.state.isClassroomOpen class="btn btn-lg btn-icon btn-3 btn-warning" type="button" (click)="closeApplications()"><span class="btn-inner--icon"><i class="ni ni-close"></i></span><span class="btn-inner--text">Close applications</span></button>
+                    <button *ngIf="globals.selectedClassroom.state.isClassroomClosed" class="btn btn-lg btn-icon btn-3 btn-success" (click)="beginCourse()" type="button"><span class="btn-inner--text">Begin Course</span></button>
+                    <button *ngIf=globals.selectedClassroom.state.isClassroomActive class="btn btn-lg btn-icon btn-3 btn-success" (click)="finishCourse()" type="button"><span class="btn-inner--text">Finish Course</span></button>
+                    <button *ngIf=globals.selectedClassroom.state.isCourseFinished class="btn btn-lg btn-icon btn-3 btn-success" (click)="processResults()" type="button"><span class="btn-inner--text">Process Results</span></button>
+                    <button *ngIf="globals.selectedClassroom.funds.DAI>0&&globals.selectedClassroom.classdata.students==0&&globals.selectedClassroom.classdata.validStudents==0" class="btn btn-lg btn-icon btn-3 btn-success" (click)="withdrawAllResults()" type="button"><span class="btn-inner--text">Withdraw Results</span></button>
                 </div>
             </div>
         </div>
@@ -257,33 +269,26 @@
             <div class="col-md-12">
                 <div class="card shadow border-0">
                     <div class="card-body py-5">
-                        <h4 class="UniversityAdmins mt-3">ENS Name: <span
-                                class="text-default">{{globals.selectedClassroom.metadata.ENSName}}</span>
-                            <span *ngIf=globals.selectedClassroom.metadata.ENSName
-                                class="badge badge-pill badge-success">Recorded</span>
-                            <span *ngIf=!globals.selectedClassroom.metadata.ENSName
-                                class="badge badge-pill badge-warning">Not Recorded</span></h4>
-                        <button type="button" class="btn btn-warning" *ngIf=!globals.selectedClassroom.metadata.ENSName
-                            (click)="registerENSRecord()">Register</button>
+                        <h4 class="UniversityAdmins mt-3">ENS Name: <span class="text-default">{{globals.selectedClassroom.metadata.ENSName}}</span>
+                            <span *ngIf=globals.selectedClassroom.metadata.ENSName class="badge badge-pill badge-success">Recorded</span>
+                            <span *ngIf=!globals.selectedClassroom.metadata.ENSName class="badge badge-pill badge-warning">Not Recorded</span></h4>
+                        <button type="button" class="btn btn-warning" *ngIf=!globals.selectedClassroom.metadata.ENSName (click)="registerENSRecord()">Register</button>
                         <div class="form-group">
                             <label for="classroomMetadataSelectType">Metadata field</label>
                             <select #classroomMetadataSelectType class="form-control" id="classroomMetadataSelectType">
-                                <option>email</option>
-                                <option>url</option>
-                                <option>avatar</option>
-                                <option>description</option>
-                                <option>notice</option>
-                            </select>
+							  <option>email</option>
+							  <option>url</option>
+							  <option>avatar</option>
+							  <option>description</option>
+							  <option>notice</option>
+							</select>
                         </div>
                         <div class="form-group">
                             <label for="classroomMetadataValueInput">Value: </label>
-                            <input #classroomMetadataValueInput type="text" class="form-control"
-                                id="classroomMetadataValueInput" placeholder="new value">
+                            <input #classroomMetadataValueInput type="text" class="form-control" id="classroomMetadataValueInput" placeholder="new value">
                         </div>
-                        <button type="button" class="btn btn-info"
-                            (click)="setMetadataRecord(classroomMetadataSelectType.value, classroomMetadataValueInput.value)">Change</button>
-                        <button type="button" class="btn btn-info" (click)="openModal('custom-modal-4')">View
-                            Material</button>
+                        <button type="button" class="btn btn-info" (click)="setMetadataRecord(classroomMetadataSelectType.value, classroomMetadataValueInput.value)">Change</button>
+                        <button type="button" class="btn btn-info" (click)="openModal('custom-modal-4')">View Material</button>
                     </div>
                 </div>
             </div>
@@ -321,10 +326,8 @@
                         </tbody>
                         <h4>Configure Aave:</h4>
                         <div class="form-group">
-                            <input class="form-control" #aaveInput placeholder="Aave Lending Pool Addresses Provider"
-                                type="text">
-                            <button type="button" class="btn btn-info"
-                                (click)="configureAave(aaveInput.value)">Submit</button>
+                            <input class="form-control" #aaveInput placeholder="Aave Lending Pool Addresses Provider" type="text">
+                            <button type="button" class="btn btn-info" (click)="configureAave(aaveInput.value)">Submit</button>
                         </div>
                     </div>
                 </div>
@@ -339,39 +342,30 @@
                         <h4>Classroom Parameters:</h4>
                         <h5>Name: {{globals.selectedClassroom.title}}</h5>
                         <input #inputClassroomName class="form-control" placeholder="Name" type="text">
-                        <button type="button" (click)=changeName(inputClassroomName.value)
-                            class="btn btn-info">Change</button>
+                        <button type="button" (click)=changeName(inputClassroomName.value) class="btn btn-info">Change</button>
                         <h5>Price: {{globals.selectedClassroom.price}}</h5>
                         <input #inputClassroomPrice class="form-control" placeholder="Price" type="text">
-                        <button type="button" (click)=changeEntryPrice(inputClassroomPrice.value)
-                            class="btn btn-info">Change</button>
+                        <button type="button" (click)=changeEntryPrice(inputClassroomPrice.value) class="btn btn-info">Change</button>
                         <h5>Min. Score: {{globals.selectedClassroom.minScore}}</h5>
                         <input #inputClassroomMin class="form-control" placeholder="Min" type="text">
-                        <button type="button" (click)=changeMinScore(inputClassroomMin.value)
-                            class="btn btn-info">Change</button>
+                        <button type="button" (click)=changeMinScore(inputClassroomMin.value) class="btn btn-info">Change</button>
                         <h5>Cut from the principal: {{globals.selectedClassroom.cutPrincipal}}</h5>
                         <input #inputClassroomCutPrincipal class="form-control" placeholder="Cut %" type="text">
-                        <button type="button" (click)=changePrincipalCut(inputClassroomCutPrincipal.value)
-                            class="btn btn-info">Change</button>
+                        <button type="button" (click)=changePrincipalCut(inputClassroomCutPrincipal.value) class="btn btn-info">Change</button>
                         <h5>Cut from the success pool: {{globals.selectedClassroom.cutPool}}</h5>
                         <input #inputClassroomCutPool class="form-control" placeholder="Cut %" type="text">
-                        <button type="button" (click)=changePoolCut(inputClassroomCutPool.value)
-                            class="btn btn-info">Change</button>
+                        <button type="button" (click)=changePoolCut(inputClassroomCutPool.value) class="btn btn-info">Change</button>
                         <h5>Duration: {{globals.selectedClassroom.duration}}</h5>
                         <input #inputClassroomDuration class="form-control" placeholder="Duration" type="text">
-                        <button type="button" (click)=changeDuration(inputClassroomDuration.value)
-                            class="btn btn-info">Change</button>
+                        <button type="button" (click)=changeDuration(inputClassroomDuration.value) class="btn btn-info">Change</button>
                         <h5>Challenge: {{globals.selectedClassroom.addressChallenge}}</h5>
                         <input #inputClassroomChallenge class="form-control" placeholder="Challenge" type="text">
-                        <button type="button" (click)=changeChallenge(inputClassroomChallenge.value)
-                            class="btn btn-info">Change</button>
-                        <h5>Compound application percentage:
-                            {{globals.selectedClassroom.params.compoundApplyPercentage}} %</h5>
+                        <button type="button" (click)=changeChallenge(inputClassroomChallenge.value) class="btn btn-info">Change</button>
+                        <h5>Compound application percentage: {{globals.selectedClassroom.params.compoundApplyPercentage}} %</h5>
                         <h5>Aave application percentage: {{globals.selectedClassroom.params.aaveApplyPercentage}} %</h5>
                         <label for="customRange1">Percentage</label>
                         <input #percentageSelect type="range" class="custom-range" id="customRange1">
-                        <button type="button" (click)=changeCompoundApplyPercentage(percentageSelect.value)
-                            class="btn btn-info">Change to {{percentageSelect.value}} % compound</button>
+                        <button type="button" (click)=changeCompoundApplyPercentage(percentageSelect.value) class="btn btn-info">Change to {{percentageSelect.value}} % compound</button>
                     </div>
                 </div>
             </div>
@@ -383,28 +377,15 @@
             <div class="modal-content">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h6 class="modal-title" id="modal-title-default">Search classroom</h6><button
-                            (click)="closeModal('custom-modal-search-classroom')" aria-label="Close" class="close"
-                            data-dismiss="modal" type="button"><span aria-hidden="true">×</span></button>
-                    </div>
+                        <h6 class="modal-title" id="modal-title-default">Search classroom</h6><button (click)="closeModal('custom-modal-search-classroom')" aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">×</span></button></div>
                     <div class="modal-body">
-                        <p>You can input the address or ENS patch for your address. If you don't know, you can check the
-                            list in the university page.</p>
+                        <p>You can input the address or ENS patch for your address. If you don't know, you can check the list in the university page.</p>
                         <div class="input-group mb-4">
-                            <div class="input-group-prepend"><span class="input-group-text"><i
-                                        class="ni ni-zoom-split-in"></i></span></div><input #searchClassroom
-                                class="form-control" placeholder="Search" type="text"
-                                (input)="resetSearchClassroomModalErrorMsg()">
-                        </div>
-                        <p *ngIf=searchClassroomModalProgressMsg class="text-warning mb-0" style="font-weight:bold;">
-                            Searching...</p>
-                        <p *ngIf=searchClassroomModalErrorMsg class="text-warning mb-0" style="font-weight:bold;">
-                            Classroom not found!</p>
+                            <div class="input-group-prepend"><span class="input-group-text"><i class="ni ni-zoom-split-in"></i></span></div><input #searchClassroom class="form-control" placeholder="Search" type="text" (input)="resetSearchClassroomModalErrorMsg()"></div>
+                        <p *ngIf=searchClassroomModalProgressMsg class="text-warning mb-0" style="font-weight:bold;">Searching...</p>
+                        <p *ngIf=searchClassroomModalErrorMsg class="text-warning mb-0" style="font-weight:bold;">Classroom not found!</p>
                     </div>
-                    <div class="modal-footer"><button class="btn btn-primary" type="button"
-                            (click)="searchForClassroomModal(searchClassroom.value)">Enter</button><button
-                            class="btn btn-link  ml-auto" data-dismiss="modal"
-                            (click)="closeModal('custom-modal-search-classroom')" type="button">Close</button></div>
+                    <div class="modal-footer"><button class="btn btn-primary" type="button" (click)="searchForClassroomModal(searchClassroom.value)">Enter</button><button class="btn btn-link  ml-auto" data-dismiss="modal" (click)="closeModal('custom-modal-search-classroom')" type="button">Close</button></div>
                 </div>
             </div>
         </div>
@@ -418,8 +399,7 @@
                             <h3 class="text-center text-body">Register at University</h3>
                             <div class="row mt-3">
                                 <div class="col-md-12">
-                                    <h2 class="description text-body">Create your student registry in this university
-                                        and enjoy all its features.</h2>
+                                    <h2 class="description text-body">Create your student registry in this university and enjoy all its features.</h2>
                                 </div>
                             </div>
                             <div class="row mt-3">
@@ -429,9 +409,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
                                             </div>
-                                            <input id="studentInputName" #studentInputName class="form-control"
-                                                placeholder="Name" type="text" (focus)="focus=true"
-                                                (blur)="focus=false">
+                                            <input id="studentInputName" #studentInputName class="form-control" placeholder="Name" type="text" (focus)="focus=true" (blur)="focus=false">
                                         </div>
                                     </div>
                                 </div>
@@ -439,16 +417,14 @@
                             <div class="row mt-3">
                                 <div class="col-md-12">
                                     <div *ngIf="txMode=='preTX'" class="alert alert-neutral" role="alert">
-                                        <strong class="text-default">You need confirm this transaction on your portis
-                                            wallet!</strong>
+                                        <strong class="text-default">You need confirm this transaction on your portis wallet!</strong>
                                     </div>
                                     <div *ngIf="txMode=='processingTX'" class="alert alert-warning" role="alert">
                                         <strong>Wait!</strong> Registering your account ...
                                     </div>
                                     <div *ngIf="txMode=='successTX'" class="alert alert-success" role="alert">
                                         <strong>Success!</strong> Transaction Hash {{hashTx}}
-                                        <a href="https://ropsten.etherscan.io/tx/{{hashTx}}" target="_blank">See On
-                                            Etherscan</a>
+                                        <a href="https://ropsten.etherscan.io/tx/{{hashTx}}" target="_blank">See On Etherscan</a>
                                     </div>
                                     <div *ngIf="txMode=='failedTX'" class="alert alert-danger" role="alert">
                                         <strong>Failed!</strong> Transaction didn't complete. Try again!
@@ -457,14 +433,11 @@
                             </div>
                         </div>
                         <div class="card-footer bg-gradient-white">
-                            <a (click)="closeModal('custom-modal-register'); txOff()"
-                                class="btn btn-neutral btn-icon mb-3 mb-sm-0">
+                            <a (click)="closeModal('custom-modal-register'); txOff()" class="btn btn-neutral btn-icon mb-3 mb-sm-0">
                                 <span class="btn-inner--icon"><i class="fa fa-university"></i></span>
                                 <span class="btn-inner--text">Back</span>
                             </a>
-                            <a *ngIf="txMode=='preTX'" type="submit"
-                                (click)="studentSelfRegister(studentInputName.value)"
-                                class="btn btn-success btn-icon text-body mb-3 mb-sm-0">
+                            <a *ngIf="txMode=='preTX'" type="submit" (click)="studentSelfRegister(studentInputName.value)" class="btn btn-success btn-icon text-body mb-3 mb-sm-0">
                                 <span class="btn-inner--icon"><i class="fa fa-send"></i></span>
                                 <span class="btn-inner--text">Register</span>
                             </a>
@@ -483,23 +456,20 @@
                             <h3 class="text-center text-body">Apply for this classroom</h3>
                             <div class="row mt-3">
                                 <div class="col-md-12">
-                                    <h2 class="description text-center text-body">To start this classroom you need to
-                                        send your application.</h2>
+                                    <h2 class="description text-center text-body">To start this classroom you need to send your application.</h2>
                                 </div>
                             </div>
                             <div class="row mt-3">
                                 <div class="col-md-12">
                                     <div *ngIf="txMode=='preTX'" class="alert alert-neutral" role="alert">
-                                        <strong class="text-default">You need confirm this transaction on your portis
-                                            wallet!</strong>
+                                        <strong class="text-default">You need confirm this transaction on your portis wallet!</strong>
                                     </div>
                                     <div *ngIf="txMode=='processingTX'" class="alert alert-warning" role="alert">
                                         <strong>Wait!</strong> Sending your application...
                                     </div>
                                     <div *ngIf="txMode=='successTX'" class="alert alert-success" role="alert">
                                         <strong>Success!</strong> Transaction Hash {{hashTx}}
-                                        <a href="https://ropsten.etherscan.io/tx/{{hashTx}}" target="_blank">See On
-                                            Etherscan</a>
+                                        <a href="https://ropsten.etherscan.io/tx/{{hashTx}}" target="_blank">See On Etherscan</a>
                                     </div>
                                     <div *ngIf="txMode=='failedTX'" class="alert alert-danger" role="alert">
                                         <strong>Failed!</strong> Transaction didn't complete. Try again!
@@ -508,13 +478,11 @@
                             </div>
                         </div>
                         <div class="card-footer bg-gradient-white">
-                            <a (click)="closeModal('custom-modal-1'); txOff(); refreshClassroomInfo();"
-                                class="btn btn-neutral btn-icon mb-3 mb-sm-0">
+                            <a (click)="closeModal('custom-modal-1'); txOff(); refreshClassroomInfo();" class="btn btn-neutral btn-icon mb-3 mb-sm-0">
                                 <span class="btn-inner--icon"><i class="fa fa-arrow-left"></i></span>
                                 <span class="btn-inner--text">Back</span>
                             </a>
-                            <a *ngIf="txMode=='preTX'" type="submit" (click)="applyClassroom()"
-                                class="btn btn-success btn-icon text-body mb-3 mb-sm-0">
+                            <a *ngIf="txMode=='preTX'" type="submit" (click)="applyClassroom()" class="btn btn-success btn-icon text-body mb-3 mb-sm-0">
                                 <span class="btn-inner--icon"><i class="fa fa-send"></i></span>
                                 <span class="btn-inner--text">Apply</span>
                             </a>
@@ -533,30 +501,26 @@
                             <h3 class="text-center text-body">Call for a grant</h3>
                             <div class="row mt-3">
                                 <div class="col-md-12">
-                                    <h2 class="description text-center text-body">If you don't need have founds to pay
-                                        the fee you can request a grant.</h2>
+                                    <h2 class="description text-center text-body">If you don't need have founds to pay the fee you can request a grant.</h2>
                                 </div>
                             </div>
                             <div class="input-group input-group-alternative mb-3">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="ni ni-paper-diploma"></i></span>
                                 </div>
-                                <input id="studentInputGrantAddress" #studentInputGrantAddress class="form-control"
-                                    placeholder="Address" type="text" (focus)="focus=true" (blur)="focus=false">
+                                <input id="studentInputGrantAddress" #studentInputGrantAddress class="form-control" placeholder="Address" type="text" (focus)="focus=true" (blur)="focus=false">
                             </div>
                             <div class="row mt-3">
                                 <div class="col-md-12">
                                     <div *ngIf="txMode=='preTX'" class="alert alert-neutral" role="alert">
-                                        <strong class="text-default">You need confirm this transaction on your portis
-                                            wallet!</strong>
+                                        <strong class="text-default">You need confirm this transaction on your portis wallet!</strong>
                                     </div>
                                     <div *ngIf="txMode=='processingTX'" class="alert alert-warning" role="alert">
                                         <strong>Wait!</strong> Sending your call...
                                     </div>
                                     <div *ngIf="txMode=='successTX'" class="alert alert-success" role="alert">
                                         <strong>Success!</strong> Transaction Hash {{hashTx}}
-                                        <a href="https://ropsten.etherscan.io/tx/{{hashTx}}" target="_blank">See On
-                                            Etherscan</a>
+                                        <a href="https://ropsten.etherscan.io/tx/{{hashTx}}" target="_blank">See On Etherscan</a>
                                     </div>
                                     <div *ngIf="txMode=='failedTX'" class="alert alert-danger" role="alert">
                                         <strong>Failed!</strong> Transaction didn't complete. Try again!
@@ -565,13 +529,11 @@
                             </div>
                         </div>
                         <div class="card-footer bg-gradient-white">
-                            <a (click)="closeModal('custom-modal-2'); txOff(); refreshClassroomInfo();"
-                                class="btn btn-neutral btn-icon mb-3 mb-sm-0">
+                            <a (click)="closeModal('custom-modal-2'); txOff(); refreshClassroomInfo();" class="btn btn-neutral btn-icon mb-3 mb-sm-0">
                                 <span class="btn-inner--icon"><i class="fa fa-arrow-left"></i></span>
                                 <span class="btn-inner--text">Back</span>
                             </a>
-                            <a *ngIf="txMode=='preTX'" type="submit"
-                                class="btn btn-success btn-icon text-body mb-3 mb-sm-0">
+                            <a *ngIf="txMode=='preTX'" type="submit" class="btn btn-success btn-icon text-body mb-3 mb-sm-0">
                                 <span class="btn-inner--icon"><i class="fa fa-send"></i></span>
                                 <span class="btn-inner--text">Call</span>
                             </a>
@@ -590,25 +552,21 @@
                             <h3 class="text-center text-body">Start your application</h3>
                             <div class="row mt-3">
                                 <div class="col-md-12">
-                                    <h2 class="description text-center text-body">You need to approve and deposit fee to
-                                        start your application.</h2>
-                                    <h4 class="text-center text-body">Price: {{this.globals.selectedClassroom.price}}
-                                        DAI</h4>
+                                    <h2 class="description text-center text-body">You need to approve and deposit fee to start your application.</h2>
+                                    <h4 class="text-center text-body">Price: {{this.globals.selectedClassroom.price}} DAI</h4>
                                 </div>
                             </div>
                             <div class="row mt-3">
                                 <div class="col-md-12">
                                     <div *ngIf="txMode=='preTX'" class="alert alert-neutral" role="alert">
-                                        <strong class="text-default">You need confirm this transaction on your portis
-                                            wallet!</strong>
+                                        <strong class="text-default">You need confirm this transaction on your portis wallet!</strong>
                                     </div>
                                     <div *ngIf="txMode=='processingTX'" class="alert alert-warning" role="alert">
                                         <strong>Wait!</strong> Sending your Transaction...
                                     </div>
                                     <div *ngIf="txMode=='successTX'" class="alert alert-success" role="alert">
                                         <strong>Success!</strong> Transaction Hash {{hashTx}}
-                                        <a href="https://ropsten.etherscan.io/tx/{{hashTx}}" target="_blank">See On
-                                            Etherscan</a>
+                                        <a href="https://ropsten.etherscan.io/tx/{{hashTx}}" target="_blank">See On Etherscan</a>
                                     </div>
                                     <div *ngIf="txMode=='failedTX'" class="alert alert-danger" role="alert">
                                         <strong>Failed!</strong> Transaction didn't complete. Try again!
@@ -617,23 +575,19 @@
                             </div>
                         </div>
                         <div class="card-footer bg-gradient-white">
-                            <a (click)="closeModal('custom-modal-3'); txOff(); refreshClassroomInfo();"
-                                class="btn btn-neutral btn-icon mb-3 mb-sm-0">
+                            <a (click)="closeModal('custom-modal-3'); txOff(); refreshClassroomInfo();" class="btn btn-neutral btn-icon mb-3 mb-sm-0">
                                 <span class="btn-inner--icon"><i class="fa fa-arrow-left"></i></span>
                                 <span class="btn-inner--text">Back</span>
                             </a>
-                            <a *ngIf="allowanceMode==0" type="submit"
-                                class="btn btn-primary btn-icon text-body mb-3 mb-sm-0">
+                            <a *ngIf="allowanceMode==0" type="submit" class="btn btn-primary btn-icon text-body mb-3 mb-sm-0">
                                 <span class="btn-inner--icon"><i class="fa fa-check"></i></span>
                                 <span class="btn-inner--text">Checking...</span>
                             </a>
-                            <a *ngIf="(allowanceMode==1)&&(txMode=='preTX')" (click)="approveStart()" type="submit"
-                                class="btn btn-primary btn-icon text-body mb-3 mb-sm-0">
+                            <a *ngIf="(allowanceMode==1)&&(txMode=='preTX')" (click)="approveStart()" type="submit" class="btn btn-primary btn-icon text-body mb-3 mb-sm-0">
                                 <span class="btn-inner--icon"><i class="fa fa-check"></i></span>
                                 <span class="btn-inner--text">Approve</span>
                             </a>
-                            <a *ngIf="allowanceMode==2" (click)="payPrice()" type="submit"
-                                class="btn btn-success btn-icon text-body mb-3 mb-sm-0">
+                            <a *ngIf="allowanceMode==2" (click)="payPrice()" type="submit" class="btn btn-success btn-icon text-body mb-3 mb-sm-0">
                                 <span class="btn-inner--icon"><i class="fa fa-send"></i></span>
                                 <span class="btn-inner--text">Transfer</span>
                             </a>
@@ -652,14 +606,12 @@
                             <h3 class="text-center text-body">Classroom material</h3>
                             <div *ngIf=myStudentApplication class="row mt-3">
                                 <div class="col-md-12">
-                                    <textarea class="form-control" rows="10"
-                                        wrap="hard">{{myStudentApplication.material}}</textarea>
+                                    <textarea class="form-control" rows="10" wrap="hard">{{myStudentApplication.material}}</textarea>
                                 </div>
                             </div>
                         </div>
                         <div class="card-footer bg-gradient-white">
-                            <a (click)="closeModal('custom-modal-4'); txOff(); refreshClassroomInfo();"
-                                class="btn btn-neutral btn-icon mb-3 mb-sm-0">
+                            <a (click)="closeModal('custom-modal-4'); txOff(); refreshClassroomInfo();" class="btn btn-neutral btn-icon mb-3 mb-sm-0">
                                 <span class="btn-inner--icon"><i class="fa fa-arrow-left"></i></span>
                                 <span class="btn-inner--text">Back</span>
                             </a>
@@ -678,8 +630,7 @@
                             <h3 class="text-center text-body">Submit your answer</h3>
                             <div class="row mt-3">
                                 <div class="col-md-12">
-                                    <h2 class="description text-center text-body">Here you can set your secret to
-                                        protect your answer. Don't share this with anyone</h2>
+                                    <h2 class="description text-center text-body">Here you can set your secret to protect your answer. Don't share this with anyone</h2>
                                 </div>
                             </div>
                             <div class="row mt-3">
@@ -689,8 +640,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="fa fa-key"></i></span>
                                             </div>
-                                            <input id="secret" #secret class="form-control" placeholder="Secret"
-                                                type="text" (focus)="focus=true" (blur)="focus=false">
+                                            <input id="secret" #secret class="form-control" placeholder="Secret" type="text" (focus)="focus=true" (blur)="focus=false">
                                         </div>
                                     </div>
                                 </div>
@@ -698,16 +648,14 @@
                             <div class="row mt-3">
                                 <div class="col-md-12">
                                     <div *ngIf="txMode=='preTX'" class="alert alert-neutral" role="alert">
-                                        <strong class="text-default">You need confirm this transaction on your portis
-                                            wallet!</strong>
+                                        <strong class="text-default">You need confirm this transaction on your portis wallet!</strong>
                                     </div>
                                     <div *ngIf="txMode=='processingTX'" class="alert alert-warning" role="alert">
                                         <strong>Wait!</strong> Sending your answer...
                                     </div>
                                     <div *ngIf="txMode=='successTX'" class="alert alert-success" role="alert">
                                         <strong>Success!</strong> Transaction Hash {{hashTx}}
-                                        <a href="https://ropsten.etherscan.io/tx/{{hashTx}}" target="_blank">See On
-                                            Etherscan</a>
+                                        <a href="https://ropsten.etherscan.io/tx/{{hashTx}}" target="_blank">See On Etherscan</a>
                                     </div>
                                     <div *ngIf="txMode=='failedTX'" class="alert alert-danger" role="alert">
                                         <strong>Failed!</strong> Transaction didn't complete. Try again!
@@ -716,13 +664,11 @@
                             </div>
                         </div>
                         <div class="card-footer bg-gradient-white">
-                            <a (click)="closeModal('custom-modal-5'); txOff(); refreshClassroomInfo();"
-                                class="btn btn-neutral btn-icon mb-3 mb-sm-0">
+                            <a (click)="closeModal('custom-modal-5'); txOff(); refreshClassroomInfo();" class="btn btn-neutral btn-icon mb-3 mb-sm-0">
                                 <span class="btn-inner--icon"><i class="fa fa-arrow-left"></i></span>
                                 <span class="btn-inner--text">Back</span>
                             </a>
-                            <a *ngIf="txMode=='preTX'" (click)="sendAnswer(secret.value)" type="submit"
-                                class="btn btn-success btn-icon text-body mb-3 mb-sm-0">
+                            <a *ngIf="txMode=='preTX'" (click)="sendAnswer(secret.value)" type="submit" class="btn btn-success btn-icon text-body mb-3 mb-sm-0">
                                 <span class="btn-inner--icon"><i class="fa fa-send"></i></span>
                                 <span class="btn-inner--text">Set Secret</span>
                             </a>
@@ -741,30 +687,23 @@
                             <h3 class="text-center text-body">Claim your reward</h3>
                             <div class="row mt-3">
                                 <div class="col-md-12">
-                                    <h2 class="description text-center text-body">If you send correct answer you can
-                                        collect you reward here.</h2>
+                                    <h2 class="description text-center text-body">If you send correct answer you can collect you reward here.</h2>
                                 </div>
                             </div>
-                            <h4 class=" text-default text-body"><strong>Principal to be returned:
-                                </strong>{{myStudentApplication.principal}} of {{globals.selectedClassroom.price}} DAI
-                            </h4>
-                            <h4 class=" text-default text-body"><strong>Your prize:
-                                </strong>{{myStudentApplication.prize}} DAI </h4>
-                            <h4 class=" text-default text-body"><strong>Total: </strong>{{myStudentApplication.funds}}
-                                DAI </h4>
+                            <h4 class=" text-default text-body"><strong>Principal to be returned: </strong>{{myStudentApplication.principal}} of {{globals.selectedClassroom.price}} DAI </h4>
+                            <h4 class=" text-default text-body"><strong>Your prize: </strong>{{myStudentApplication.prize}} DAI </h4>
+                            <h4 class=" text-default text-body"><strong>Total: </strong>{{myStudentApplication.funds}} DAI </h4>
                             <div class="row mt-3">
                                 <div class="col-md-12">
                                     <div *ngIf="txMode=='preTX'" class="alert alert-neutral" role="alert">
-                                        <strong class="text-default">You need confirm this transaction on your portis
-                                            wallet!</strong>
+                                        <strong class="text-default">You need confirm this transaction on your portis wallet!</strong>
                                     </div>
                                     <div *ngIf="txMode=='processingTX'" class="alert alert-warning" role="alert">
                                         <strong>Wait!</strong> Sending your request...
                                     </div>
                                     <div *ngIf="txMode=='successTX'" class="alert alert-success" role="alert">
                                         <strong>Success!</strong> Transaction Hash {{hashTx}}
-                                        <a href="https://ropsten.etherscan.io/tx/{{hashTx}}" target="_blank">See On
-                                            Etherscan</a>
+                                        <a href="https://ropsten.etherscan.io/tx/{{hashTx}}" target="_blank">See On Etherscan</a>
                                     </div>
                                     <div *ngIf="txMode=='failedTX'" class="alert alert-danger" role="alert">
                                         <strong>Failed!</strong> Transaction didn't complete. Try again!
@@ -773,13 +712,11 @@
                             </div>
                         </div>
                         <div class="card-footer bg-gradient-white">
-                            <a (click)="closeModal('custom-modal-6'); txOff(); refreshClassroomInfo();"
-                                class="btn btn-neutral btn-icon mb-3 mb-sm-0">
+                            <a (click)="closeModal('custom-modal-6'); txOff(); refreshClassroomInfo();" class="btn btn-neutral btn-icon mb-3 mb-sm-0">
                                 <span class="btn-inner--icon"><i class="fa fa-arrow-left"></i></span>
                                 <span class="btn-inner--text">Back</span>
                             </a>
-                            <a *ngIf="txMode=='preTX'" (click)="colletcReward()" type="submit"
-                                class="btn btn-success btn-icon text-body mb-3 mb-sm-0">
+                            <a *ngIf="txMode=='preTX'" (click)="colletcReward()" type="submit" class="btn btn-success btn-icon text-body mb-3 mb-sm-0">
                                 <span class="btn-inner--icon"><i class="fa fa-send"></i></span>
                                 <span class="btn-inner--text">Collect</span>
                             </a>
@@ -798,8 +735,7 @@
                             <h3 class="text-center text-body">Create new classroom</h3>
                             <div class="row mt-3">
                                 <div class="col-md-12">
-                                    <h2 class="description text-center text-body">After you complete a classroom you can
-                                        create a new one.</h2>
+                                    <h2 class="description text-center text-body">After you complete a classroom you can create a new one.</h2>
                                 </div>
                             </div>
                             <div class="row mt-3">
@@ -809,9 +745,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="fa fa-key"></i></span>
                                             </div>
-                                            <input id="inputObjName1" #inputObjName1 class="form-control"
-                                                placeholder="Secret" type="text" (focus)="focus=true"
-                                                (blur)="focus=false">
+                                            <input id="inputObjName1" #inputObjName1 class="form-control" placeholder="Secret" type="text" (focus)="focus=true" (blur)="focus=false">
                                         </div>
                                     </div>
                                 </div>
@@ -821,9 +755,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="fa fa-key"></i></span>
                                             </div>
-                                            <input id="inputObjName2" #inputObjName2 class="form-control"
-                                                placeholder="Secret" type="text" (focus)="focus=true"
-                                                (blur)="focus=false">
+                                            <input id="inputObjName2" #inputObjName2 class="form-control" placeholder="Secret" type="text" (focus)="focus=true" (blur)="focus=false">
                                         </div>
                                     </div>
                                 </div>
@@ -833,9 +765,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="fa fa-key"></i></span>
                                             </div>
-                                            <input id="inputObjName3" #inputObjName3 class="form-control"
-                                                placeholder="Secret" type="text" (focus)="focus=true"
-                                                (blur)="focus=false">
+                                            <input id="inputObjName3" #inputObjName3 class="form-control" placeholder="Secret" type="text" (focus)="focus=true" (blur)="focus=false">
                                         </div>
                                     </div>
                                 </div>
@@ -845,9 +775,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="fa fa-key"></i></span>
                                             </div>
-                                            <input id="inputObjName4" #inputObjName4 class="form-control"
-                                                placeholder="Secret" type="text" (focus)="focus=true"
-                                                (blur)="focus=false">
+                                            <input id="inputObjName4" #inputObjName4 class="form-control" placeholder="Secret" type="text" (focus)="focus=true" (blur)="focus=false">
                                         </div>
                                     </div>
                                 </div>
@@ -857,9 +785,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="fa fa-key"></i></span>
                                             </div>
-                                            <input id="inputObjName5" #inputObjName5 class="form-control"
-                                                placeholder="Secret" type="text" (focus)="focus=true"
-                                                (blur)="focus=false">
+                                            <input id="inputObjName5" #inputObjName5 class="form-control" placeholder="Secret" type="text" (focus)="focus=true" (blur)="focus=false">
                                         </div>
                                     </div>
                                 </div>
@@ -869,9 +795,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="fa fa-key"></i></span>
                                             </div>
-                                            <input id="inputObjName6" #inputObjName6 class="form-control"
-                                                placeholder="Secret" type="text" (focus)="focus=true"
-                                                (blur)="focus=false">
+                                            <input id="inputObjName6" #inputObjName6 class="form-control" placeholder="Secret" type="text" (focus)="focus=true" (blur)="focus=false">
                                         </div>
                                     </div>
                                 </div>
@@ -881,9 +805,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="fa fa-key"></i></span>
                                             </div>
-                                            <input id="inputObjName7" #inputObjName7 class="form-control"
-                                                placeholder="Secret" type="text" (focus)="focus=true"
-                                                (blur)="focus=false">
+                                            <input id="inputObjName7" #inputObjName7 class="form-control" placeholder="Secret" type="text" (focus)="focus=true" (blur)="focus=false">
                                         </div>
                                     </div>
                                 </div>
@@ -893,9 +815,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="fa fa-key"></i></span>
                                             </div>
-                                            <input id="inputObjName8" #inputObjName8 class="form-control"
-                                                placeholder="Secret" type="text" (focus)="focus=true"
-                                                (blur)="focus=false">
+                                            <input id="inputObjName8" #inputObjName8 class="form-control" placeholder="Secret" type="text" (focus)="focus=true" (blur)="focus=false">
                                         </div>
                                     </div>
                                 </div>
@@ -903,16 +823,14 @@
                             <div class="row mt-3">
                                 <div class="col-md-12">
                                     <div *ngIf="txMode=='preTX'" class="alert alert-neutral" role="alert">
-                                        <strong class="text-default">You need confirm this transaction on your portis
-                                            wallet!</strong>
+                                        <strong class="text-default">You need confirm this transaction on your portis wallet!</strong>
                                     </div>
                                     <div *ngIf="txMode=='processingTX'" class="alert alert-warning" role="alert">
                                         <strong>Wait!</strong> Creating new Classroom...
                                     </div>
                                     <div *ngIf="txMode=='successTX'" class="alert alert-success" role="alert">
                                         <strong>Success!</strong> Transaction Hash {{hashTx}}
-                                        <a href="https://ropsten.etherscan.io/tx/{{hashTx}}" target="_blank">See On
-                                            Etherscan</a>
+                                        <a href="https://ropsten.etherscan.io/tx/{{hashTx}}" target="_blank">See On Etherscan</a>
                                     </div>
                                     <div *ngIf="txMode=='failedTX'" class="alert alert-danger" role="alert">
                                         <strong>Failed!</strong> Transaction didn't complete. Try again!
@@ -921,13 +839,11 @@
                             </div>
                         </div>
                         <div class="card-footer bg-gradient-white">
-                            <a (click)="closeModal('custom-modal-7'); txOff(); refreshClassroomInfo();"
-                                class="btn btn-neutral btn-icon mb-3 mb-sm-0">
+                            <a (click)="closeModal('custom-modal-7'); txOff(); refreshClassroomInfo();" class="btn btn-neutral btn-icon mb-3 mb-sm-0">
                                 <span class="btn-inner--icon"><i class="fa fa-arrow-left"></i></span>
                                 <span class="btn-inner--text">Back</span>
                             </a>
-                            <a *ngIf="txMode=='preTX'" type="submit"
-                                class="btn btn-success btn-icon text-white mb-3 mb-sm-0">
+                            <a *ngIf="txMode=='preTX'" type="submit" class="btn btn-success btn-icon text-white mb-3 mb-sm-0">
                                 <span class="btn-inner--icon"><i class="fa fa-plus"></i></span>
                                 <span class="btn-inner--text">Create</span>
                             </a>
@@ -950,8 +866,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
                                 </div>
-                                <input class="form-control" placeholder="Name" type="text" (focus)="focus=true"
-                                    (blur)="focus=false">
+                                <input class="form-control" placeholder="Name" type="text" (focus)="focus=true" (blur)="focus=false">
                             </div>
                         </div>
                     </div>
@@ -961,8 +876,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-link"></i></span>
                                 </div>
-                                <input class="form-control" placeholder="Address" type="text" (focus)="focus1=true"
-                                    (blur)="focus1=false">
+                                <input class="form-control" placeholder="Address" type="text" (focus)="focus1=true" (blur)="focus1=false">
                             </div>
                         </div>
                     </div>
@@ -974,8 +888,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
                                 </div>
-                                <input class="form-control" placeholder="Name" type="text" (focus)="focus=true"
-                                    (blur)="focus=false">
+                                <input class="form-control" placeholder="Name" type="text" (focus)="focus=true" (blur)="focus=false">
                             </div>
                         </div>
                     </div>
@@ -985,8 +898,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-link"></i></span>
                                 </div>
-                                <input class="form-control" placeholder="Address" type="text" (focus)="focus1=true"
-                                    (blur)="focus1=false">
+                                <input class="form-control" placeholder="Address" type="text" (focus)="focus1=true" (blur)="focus1=false">
                             </div>
                         </div>
                     </div>
@@ -998,8 +910,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
                                 </div>
-                                <input class="form-control" placeholder="Name" type="text" (focus)="focus=true"
-                                    (blur)="focus=false">
+                                <input class="form-control" placeholder="Name" type="text" (focus)="focus=true" (blur)="focus=false">
                             </div>
                         </div>
                     </div>
@@ -1009,8 +920,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-link"></i></span>
                                 </div>
-                                <input class="form-control" placeholder="Address" type="text" (focus)="focus1=true"
-                                    (blur)="focus1=false">
+                                <input class="form-control" placeholder="Address" type="text" (focus)="focus1=true" (blur)="focus1=false">
                             </div>
                         </div>
                     </div>
@@ -1018,8 +928,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary">Save changes</button>
-                <button type="button" class="btn btn-secondary"
-                    (click)="closeModal('custom-modal-details');">Close</button>
+                <button type="button" class="btn btn-secondary" (click)="closeModal('custom-modal-details');">Close</button>
             </div>
         </form>
     </jw-modal>
