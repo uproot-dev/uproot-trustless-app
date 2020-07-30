@@ -126,7 +126,7 @@
                                     </div>
                                     <div *ngIf="txMode=='successTX'" class="alert alert-success" role="alert">
                                         <strong>Success!</strong> Transaction Hash {{hashTx}}
-                                        <a href="https://ropsten.etherscan.io/tx/{{hashTx}}" target="_blank">See On Etherscan</a>
+                                        <a rel="noreferrer" href="https://ropsten.etherscan.io/tx/{{hashTx}}" target="_blank">See On Etherscan</a>
                                     </div>
                                     <div *ngIf="txMode=='failedTX'" class="alert alert-danger" role="alert">
                                         <strong>Failed!</strong> Transaction didn't complete. Try again!

@@ -3,7 +3,7 @@
         <a class="navbar-brand mr-lg-5" [routerLink]="['/']">
             <h3 class="text-white">UPROOT</h3>
         </a>
-        <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="navbar_global">
+        <button class="navbar-toggler" type="button" aria-label="Toggle Navbar" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="navbar_global" >
         <span class="navbar-toggler-icon"></span>
       </button>
         <div class="navbar-collapse collapse" id="navbar_global">
@@ -15,7 +15,7 @@
                         </a>
                     </div>
                     <div class="col-6 collapse-close">
-                        <button type="button" class="navbar-toggler" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="navbar_global">
+                        <button type="button" class="navbar-toggler"aria-label="Toggle Navbar"  (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="navbar_global">
                 <span></span>
                 <span></span>
               </button>
@@ -44,7 +44,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link nav-link-icon" href="https://github.com/freitasgouvea/Uproot-angular" target="_blank" data-toggle="tooltip" title="Star us on Github">
+                    <a rel="noreferrer" class="nav-link nav-link-icon" href="https://github.com/uproot-dev/uproot-trustless-app" target="_blank" data-toggle="tooltip" title="Star us on Github">
                         <i class="fa fa-lg fa-github"></i>
                         <span class="nav-link-inner--text d-lg-none">Github</span>
                     </a>
