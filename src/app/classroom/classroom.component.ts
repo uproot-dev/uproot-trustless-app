@@ -32,25 +32,16 @@ export class ClassroomComponent implements OnInit {
 
 	phase = -1;
 
-	constructor(
-		public globals: Globals,
-		private modalService: ModalService,
-		private ngxLoader: NgxUiLoaderService
-	) {}
+	constructor(public globals: Globals, private modalService: ModalService, private ngxLoader: NgxUiLoaderService) {}
 
 	async ngOnInit() {
 		if (!this.globals.service) {
 			this.globals.service = new InfuraService();
-			this.globals.ensService.configureProvider(
-				this.globals.service.provider,
-				false
-			);
+			this.globals.ensService.configureProvider(this.globals.service.provider, false);
 			console.warn('Connected to infura');
 		}
 		if (!this.globals.selectedClassroom) return;
-		this.globals.service
-			.connectClassroom(this.globals.selectedClassroom.smartcontract)
-			.then(() => this.refreshClassroomInfo());
+		this.globals.service.connectClassroom(this.globals.selectedClassroom.smartcontract).then(() => this.refreshClassroomInfo());
 		this.checkApplication();
 	}
 
@@ -58,32 +49,17 @@ export class ClassroomComponent implements OnInit {
 		if (!this.globals.selectedStudent) return;
 		this.phase = 0;
 		this.globals.service.connectStudent().then(() => {
-			this.globals.service
-				.viewMyStudentApplication(
-					this.globals.selectedClassroom.smartcontract
-				)
-				.then((address) => {
-					this.globals.service
-						.viewMyApplicationState(
-							this.globals.selectedClassroom.smartcontract
-						)
-						.then(
-							(state) => this.initApplication(address, state),
-							() =>
-								console.warn(
-									'Student does not have an application'
-								)
-						);
-				});
+			this.globals.service.viewMyStudentApplication(this.globals.selectedClassroom.smartcontract).then((address) => {
+				this.globals.service.viewMyApplicationState(this.globals.selectedClassroom.smartcontract).then(
+					(state) => this.initApplication(address, state),
+					() => console.warn('Student does not have an application')
+				);
+			});
 		});
 	}
 
 	private initApplication(address: string, state: any): any {
-		this.myStudentApplication = new StudentApplication(
-			this.globals,
-			address,
-			this.globals.address
-		);
+		this.myStudentApplication = new StudentApplication(this.globals, address, this.globals.address);
 		this.myStudentApplication.connectService();
 		this.myStudentApplication.updateState();
 		this.myStudentApplication.classroomAddress = this.globals.selectedClassroom.smartcontract;
@@ -91,18 +67,13 @@ export class ClassroomComponent implements OnInit {
 		//TODO: abstract service
 		this.globals.service.studentContractInstance
 			.viewChallengeMaterial(this.myStudentApplication.classroomAddress)
-			.then(
-				(material) => (this.myStudentApplication.material = material)
-			);
-		this.globals.service.studentApplicationContractInstance
-			.verifyAnswer()
-			.then(
-				(correct: boolean) =>
-					(this.myStudentApplication.correctAnswer = correct),
-				() => {
-					console.warn('Answer not found');
-				}
-			);
+			.then((material) => (this.myStudentApplication.material = material));
+		this.globals.service.studentApplicationContractInstance.verifyAnswer().then(
+			(correct: boolean) => (this.myStudentApplication.correctAnswer = correct),
+			() => {
+				console.warn('Answer not found');
+			}
+		);
 
 		this.updatePhase(state);
 	}
@@ -122,14 +93,10 @@ export class ClassroomComponent implements OnInit {
 
 	refreshApplication() {
 		this.myStudentApplication.updateState().then(() => {
-			this.globals.service
-				.viewMyApplicationState(
-					this.globals.selectedClassroom.smartcontract
-				)
-				.then((state) => {
-					this.myStudentApplication.state = state;
-					this.updatePhase(state);
-				});
+			this.globals.service.viewMyApplicationState(this.globals.selectedClassroom.smartcontract).then((state) => {
+				this.myStudentApplication.state = state;
+				this.updatePhase(state);
+			});
 		});
 	}
 
@@ -139,8 +106,7 @@ export class ClassroomComponent implements OnInit {
 	closeModal(id: string) {
 		this.modalService.close(id);
 		this.ngOnInit();
-		if (id == 'custom-modal-search-classroom')
-			this.resetSearchClassroomModalErrorMsg();
+		if (id == 'custom-modal-search-classroom') this.resetSearchClassroomModalErrorMsg();
 	}
 
 	closeNotice() {
@@ -180,12 +146,8 @@ export class ClassroomComponent implements OnInit {
 		});
 		const node = address.includes('.')
 			? this.globals.ensService.getNode(address)
-			: this.globals.ensService.getSubNode(
-					address.toLowerCase().replace(/\s/g, '')
-			  );
-		const ensAddress = await this.globals.ensService.lookupNodeAddress(
-			node
-		);
+			: this.globals.ensService.getSubNode(address.toLowerCase().replace(/\s/g, ''));
+		const ensAddress = await this.globals.ensService.lookupNodeAddress(node);
 		this.globals.classrooms.forEach((classroom) => {
 			if (classroom.smartcontract === ensAddress) {
 				this.modalService.close('custom-modal-search-classroom');
@@ -288,8 +250,7 @@ export class ClassroomComponent implements OnInit {
 					)
 			);
 		this.globals.service.getClassroomOwner().then((adminAddress) => {
-			this.globals.userIsClassroomAdmin =
-				this.globals.address == adminAddress;
+			this.globals.userIsClassroomAdmin = this.globals.address == adminAddress;
 			if (this.globals.userIsClassroomAdmin) {
 				this.refreshClassroomConfigs();
 				this.refreshClassroomParams();
@@ -303,56 +264,32 @@ export class ClassroomComponent implements OnInit {
 
 	onConnect(student: Student | void): void {
 		if (student) this.globals.selectedStudent = student;
-		else
-			this.globals.selectedStudent = new Student(
-				this.globals,
-				this.globals.ADDR0
-			);
+		else this.globals.selectedStudent = new Student(this.globals, this.globals.ADDR0);
 	}
 
 	async connectWallet() {
-		const wComp = new WalletComponent(this.modalService, new MetamaskService, new PortisService, this.globals);
+		const wComp = new WalletComponent(this.modalService, new MetamaskService(), new PortisService(), this.globals);
 		wComp.connectWallet();
 	}
 
 	async registerENSRecord() {
-		const normalName = this.globals.selectedClassroom.title
-			.toLowerCase()
-			.replace(/\s/g, '');
+		const normalName = this.globals.selectedClassroom.title.toLowerCase().replace(/\s/g, '');
 		const node = this.globals.ensService.getSubNode(normalName);
 		const hasRecord = await this.globals.ensService.hasRecord(node);
-		if (!hasRecord)
-			await this.teacherClaimSubnode(
-				normalName,
-				this.globals.address,
-				this.globals.selectedClassroom.smartcontract
-			);
-		const nodeAddress = await this.globals.ensService.lookupNodeAddress(
-			node
-		);
-		if (nodeAddress === this.globals.ADDR0)
-			await this.globals.ensService.setAddr(
-				node,
-				this.globals.selectedClassroom.smartcontract
-			);
+		if (!hasRecord) await this.teacherClaimSubnode(normalName, this.globals.address, this.globals.selectedClassroom.smartcontract);
+		const nodeAddress = await this.globals.ensService.lookupNodeAddress(node);
+		if (nodeAddress === this.globals.ADDR0) await this.globals.ensService.setAddr(node, this.globals.selectedClassroom.smartcontract);
 		this.ngxLoader.stop();
 	}
 
 	async teacherClaimSubnode(label, owner, classroom) {
 		const node = this.globals.ensService.node;
 		const normalName = label.toLowerCase().replace(/\s/g, '');
-		await this.globals.service.claimSubnodeClassroom(
-			node,
-			normalName,
-			owner,
-			classroom
-		);
+		await this.globals.service.claimSubnodeClassroom(node, normalName, owner, classroom);
 	}
 
 	async setMetadataRecord(type: string, text: string) {
-		const normalName = this.globals.selectedClassroom.title
-			.toLowerCase()
-			.replace(/\s/g, '');
+		const normalName = this.globals.selectedClassroom.title.toLowerCase().replace(/\s/g, '');
 		const node = this.globals.ensService.getSubNode(normalName);
 		const tx = await this.globals.ensService.setTxRecord(type, text, node);
 		this.ngxLoader.start();
@@ -360,154 +297,80 @@ export class ClassroomComponent implements OnInit {
 		this.ngxLoader.stop();
 	}
 
-	async refreshClassroomMetadata(
-		classroom: Classroom = this.globals.selectedClassroom
-	) {
+	async refreshClassroomMetadata(classroom: Classroom = this.globals.selectedClassroom) {
 		const normalName = classroom.title.toLowerCase().replace(/\s/g, '');
 		const node = this.globals.ensService.getSubNode(normalName);
 		const record = await this.globals.ensService.hasRecord(node);
 		if (!record) return;
-		classroom.metadata.ENSName =
-			normalName +
-			'.' +
-			this.globals.ensService.name +
-			this.globals.ensService.domain;
-		classroom.metadata.email = await this.globals.ensService.getTxEmail(
-			node
-		);
+		classroom.metadata.ENSName = normalName + '.' + this.globals.ensService.name + this.globals.ensService.domain;
+		classroom.metadata.email = await this.globals.ensService.getTxEmail(node);
 		classroom.metadata.url = await this.globals.ensService.getTxURL(node);
-		classroom.metadata.avatar = await this.globals.ensService.getTxAvatar(
-			node
-		);
-		classroom.metadata.description = await this.globals.ensService.getTxDescription(
-			node
-		);
-		classroom.metadata.notice = await this.globals.ensService.getTxNotice(
-			node
-		);
+		classroom.metadata.avatar = await this.globals.ensService.getTxAvatar(node);
+		classroom.metadata.description = await this.globals.ensService.getTxDescription(node);
+		classroom.metadata.notice = await this.globals.ensService.getTxNotice(node);
 		classroom.ENSHasNotice = classroom.metadata.notice.length > 0;
-		classroom.metadata.keywords = await this.globals.ensService.getTxKeywordsArray(
-			node
-		);
-		classroom.metadata.skylink = await this.globals.ensService.getTxRecord(
-			node,
-			'skylink'
-		);
+		classroom.metadata.keywords = await this.globals.ensService.getTxKeywordsArray(node);
+		classroom.metadata.skylink = await this.globals.ensService.getTxRecord(node, 'skylink');
 	}
 
-	refreshClassroomFunds(
-		classroom: Classroom = this.globals.selectedClassroom
-	) {
+	refreshClassroomFunds(classroom: Classroom = this.globals.selectedClassroom) {
 		this.globals.service
 			.getDAIBalance(this.globals.selectedClassroom.smartcontract)
-			.then(
-				(val) =>
-					(this.globals.selectedClassroom.funds.DAI = Number(
-						ethers.utils.formatEther(val)
-					))
-			);
+			.then((val) => (this.globals.selectedClassroom.funds.DAI = Number(ethers.utils.formatEther(val))));
 	}
 
 	async exchangeDAI_LINK(val: number) {}
 
 	async exchangeLINK_DAI(val: number) {}
 
-	refreshClassroomConfigs(
-		classroom: Classroom = this.globals.selectedClassroom
-	) {
+	refreshClassroomConfigs(classroom: Classroom = this.globals.selectedClassroom) {
 		this.globals.service.classroomContractInstance
 			.aaveProvider()
-			.then(
-				(val) =>
-					(this.globals.selectedClassroom.configs.aaveProvider = val)
-			);
+			.then((val) => (this.globals.selectedClassroom.configs.aaveProvider = val));
 		this.globals.service.classroomContractInstance
 			.aaveLendingPool()
-			.then(
-				(val) =>
-					(this.globals.selectedClassroom.configs.aaveLendingPool = val)
-			);
+			.then((val) => (this.globals.selectedClassroom.configs.aaveLendingPool = val));
 		this.globals.service.classroomContractInstance
 			.aaveLendingPoolCore()
-			.then(
-				(val) =>
-					(this.globals.selectedClassroom.configs.aaveLendingPoolCore = val)
-			);
-		this.globals.service.classroomContractInstance
-			.aDAI()
-			.then(
-				(val) =>
-					(this.globals.selectedClassroom.configs.aTokenDAI = val)
-			);
+			.then((val) => (this.globals.selectedClassroom.configs.aaveLendingPoolCore = val));
+		this.globals.service.classroomContractInstance.aDAI().then((val) => (this.globals.selectedClassroom.configs.aTokenDAI = val));
 	}
 
-	refreshClassroomParams(
-		classroom: Classroom = this.globals.selectedClassroom
-	) {
+	refreshClassroomParams(classroom: Classroom = this.globals.selectedClassroom) {
 		//TODO: abstract service
-		this.globals.service.classroomContractInstance
-			.compoundApplyPercentage()
-			.then((val) => {
-				this.globals.selectedClassroom.params.compoundApplyPercentage =
-					val / 1e4;
-				this.globals.selectedClassroom.params.aaveApplyPercentage =
-					100 -
-					this.globals.selectedClassroom.params
-						.compoundApplyPercentage;
-			});
+		this.globals.service.classroomContractInstance.compoundApplyPercentage().then((val) => {
+			this.globals.selectedClassroom.params.compoundApplyPercentage = val / 1e4;
+			this.globals.selectedClassroom.params.aaveApplyPercentage = 100 - this.globals.selectedClassroom.params.compoundApplyPercentage;
+		});
 	}
 
-	refreshClassroomData(
-		classroom: Classroom = this.globals.selectedClassroom
-	) {
+	refreshClassroomData(classroom: Classroom = this.globals.selectedClassroom) {
 		//TODO: abstract service
 		this.globals.service.classroomContractInstance
 			.countNewApplications()
-			.then(
-				(val) =>
-					(this.globals.selectedClassroom.classdata.students = val)
-			);
+			.then((val) => (this.globals.selectedClassroom.classdata.students = val));
 		this.globals.service.classroomContractInstance
 			.countReadyApplications()
-			.then(
-				(val) =>
-					(this.globals.selectedClassroom.classdata.validStudents = val)
-			);
+			.then((val) => (this.globals.selectedClassroom.classdata.validStudents = val));
 		this.globals.service.classroomContractInstance
 			.courseBalance()
-			.then(
-				(val) =>
-					(this.globals.selectedClassroom.classdata.courseBalance =
-						val / 1e18)
-			);
+			.then((val) => (this.globals.selectedClassroom.classdata.courseBalance = val / 1e18));
 		this.courseFunds();
 	}
 
 	private courseFunds() {
 		let [aDAI, cDAI, aDAI_u, cDAI_u] = [0, 0, 0, 0];
-		this.globals.service.ADAIContract.balanceOf(
-			this.globals.selectedClassroom.smartcontract
-		).then((balance) => {
+		this.globals.service.ADAIContract.balanceOf(this.globals.selectedClassroom.smartcontract).then((balance) => {
 			aDAI = balance / 1e18;
-			this.globals.service.ADAIContract.principalBalanceOf(
-				this.globals.selectedClassroom.smartcontract
-			).then((balance) => {
+			this.globals.service.ADAIContract.principalBalanceOf(this.globals.selectedClassroom.smartcontract).then((balance) => {
 				aDAI_u = balance / 1e18;
-				this.globals.service.CDAIContract.balanceOf(
-					this.globals.selectedClassroom.smartcontract
-				).then((balance) => {
+				this.globals.service.CDAIContract.balanceOf(this.globals.selectedClassroom.smartcontract).then((balance) => {
 					cDAI = balance / 1e8;
-					this.globals.service.CDAIContract.balanceOfUnderlying(
-						this.globals.selectedClassroom.smartcontract
-					).then((balance) => {
+					this.globals.service.CDAIContract.balanceOfUnderlying(this.globals.selectedClassroom.smartcontract).then((balance) => {
 						cDAI_u = balance / 1e8;
-						this.globals.selectedClassroom.classdata.fundsInvested =
-							aDAI_u + cDAI_u;
+						this.globals.selectedClassroom.classdata.fundsInvested = aDAI_u + cDAI_u;
 						this.globals.selectedClassroom.classdata.investmentReturns =
-							aDAI +
-							cDAI -
-							this.globals.selectedClassroom.classdata
-								.fundsInvested;
+							aDAI + cDAI - this.globals.selectedClassroom.classdata.fundsInvested;
 					});
 				});
 			});
@@ -515,164 +378,160 @@ export class ClassroomComponent implements OnInit {
 	}
 
 	openApplications() {
-		this.globals.service.classroomContractInstance
-			.openApplications()
-			.then((tx) => {
-				this.ngxLoader.start();
-				tx.wait().then(() => this.refreshClassroomInfo());
-			});
+		this.globals.service.classroomContractInstance.openApplications().then((tx) => {
+			this.ngxLoader.start();
+			tx.wait().then(() => this.refreshClassroomInfo());
+		});
 	}
 
 	closeApplications() {
-		this.globals.service.classroomContractInstance
-			.closeApplications()
-			.then((tx) => {
-				this.ngxLoader.start();
-				tx.wait().then(() => this.refreshClassroomInfo());
-			});
+		this.globals.service.classroomContractInstance.closeApplications().then((tx) => {
+			this.ngxLoader.start();
+			tx.wait().then(() => this.refreshClassroomInfo());
+		});
 	}
 
 	beginCourse() {
-		this.globals.service.classroomContractInstance
-			.beginCourse({ gasLimit: 821000 })
-			.then((tx) => {
-				this.ngxLoader.start();
-				tx.wait().then(() => this.refreshClassroomInfo());
-			});
+		this.globals.service.classroomContractInstance.beginCourse({ gasLimit: 821000 }).then((tx) => {
+			this.ngxLoader.start();
+			tx.wait().then(() => this.refreshClassroomInfo());
+		});
 	}
 
 	finishCourse() {
-		this.globals.service.classroomContractInstance
-			.finishCourse({ gasLimit: 1210000 })
-			.then((tx) => {
-				this.ngxLoader.start();
-				tx.wait().then(() => this.refreshClassroomInfo());
-			});
+		this.globals.service.classroomContractInstance.finishCourse({ gasLimit: 1210000 }).then((tx) => {
+			this.ngxLoader.start();
+			tx.wait().then(() => this.refreshClassroomInfo());
+		});
 	}
 
 	async processResults() {
 		let tx;
-		tx = await this.globals.service.classroomContractInstance.processResults();
-		this.ngxLoader.start();
-		await tx.wait();
-		this.ngxLoader.stop();
-		tx = await this.globals.service.classroomContractInstance.startAnswerVerification();
-		this.ngxLoader.start();
-		await tx.wait();
-		this.ngxLoader.stop();
-		tx = await this.globals.service.classroomContractInstance.accountValues();
-		this.ngxLoader.start();
-		await tx.wait();
-		this.ngxLoader.stop();
-		tx = await this.globals.service.classroomContractInstance.resolveStudentAllowances();
-		this.ngxLoader.start();
-		await tx.wait();
-		this.ngxLoader.stop();
-		tx = await this.globals.service.classroomContractInstance.resolveUniversityCut();
-		this.ngxLoader.start();
-		await tx.wait();
-		this.ngxLoader.stop();
-		tx = await this.globals.service.classroomContractInstance.updateStudentScores();
-		this.ngxLoader.start();
-		await tx.wait();
-		this.ngxLoader.stop();
-		tx = await this.globals.service.classroomContractInstance.endProcessResults();
-		this.ngxLoader.start();
-		await tx.wait();
+		const phase = await this.globals.service.classroomContractInstance.viewProcessPhase();
+		console.warn(phase);
+		try {
+			tx = await this.globals.service.classroomContractInstance.processResults();
+			this.ngxLoader.start();
+			await tx.wait();
+			this.ngxLoader.stop();
+		} catch {
+		}
+		try {
+			tx = await this.globals.service.classroomContractInstance.startAnswerVerification();
+			this.ngxLoader.start();
+			await tx.wait();
+			this.ngxLoader.stop();
+		} catch {
+		}
+		try {
+			tx = await this.globals.service.classroomContractInstance.accountValues();
+			this.ngxLoader.start();
+			await tx.wait();
+			this.ngxLoader.stop();
+		} catch {
+		}
+		try {
+			tx = await this.globals.service.classroomContractInstance.resolveStudentAllowances();
+			this.ngxLoader.start();
+			await tx.wait();
+			this.ngxLoader.stop();
+		} catch {
+		}
+		try {
+			tx = await this.globals.service.classroomContractInstance.resolveUniversityCut();
+			this.ngxLoader.start();
+			await tx.wait();
+			this.ngxLoader.stop();
+		} catch {
+		}
+		try {
+			tx = await this.globals.service.classroomContractInstance.updateStudentScores();
+			this.ngxLoader.start();
+			await tx.wait();
+			this.ngxLoader.stop();
+		} catch {
+		}
+		try {
+			tx = await this.globals.service.classroomContractInstance.endProcessResults();
+			this.ngxLoader.start();
+			await tx.wait();
+			this.ngxLoader.stop();
+		} catch {
+		}
 		this.refreshClassroomInfo();
 	}
 
 	withdrawAllResults() {
-		this.globals.service.classroomContractInstance
-			.withdrawAllResults()
-			.then((tx) => {
-				this.ngxLoader.start();
-				tx.wait().then(() => this.refreshClassroomInfo());
-			});
+		this.globals.service.classroomContractInstance.withdrawAllResults().then((tx) => {
+			this.ngxLoader.start();
+			tx.wait().then(() => this.refreshClassroomInfo());
+		});
 	}
 
 	changeName(val) {
-		this.globals.service.classroomContractInstance
-			.changeName(val)
-			.then((tx) => {
-				this.ngxLoader.start();
-				tx.wait().then(() => this.refreshClassroomInfo());
-			});
+		this.globals.service.classroomContractInstance.changeName(val).then((tx) => {
+			this.ngxLoader.start();
+			tx.wait().then(() => this.refreshClassroomInfo());
+		});
 	}
 
 	changePrincipalCut(percentage) {
-		this.globals.service.classroomContractInstance
-			.changePrincipalCut(percentage * 1e4)
-			.then((tx) => {
-				this.ngxLoader.start();
-				tx.wait().then(() => this.refreshClassroomInfo());
-			});
+		this.globals.service.classroomContractInstance.changePrincipalCut(percentage * 1e4).then((tx) => {
+			this.ngxLoader.start();
+			tx.wait().then(() => this.refreshClassroomInfo());
+		});
 	}
 
 	changePoolCut(percentage) {
-		this.globals.service.classroomContractInstance
-			.changePoolCut(percentage * 1e4)
-			.then((tx) => {
-				this.ngxLoader.start();
-				tx.wait().then(() => this.refreshClassroomInfo());
-			});
+		this.globals.service.classroomContractInstance.changePoolCut(percentage * 1e4).then((tx) => {
+			this.ngxLoader.start();
+			tx.wait().then(() => this.refreshClassroomInfo());
+		});
 	}
 
 	changeMinScore(val) {
-		this.globals.service.classroomContractInstance
-			.changeMinScore(val)
-			.then((tx) => {
-				this.ngxLoader.start();
-				tx.wait().then(() => this.refreshClassroomInfo());
-			});
+		this.globals.service.classroomContractInstance.changeMinScore(val).then((tx) => {
+			this.ngxLoader.start();
+			tx.wait().then(() => this.refreshClassroomInfo());
+		});
 	}
 
 	changeEntryPrice(val: string) {
-		this.globals.service.classroomContractInstance
-			.changeEntryPrice(ethers.utils.parseEther(val))
-			.then((tx) => {
-				this.ngxLoader.start();
-				tx.wait().then(() => this.refreshClassroomInfo());
-			});
+		this.globals.service.classroomContractInstance.changeEntryPrice(ethers.utils.parseEther(val)).then((tx) => {
+			this.ngxLoader.start();
+			tx.wait().then(() => this.refreshClassroomInfo());
+		});
 	}
 
 	changeDuration(val) {
-		this.globals.service.classroomContractInstance
-			.changeDuration(val)
-			.then((tx) => {
-				this.ngxLoader.start();
-				tx.wait().then(() => this.refreshClassroomInfo());
-			});
+		this.globals.service.classroomContractInstance.changeDuration(val).then((tx) => {
+			this.ngxLoader.start();
+			tx.wait().then(() => this.refreshClassroomInfo());
+		});
 	}
 
 	changeCompoundApplyPercentage(percentage) {
-		this.globals.service.classroomContractInstance
-			.changeCompoundApplyPercentage(percentage * 1e4)
-			.then((tx) => {
-				this.ngxLoader.start();
-				tx.wait().then(() => this.refreshClassroomInfo());
-			});
+		this.globals.service.classroomContractInstance.changeCompoundApplyPercentage(percentage * 1e4).then((tx) => {
+			this.ngxLoader.start();
+			tx.wait().then(() => this.refreshClassroomInfo());
+		});
 	}
 
 	changeChallenge(addr) {
-		this.globals.service.classroomContractInstance
-			.changeChallenge(addr)
-			.then((tx) => {
-				this.ngxLoader.start();
-				tx.wait().then(() => this.refreshClassroomInfo());
-			});
+		this.globals.service.classroomContractInstance.changeChallenge(addr).then((tx) => {
+			this.ngxLoader.start();
+			tx.wait().then(() => this.refreshClassroomInfo());
+		});
 	}
 
 	configureAave(lendingPoolAddressesProvider: string) {
 		lendingPoolAddressesProvider = lendingPoolAddressesProvider
 			? lendingPoolAddressesProvider
 			: environment.AaveLendingPoolAddressesProvider;
-		this.globals.service.classroomContractInstance
-			.configureAave(lendingPoolAddressesProvider)
-			.then((tx) => {
-				this.ngxLoader.start();
-				tx.wait().then(() => this.refreshClassroomConfigs());
-			});
+		this.globals.service.classroomContractInstance.configureAave(lendingPoolAddressesProvider).then((tx) => {
+			this.ngxLoader.start();
+			tx.wait().then(() => this.refreshClassroomConfigs());
+		});
 	}
 
 	async studentSelfRegister(_name: string): Promise<any> {
@@ -681,9 +540,7 @@ export class ClassroomComponent implements OnInit {
 			this.txMode = 'failedTX';
 		} else {
 			this.txMode = 'processingTX';
-			const selfRegister = await this.globals.service.studentSelfRegister(
-				_name
-			);
+			const selfRegister = await this.globals.service.studentSelfRegister(_name);
 			this.ngxLoader.start();
 			if (!selfRegister) {
 				this.txMode = 'failedTX';
@@ -703,9 +560,7 @@ export class ClassroomComponent implements OnInit {
 			this.txMode = 'failedTX';
 		} else {
 			this.txMode = 'processingTX';
-			const application = await this.globals.service.applyToClassroom(
-				classroomAddress
-			);
+			const application = await this.globals.service.applyToClassroom(classroomAddress);
 			this.ngxLoader.start();
 			if (!application) {
 				this.txMode = 'failedTX';
@@ -722,10 +577,7 @@ export class ClassroomComponent implements OnInit {
 		this.txOn();
 		const value = this.globals.selectedClassroom.price;
 		this.txMode = 'processingTX';
-		const approve = await this.globals.service.approveDAI(
-			value,
-			this.myStudentApplication.address
-		);
+		const approve = await this.globals.service.approveDAI(value, this.myStudentApplication.address);
 		this.ngxLoader.start();
 		if (!approve) {
 			this.txMode = 'failedTX';
@@ -742,14 +594,8 @@ export class ClassroomComponent implements OnInit {
 
 	checkAllowance() {
 		if (this.allowanceMode > 0) return;
-		this.globals.service.DAIContract.allowance(
-			this.globals.address,
-			this.myStudentApplication.address
-		).then((val) => {
-			if (
-				Number(ethers.utils.formatEther(val)) >=
-				this.globals.selectedClassroom.price
-			) {
+		this.globals.service.DAIContract.allowance(this.globals.address, this.myStudentApplication.address).then((val) => {
+			if (Number(ethers.utils.formatEther(val)) >= this.globals.selectedClassroom.price) {
 				this.allowanceMode = 2;
 			} else {
 				this.allowanceMode = 1;
@@ -781,10 +627,7 @@ export class ClassroomComponent implements OnInit {
 			this.txMode = 'failedTX';
 		} else {
 			this.txMode = 'processingTX';
-			const sendTx = await this.globals.service.setAnswerSecret(
-				classroomAddress,
-				secret
-			);
+			const sendTx = await this.globals.service.setAnswerSecret(classroomAddress, secret);
 			this.ngxLoader.start();
 			if (!sendTx) {
 				this.txMode = 'failedTX';
@@ -805,10 +648,7 @@ export class ClassroomComponent implements OnInit {
 			this.txMode = 'failedTX';
 		} else {
 			this.txMode = 'processingTX';
-			const collectTx = await this.globals.service.withdrawAllResultsFromClassroom(
-				classroomAddress,
-				studentAddress
-			);
+			const collectTx = await this.globals.service.withdrawAllResultsFromClassroom(classroomAddress, studentAddress);
 			this.ngxLoader.start();
 			if (!collectTx) {
 				this.txMode = 'failedTX';

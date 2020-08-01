@@ -123,7 +123,7 @@
                                 <h6 *ngIf="phase<2" class="text-default text-uppercase">Start Application</h6>
                                 <h6 *ngIf="phase>1" class="text-default text-uppercase text-body">Entry already paid</h6>
                                 <p *ngIf="phase<2" class="description mt-3" [ngClass]="{ 'text-body': globals.selectedClassroom&&(phase!=1) }">You need to deposit the classroom fee to start your application.</p>
-                                <a *ngIf="phase==1" (click)="checkAllowance();openModal('custom-modal-3'); txOn();" class="btn btn-default mt-4 text-body">Deposit</a>
+                                <a *ngIf="phase==1" (click)="checkAllowance();openModal('start-application'); txOn();" class="btn btn-default mt-4 text-body">Deposit</a>
                             </div>
                         </div>
                     </div>
@@ -147,7 +147,7 @@
                                 <h6 *ngIf="phase<4" class="text-default text-uppercase">Access Material</h6>
                                 <h6 *ngIf="phase>3" class="text-default text-uppercase text-body">Classroom closed</h6>
                                 <p *ngIf="phase<4" class="description mt-3" [ngClass]="{ 'text-body': globals.selectedClassroom&&(phase!=3) }">Here you can access all the stuff and materials of this classroom.</p>
-                                <a *ngIf="phase==3" (click)="openModal('custom-modal-4'); txOn();" class="btn btn-default mt-4 text-body">Access</a>
+                                <a *ngIf="phase==3" (click)="openModal('view-material'); txOn();" class="btn btn-default mt-4 text-body">Access</a>
                             </div>
                         </div>
                     </div>
@@ -160,7 +160,7 @@
                                 <h6 *ngIf="phase<4" class="text-default text-uppercase">Submit Your Answer</h6>
                                 <h6 *ngIf="phase>3" class="text-default text-uppercase text-body">Classroom closed</h6>
                                 <p *ngIf="phase<4" class="description mt-3" [ngClass]="{ 'text-body': globals.selectedClassroom&&(phase!=3) }">Here you can send your secret to complete this classroom.</p>
-                                <a *ngIf="phase==3" (click)="openModal('custom-modal-5'); txOn();" class="btn btn-default mt-4 text-body">Submit</a>
+                                <a *ngIf="phase==3" (click)="openModal('submit-answer'); txOn();" class="btn btn-default mt-4 text-body">Submit</a>
                             </div>
                         </div>
                     </div>
@@ -184,7 +184,7 @@
                                 <h6 *ngIf="phase<6" class="text-default text-uppercase">Claim Your Reward</h6>
                                 <h6 *ngIf="phase>5" class="text-default text-uppercase text-body">Reward claimed</h6>
                                 <p *ngIf="phase<6" class="description mt-3" [ngClass]="{ 'text-body': globals.selectedClassroom&&(phase!=5) }">If you send correct answer you can collect you reward here.</p><br>
-                                <a *ngIf="phase==5" (click)="openModal('custom-modal-6'); txOn();" class="btn btn-default mt-4 text-body">Claim</a>
+                                <a *ngIf="phase==5" (click)="openModal('claim-reward'); txOn();" class="btn btn-default mt-4 text-body">Claim</a>
                             </div>
                         </div>
                     </div>
@@ -196,7 +196,7 @@
                                 </div>
                                 <h6 class="text-default text-uppercase">Start your own classroom</h6>
                                 <p class="description mt-3" [ngClass]="{ 'text-body': globals.selectedClassroom&&(phase!=6) }">After you complete a classroom you can create a new one.</p>
-                                <a *ngIf="phase==6" (click)="openModal('custom-modal-7'); txOn();" class="btn btn-default mt-4 text-body">Create</a>
+                                <a *ngIf="phase==6" (click)="openModal('create-new-classroom'); txOn();" class="btn btn-default mt-4 text-body">Create</a>
                             </div>
                         </div>
                     </div>
@@ -288,7 +288,7 @@
                             <input #classroomMetadataValueInput type="text" class="form-control" id="classroomMetadataValueInput" placeholder="new value">
                         </div>
                         <button type="button" class="btn btn-info" (click)="setMetadataRecord(classroomMetadataSelectType.value, classroomMetadataValueInput.value)">Change</button>
-                        <button type="button" class="btn btn-info" (click)="openModal('custom-modal-4')">View Material</button>
+                        <button type="button" class="btn btn-info" (click)="openModal('view-material')">View Material</button>
                     </div>
                 </div>
             </div>
@@ -417,7 +417,7 @@
                             <div class="row mt-3">
                                 <div class="col-md-12">
                                     <div *ngIf="txMode=='preTX'" class="alert alert-neutral" role="alert">
-                                        <strong class="text-default">You need confirm this transaction on your portis wallet!</strong>
+                                        <strong class="text-default">You need confirm this transaction on your wallet!</strong>
                                     </div>
                                     <div *ngIf="txMode=='processingTX'" class="alert alert-warning" role="alert">
                                         <strong>Wait!</strong> Registering your account ...
@@ -462,7 +462,7 @@
                             <div class="row mt-3">
                                 <div class="col-md-12">
                                     <div *ngIf="txMode=='preTX'" class="alert alert-neutral" role="alert">
-                                        <strong class="text-default">You need confirm this transaction on your portis wallet!</strong>
+                                        <strong class="text-default">You need confirm this transaction on your wallet!</strong>
                                     </div>
                                     <div *ngIf="txMode=='processingTX'" class="alert alert-warning" role="alert">
                                         <strong>Wait!</strong> Sending your application...
@@ -513,7 +513,7 @@
                             <div class="row mt-3">
                                 <div class="col-md-12">
                                     <div *ngIf="txMode=='preTX'" class="alert alert-neutral" role="alert">
-                                        <strong class="text-default">You need confirm this transaction on your portis wallet!</strong>
+                                        <strong class="text-default">You need confirm this transaction on your wallet!</strong>
                                     </div>
                                     <div *ngIf="txMode=='processingTX'" class="alert alert-warning" role="alert">
                                         <strong>Wait!</strong> Sending your call...
@@ -543,7 +543,7 @@
             </div>
         </form>
     </jw-modal>
-    <jw-modal id="custom-modal-3" *ngIf=globals.selectedClassroom>
+    <jw-modal id="start-application" *ngIf=globals.selectedClassroom>
         <form role="form">
             <div class="row justify-content-center">
                 <div class="col-md-6">
@@ -559,7 +559,7 @@
                             <div class="row mt-3">
                                 <div class="col-md-12">
                                     <div *ngIf="txMode=='preTX'" class="alert alert-neutral" role="alert">
-                                        <strong class="text-default">You need confirm this transaction on your portis wallet!</strong>
+                                        <strong class="text-default">You need confirm this transaction on your wallet!</strong>
                                     </div>
                                     <div *ngIf="txMode=='processingTX'" class="alert alert-warning" role="alert">
                                         <strong>Wait!</strong> Sending your Transaction...
@@ -575,7 +575,7 @@
                             </div>
                         </div>
                         <div class="card-footer bg-gradient-white">
-                            <a (click)="closeModal('custom-modal-3'); txOff(); refreshClassroomInfo();" class="btn btn-neutral btn-icon mb-3 mb-sm-0">
+                            <a (click)="closeModal('start-application'); txOff(); refreshClassroomInfo();" class="btn btn-neutral btn-icon mb-3 mb-sm-0">
                                 <span class="btn-inner--icon"><i class="fa fa-arrow-left"></i></span>
                                 <span class="btn-inner--text">Back</span>
                             </a>
@@ -597,7 +597,7 @@
             </div>
         </form>
     </jw-modal>
-    <jw-modal id="custom-modal-4" *ngIf=globals.selectedClassroom>
+    <jw-modal id="view-material" *ngIf=globals.selectedClassroom>
         <form role="form">
             <div class="row justify-content-center">
                 <div class="col-md-6">
@@ -611,7 +611,7 @@
                             </div>
                         </div>
                         <div class="card-footer bg-gradient-white">
-                            <a (click)="closeModal('custom-modal-4'); txOff(); refreshClassroomInfo();" class="btn btn-neutral btn-icon mb-3 mb-sm-0">
+                            <a (click)="closeModal('view-material'); txOff(); refreshClassroomInfo();" class="btn btn-neutral btn-icon mb-3 mb-sm-0">
                                 <span class="btn-inner--icon"><i class="fa fa-arrow-left"></i></span>
                                 <span class="btn-inner--text">Back</span>
                             </a>
@@ -621,7 +621,7 @@
             </div>
         </form>
     </jw-modal>
-    <jw-modal id="custom-modal-5" *ngIf=globals.selectedClassroom>
+    <jw-modal id="submit-answer" *ngIf=globals.selectedClassroom>
         <form role="form">
             <div class="row justify-content-center">
                 <div class="col-md-6">
@@ -648,7 +648,7 @@
                             <div class="row mt-3">
                                 <div class="col-md-12">
                                     <div *ngIf="txMode=='preTX'" class="alert alert-neutral" role="alert">
-                                        <strong class="text-default">You need confirm this transaction on your portis wallet!</strong>
+                                        <strong class="text-default">You need confirm this transaction on your wallet!</strong>
                                     </div>
                                     <div *ngIf="txMode=='processingTX'" class="alert alert-warning" role="alert">
                                         <strong>Wait!</strong> Sending your answer...
@@ -664,7 +664,7 @@
                             </div>
                         </div>
                         <div class="card-footer bg-gradient-white">
-                            <a (click)="closeModal('custom-modal-5'); txOff(); refreshClassroomInfo();" class="btn btn-neutral btn-icon mb-3 mb-sm-0">
+                            <a (click)="closeModal('submit-answer'); txOff(); refreshClassroomInfo();" class="btn btn-neutral btn-icon mb-3 mb-sm-0">
                                 <span class="btn-inner--icon"><i class="fa fa-arrow-left"></i></span>
                                 <span class="btn-inner--text">Back</span>
                             </a>
@@ -678,7 +678,7 @@
             </div>
         </form>
     </jw-modal>
-    <jw-modal id="custom-modal-6" *ngIf="globals.selectedClassroom&&myStudentApplication">
+    <jw-modal id="claim-reward" *ngIf="globals.selectedClassroom&&myStudentApplication">
         <form role="form">
             <div class="row justify-content-center">
                 <div class="col-md-6">
@@ -696,7 +696,7 @@
                             <div class="row mt-3">
                                 <div class="col-md-12">
                                     <div *ngIf="txMode=='preTX'" class="alert alert-neutral" role="alert">
-                                        <strong class="text-default">You need confirm this transaction on your portis wallet!</strong>
+                                        <strong class="text-default">You need confirm this transaction on your wallet!</strong>
                                     </div>
                                     <div *ngIf="txMode=='processingTX'" class="alert alert-warning" role="alert">
                                         <strong>Wait!</strong> Sending your request...
@@ -712,7 +712,7 @@
                             </div>
                         </div>
                         <div class="card-footer bg-gradient-white">
-                            <a (click)="closeModal('custom-modal-6'); txOff(); refreshClassroomInfo();" class="btn btn-neutral btn-icon mb-3 mb-sm-0">
+                            <a (click)="closeModal('claim-reward'); txOff(); refreshClassroomInfo();" class="btn btn-neutral btn-icon mb-3 mb-sm-0">
                                 <span class="btn-inner--icon"><i class="fa fa-arrow-left"></i></span>
                                 <span class="btn-inner--text">Back</span>
                             </a>
@@ -726,7 +726,7 @@
             </div>
         </form>
     </jw-modal>
-    <jw-modal id="custom-modal-7" *ngIf=globals.selectedClassroom>
+    <jw-modal id="create-new-classroom" *ngIf=globals.selectedClassroom>
         <form role="form">
             <div class="row justify-content-center">
                 <div class="col-md-12">
@@ -823,7 +823,7 @@
                             <div class="row mt-3">
                                 <div class="col-md-12">
                                     <div *ngIf="txMode=='preTX'" class="alert alert-neutral" role="alert">
-                                        <strong class="text-default">You need confirm this transaction on your portis wallet!</strong>
+                                        <strong class="text-default">You need confirm this transaction on your wallet!</strong>
                                     </div>
                                     <div *ngIf="txMode=='processingTX'" class="alert alert-warning" role="alert">
                                         <strong>Wait!</strong> Creating new Classroom...
@@ -839,7 +839,7 @@
                             </div>
                         </div>
                         <div class="card-footer bg-gradient-white">
-                            <a (click)="closeModal('custom-modal-7'); txOff(); refreshClassroomInfo();" class="btn btn-neutral btn-icon mb-3 mb-sm-0">
+                            <a (click)="closeModal('create-new-classroom'); txOff(); refreshClassroomInfo();" class="btn btn-neutral btn-icon mb-3 mb-sm-0">
                                 <span class="btn-inner--icon"><i class="fa fa-arrow-left"></i></span>
                                 <span class="btn-inner--text">Back</span>
                             </a>
