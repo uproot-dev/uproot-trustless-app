@@ -2,9 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Globals } from '../app.globals';
 import { InfuraService } from '../services/infura.service';
 import { environment } from 'src/environments/environment';
-import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 import { ethers } from 'ethers';
-import { promise } from 'protractor';
 
 @Component({
 	selector: 'fund',
